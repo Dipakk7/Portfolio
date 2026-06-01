@@ -205,7 +205,7 @@ export function Footer({ footerData }: FooterProps) {
     email: footerData?.email || defaultFooterData.email,
     socialLinks: footerData?.socialLinks || defaultFooterData.socialLinks,
     footerText: footerData?.footerText || defaultFooterData.footerText,
-    resumeUrl: footerData?.resumeUrl || "/resume.pdf",
+    resumeUrl: footerData?.resumeUrl || "https://raw.githubusercontent.com/Dipakk7/Portfolio/main/client/public/resume.pdf",
   };
 
   const handleButtonMouseMove = (e: React.MouseEvent) => {

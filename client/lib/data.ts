@@ -100,6 +100,7 @@ const fallbackHeroData: HeroData = {
         website: "",
     },
     footerText: "© 2026 Dipak Khandagale. All rights reserved.",
+    resumeUrl: "https://raw.githubusercontent.com/Dipakk7/Portfolio/main/client/public/resume.pdf",
 };
 
 const fallbackExperiences: Experience[] = [
