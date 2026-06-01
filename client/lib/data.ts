@@ -119,25 +119,25 @@ const fallbackCertificates: Certificate[] = [
         _id: "1",
         title: "Oracle AI Foundations Associate",
         serialId: "OCI-AI-2025",
-        image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&h=400&fit=crop",
+        image: "/certificates/OCI_AI_Foundations.png",
     },
     {
         _id: "2",
         title: "Oracle Generative AI Professional",
         serialId: "OCI-GENAI-2025",
-        image: "https://images.unsplash.com/photo-1677442136019-21780efad99a?w=600&h=400&fit=crop",
+        image: "/certificates/OCI_Generative_AI_Professional.png",
     },
     {
         _id: "3",
         title: "Oracle Multicloud Architect Professional",
         serialId: "OCI-MCARCH-2025",
-        image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=400&fit=crop",
+        image: "/certificates/OCI_Multicloud_Architect.png",
     },
     {
         _id: "4",
         title: "Crash Course on Python – Coursera",
         serialId: "COURSERA-PY-2024",
-        image: "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=600&h=400&fit=crop",
+        image: "/certificates/Coursera_Dipak.png",
     },
 ];
 
