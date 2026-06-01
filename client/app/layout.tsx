@@ -15,7 +15,7 @@ const _geistMono = V0_Font_Geist_Mono({ subsets: ['latin'], variable: '--font-ge
 const _sourceSerif_4 = V0_Font_Source_Serif_4({ subsets: ['latin'], variable: '--font-source-serif-4' })
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://github.com/Dipakk7'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://dipakkhandagale.vercel.app'),
   title: {
     default: "Dipak Khandagale | AI Engineer & Data Analyst",
     template: "%s | Dipak Khandagale"
