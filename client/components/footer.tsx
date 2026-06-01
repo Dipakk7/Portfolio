@@ -200,12 +200,16 @@ export function Footer({ footerData }: FooterProps) {
   const [buttonHovered, setButtonHovered] = useState(false)
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
 
+  const rawGithubResume = "https://raw.githubusercontent.com/Dipakk7/Portfolio/main/client/public/resume.pdf";
+
   // Use provided data or fall back to defaults
   const data = {
     email: footerData?.email || defaultFooterData.email,
     socialLinks: footerData?.socialLinks || defaultFooterData.socialLinks,
     footerText: footerData?.footerText || defaultFooterData.footerText,
-    resumeUrl: footerData?.resumeUrl || "https://raw.githubusercontent.com/Dipakk7/Portfolio/main/client/public/resume.pdf",
+    resumeUrl: (footerData?.resumeUrl && footerData.resumeUrl !== "/resume.pdf")
+      ? footerData.resumeUrl
+      : rawGithubResume,
   };
 
   const handleButtonMouseMove = (e: React.MouseEvent) => {
