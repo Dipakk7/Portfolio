@@ -161,7 +161,7 @@ export function Navbar() {
         <DockIcon
           mouseX={mouseX}
           id="theme-toggle"
-          title="Theme"
+          title={mounted ? (resolvedTheme === "dark" ? "Light Mode" : "Dark Mode") : "Theme"}
           icon={mounted && resolvedTheme === "dark" ? <Sun /> : <Moon />}
           href="#"
           onClick={(e) => {
@@ -189,7 +189,7 @@ export function Navbar() {
         {/* Mobile Theme Toggle */}
         <MobileDockIcon
           id="theme-toggle"
-          title="Theme"
+          title={mounted ? (resolvedTheme === "dark" ? "Light Mode" : "Dark Mode") : "Theme"}
           icon={mounted && resolvedTheme === "dark" ? <Sun /> : <Moon />}
           href="#"
           onClick={(e) => {
@@ -248,6 +248,8 @@ function DockIcon({ mouseX, id, title, icon, href, onClick, isActive }: DockIcon
       style={{ width, height }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
+      aria-label={title}
+      title={title}
       className={`aspect-square rounded-full flex items-center justify-center relative transition-colors duration-300 shrink-0 select-none outline-none
         ${isActive 
           ? "bg-[#6366F1]/10 dark:bg-[#818CF8]/10 border border-[#6366F1]/40 dark:border-[#818CF8]/40 text-[#6366F1] dark:text-[#818CF8] shadow-[0_0_15px_rgba(99,102,241,0.3)] dark:shadow-[0_0_20px_rgba(129,140,248,0.25)]" 
@@ -302,7 +304,7 @@ function MobileDockIcon({ id, title, icon, href, onClick, isActive }: MobileDock
   })
 
   return (
-    <a href={href} onClick={onClick} className="relative select-none outline-none shrink-0">
+    <a href={href} onClick={onClick} aria-label={title} title={title} className="relative select-none outline-none shrink-0">
       <div
         className={`w-9 h-9 rounded-full flex items-center justify-center relative transition-colors duration-300 shrink-0
           ${isActive 
