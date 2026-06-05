@@ -31,13 +31,6 @@ export function About({ data }: AboutProps) {
     const opacity = useTransform(scrollYProgress, [0.1, 0.3], [0, 1]);
     const y = useTransform(scrollYProgress, [0.1, 0.3], [50, 0]);
 
-    // Use provided data or fall back to defaults
-    const aboutData = {
-        title: data?.aboutTitle || defaultAboutData.title,
-        subtitle: data?.aboutSubtitle || defaultAboutData.subtitle,
-        description: data?.aboutDescription || defaultAboutData.description,
-    };
-
     return (
         <section ref={containerRef} className="py-32 px-4 bg-zinc-50 dark:bg-black bg-dot-grid relative overflow-hidden">
             {/* Background decoration */}
@@ -64,15 +57,26 @@ export function About({ data }: AboutProps) {
                             }}
                             transition={{ duration: 2, repeat: Infinity }}
                         />
-                        {aboutData.title}
+                        {"// About Me"}
                     </motion.div>
 
-                    <h3 className="text-3xl md:text-5xl font-bold leading-tight text-zinc-900 dark:text-white text-left">
-                        {aboutData.subtitle}
+                    <h3 className="text-3xl md:text-5xl font-bold leading-tight text-zinc-900 dark:text-white text-left tracking-tight">
+                        I build intelligent systems that transform data into meaningful impact.
                     </h3>
 
-                    <div className="prose prose-lg dark:prose-invert max-w-none text-zinc-600 dark:text-zinc-400 leading-relaxed whitespace-pre-wrap text-left">
-                        {aboutData.description}
+                    <div className="prose prose-lg dark:prose-invert max-w-none text-zinc-600 dark:text-zinc-400 leading-relaxed text-left space-y-6">
+                        <p>
+                            As an <span className="text-[#6366F1] dark:text-[#818CF8] font-semibold">AI/ML Engineer</span>, I am passionate about leveraging <strong className="text-zinc-900 dark:text-white font-semibold">Artificial Intelligence</strong>, <strong className="text-zinc-900 dark:text-white font-semibold">Machine Learning</strong>, and <strong className="text-zinc-900 dark:text-white font-semibold">Data Analytics</strong> to solve real-world challenges. I enjoy transforming complex data into intelligent solutions that drive better decisions and create measurable value.
+                        </p>
+                        <p>
+                            My expertise spans <strong className="text-zinc-900 dark:text-white font-semibold">Machine Learning</strong>, <strong className="text-zinc-900 dark:text-white font-semibold">Deep Learning</strong>, <strong className="text-zinc-900 dark:text-white font-semibold">Computer Vision</strong>, Data Analysis, and <strong className="text-zinc-900 dark:text-white font-semibold">Python</strong> development. Through projects such as Deepfake Video Detection, Face Recognition Attendance Management, and E-commerce Sales Analysis, I have gained hands-on experience in developing end-to-end solutions—from data processing and model development to visualization and deployment.
+                        </p>
+                        <p>
+                            I continuously explore emerging technologies, including <span className="bg-gradient-to-r from-[#6366F1] to-[#818CF8] bg-clip-text text-transparent font-semibold">Generative AI</span>, <span className="bg-gradient-to-r from-[#6366F1] to-[#818CF8] bg-clip-text text-transparent font-semibold">Large Language Models</span>, and advanced <strong className="text-zinc-900 dark:text-white font-semibold">Deep Learning</strong> techniques. I believe that impactful innovation comes from combining strong technical foundations with a deep understanding of business needs and user experiences.
+                        </p>
+                        <p>
+                            When I'm not building AI solutions, I enjoy exploring new technologies, enhancing my technical skills, and staying up to date with the latest advancements in artificial intelligence and data science. My goal is to create intelligent systems that not only solve problems but also make a meaningful impact.
+                        </p>
                     </div>
                 </motion.div>
             </div>
