@@ -22,10 +22,10 @@ const seedPortfolio = async () => {
         console.log('Seeding HomeData...');
         const homeData = {
             heroTitle: "Dipak Khandagale",
-            heroSubtitle: "AI Engineer | Machine Learning Engineer | Data Analyst",
+            heroSubtitle: "AI Engineer | ML Engineer | Data Analyst",
             footerText: "© 2026 Dipak Khandagale. All rights reserved.",
             aboutTitle: "// About Me",
-            aboutSubtitle: "Building intelligent solutions using Artificial Intelligence, Machine Learning, Computer Vision, Deep Learning, and Data Analytics to solve real-world business challenges.",
+            aboutSubtitle: "Building AI-powered solutions for real-world challenges.",
             aboutDescription: "I am a B.Tech graduate in Artificial Intelligence and Data Science from MIT College of Engineering, Chhatrapati Sambhajinagar.\n\nMy journey focuses on leveraging Artificial Intelligence, Data Analytics, and Machine Learning to develop innovative solutions for real-world challenges. I am passionate about transforming complex data into actionable insights and building AI-powered applications that create meaningful impact.\n\nI enjoy working with:\n\n• Machine Learning\n• Deep Learning\n• Generative AI\n• Computer Vision\n• Data Analytics\n• Business Intelligence\n• AI Evaluation\n• LLM Testing\n• FastAPI Development\n\nI continuously explore emerging AI technologies, Large Language Models (LLMs), and intelligent automation systems while expanding my expertise in building scalable, data-driven solutions.",
             email: "khandagaledipak47@gmail.com",
             socialLinks: {

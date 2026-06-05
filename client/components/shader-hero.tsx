@@ -13,7 +13,7 @@ interface ShaderAnimationProps {
 // Default values for hero section
 const defaultHeroData = {
     heroTitle: "Dipak Khandagale",
-    heroSubtitle: "AI Engineer | Machine Learning Engineer | Data Analyst",
+    heroSubtitle: "AI Engineer | ML Engineer | Data Analyst",
 };
 
 export function ShaderAnimation({ heroData }: ShaderAnimationProps) {
@@ -31,7 +31,7 @@ export function ShaderAnimation({ heroData }: ShaderAnimationProps) {
     const subtitle1 = subtitleParts[0] || "AI Engineer";
 
     const rotatingTitles = [
-        "Machine Learning Engineer",
+        "ML Engineer",
         "Data Analyst"
     ];
     const [currentTitleIndex, setCurrentTitleIndex] = useState(0);
