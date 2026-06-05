@@ -142,7 +142,7 @@ export function Navbar() {
     >
       {/* Desktop Floating Dock */}
       <motion.div
-        onMouseMove={(e) => mouseX.set(e.pageX)}
+        onMouseMove={(e) => mouseX.set(e.clientX)}
         onMouseLeave={() => mouseX.set(Infinity)}
         className="hidden md:flex h-16 items-end gap-2 lg:gap-3 px-4 pb-3 rounded-2xl bg-white/60 dark:bg-black/60 backdrop-blur-xl border border-zinc-200/50 dark:border-zinc-800/50 shadow-2xl pointer-events-auto ring-1 ring-black/5 dark:ring-white/5 shrink-0"
       >
@@ -214,7 +214,7 @@ interface DockIconProps {
 }
 
 function DockIcon({ mouseX, id, title, icon, href, onClick, isActive }: DockIconProps) {
-  const ref = useRef<HTMLDivElement>(null)
+  const ref = useRef<HTMLAnchorElement>(null)
 
   const distance = useTransform(mouseX, (val) => {
     const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 }
@@ -241,49 +241,49 @@ function DockIcon({ mouseX, id, title, icon, href, onClick, isActive }: DockIcon
   })
 
   return (
-    <a href={href} onClick={onClick} className="relative select-none outline-none shrink-0">
-      <motion.div
-        ref={ref}
-        style={{ width, height }}
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
-        className={`aspect-square rounded-full flex items-center justify-center relative transition-all duration-300 shrink-0
-          ${isActive 
-            ? "bg-[#6366F1]/10 dark:bg-[#818CF8]/10 border border-[#6366F1]/40 dark:border-[#818CF8]/40 text-[#6366F1] dark:text-[#818CF8] shadow-[0_0_15px_rgba(99,102,241,0.3)] dark:shadow-[0_0_20px_rgba(129,140,248,0.25)]" 
-            : "bg-zinc-100/50 dark:bg-zinc-900/50 border border-zinc-200/30 dark:border-zinc-800/30 text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100"
-          }`}
-      >
-        {/* Tooltip */}
-        <AnimatePresence>
-          {hovered && (
-            <motion.div
-              initial={{ opacity: 0, y: 10, x: "-50%" }}
-              animate={{ opacity: 1, y: 0, x: "-50%" }}
-              exit={{ opacity: 0, y: 2, x: "-50%" }}
-              className="px-2.5 py-1 whitespace-nowrap rounded-md bg-zinc-950 dark:bg-white text-white dark:text-zinc-900 border border-zinc-800/50 dark:border-zinc-200/50 absolute left-1/2 -translate-x-1/2 -top-10 w-fit text-[11px] font-medium tracking-wide shadow-md pointer-events-none"
-            >
-              {title}
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        <motion.div
-          style={{ width: widthIcon, height: heightIcon }}
-          className="flex items-center justify-center shrink-0"
-        >
-          {clonedIcon}
-        </motion.div>
-
-        {/* Active Indicator Dot */}
-        {isActive && (
-          <motion.span
-            layoutId="active-nav-dot"
-            className="absolute bottom-1.5 w-1 h-1 rounded-full bg-[#6366F1] dark:bg-[#818CF8]"
-            transition={{ type: "spring", stiffness: 300, damping: 30 }}
-          />
+    <motion.a
+      ref={ref}
+      href={href}
+      onClick={onClick}
+      style={{ width, height }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className={`aspect-square rounded-full flex items-center justify-center relative transition-all duration-300 shrink-0 select-none outline-none
+        ${isActive 
+          ? "bg-[#6366F1]/10 dark:bg-[#818CF8]/10 border border-[#6366F1]/40 dark:border-[#818CF8]/40 text-[#6366F1] dark:text-[#818CF8] shadow-[0_0_15px_rgba(99,102,241,0.3)] dark:shadow-[0_0_20px_rgba(129,140,248,0.25)]" 
+          : "bg-zinc-100/50 dark:bg-zinc-900/50 border border-zinc-200/30 dark:border-zinc-800/30 text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100"
+        }`}
+    >
+      {/* Tooltip */}
+      <AnimatePresence>
+        {hovered && (
+          <motion.div
+            initial={{ opacity: 0, y: 10, x: "-50%" }}
+            animate={{ opacity: 1, y: 0, x: "-50%" }}
+            exit={{ opacity: 0, y: 2, x: "-50%" }}
+            className="px-2.5 py-1 whitespace-nowrap rounded-md bg-zinc-950 dark:bg-white text-white dark:text-zinc-900 border border-zinc-800/50 dark:border-zinc-200/50 absolute left-1/2 -translate-x-1/2 -top-10 w-fit text-[11px] font-medium tracking-wide shadow-md pointer-events-none"
+          >
+            {title}
+          </motion.div>
         )}
+      </AnimatePresence>
+
+      <motion.div
+        style={{ width: widthIcon, height: heightIcon }}
+        className="flex items-center justify-center shrink-0"
+      >
+        {clonedIcon}
       </motion.div>
-    </a>
+
+      {/* Active Indicator Dot */}
+      {isActive && (
+        <motion.span
+          layoutId="active-nav-dot"
+          className="absolute bottom-1.5 w-1 h-1 rounded-full bg-[#6366F1] dark:bg-[#818CF8]"
+          transition={{ type: "spring", stiffness: 300, damping: 30 }}
+        />
+      )}
+    </motion.a>
   )
 }
 
