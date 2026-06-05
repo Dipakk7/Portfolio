@@ -1,16 +1,15 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import { motion } from "framer-motion"
+import React, { useEffect, useState, useRef } from "react"
+import { motion, AnimatePresence, MotionValue, useMotionValue, useSpring, useTransform } from "framer-motion"
 import {
   Home, User, Briefcase, Zap, GitFork,
   Award, BookOpen, Mail, Sun, Moon,
 } from "lucide-react"
 import { useTheme } from "next-themes"
-import { LimelightNav } from "@/components/ui/limelight-nav"
+import { usePathname } from "next/navigation"
 
-// ─── Scroll-spy helper ────────────────────────────────────────────────────────
-
+// Sections definitions matching the portfolio layout
 const SECTIONS = [
   { id: "hero", label: "Home", icon: <Home /> },
   { id: "about", label: "About", icon: <User /> },
@@ -22,24 +21,25 @@ const SECTIONS = [
   { id: "contact", label: "Contact", icon: <Mail /> },
 ]
 
-function scrollTo(id: string) {
-  document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
-}
-
+/**
+ * Scrollspy hook to detect and highlight active section on scroll
+ */
 function useActiveSection() {
-  const [active, setActive] = useState(0)
+  const [active, setActive] = useState("hero")
+  const pathname = usePathname()
 
   useEffect(() => {
+    if (pathname !== "/") return
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const idx = SECTIONS.findIndex((s) => s.id === entry.target.id)
-            if (idx !== -1) setActive(idx)
+            setActive(entry.target.id)
           }
         })
       },
-      { threshold: 0.4 }
+      { threshold: 0.25, rootMargin: "-15% 0px -45% 0px" }
     )
 
     SECTIONS.forEach(({ id }) => {
@@ -48,71 +48,227 @@ function useActiveSection() {
     })
 
     return () => observer.disconnect()
-  }, [])
+  }, [pathname])
 
   return active
 }
 
-// ─── Theme toggle button ──────────────────────────────────────────────────────
-
-function ThemeButton() {
-  const { theme, setTheme, resolvedTheme } = useTheme()
-  const [mounted, setMounted] = useState(false)
-  useEffect(() => setMounted(true), [])
-  if (!mounted) return <div className="w-9 h-9" />
-
-  return (
-    <button
-      onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
-      aria-label="Toggle theme"
-      className="flex items-center justify-center w-9 h-9 rounded-lg
-        text-zinc-600 dark:text-zinc-300
-        hover:bg-white/20 dark:hover:bg-white/10
-        transition-colors duration-200"
-    >
-      {resolvedTheme === "dark"
-        ? <Sun className="w-[18px] h-[18px]" />
-        : <Moon className="w-[18px] h-[18px]" />
-      }
-    </button>
-  )
-}
-
-// ─── Navbar ───────────────────────────────────────────────────────────────────
-
+/**
+ * Main Navbar - Renders a premium floating dock inspired by macOS.
+ */
 export function Navbar() {
-  const activeIndex = useActiveSection()
+  const activeId = useActiveSection()
+  const pathname = usePathname()
+  const isHome = pathname === "/"
+  const { resolvedTheme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
 
-  const navItems = SECTIONS.map(({ id, label, icon }) => ({
-    id,
-    label,
-    icon,
-    onClick: () => scrollTo(id),
+  useEffect(() => setMounted(true), [])
+
+  const mouseX = useMotionValue(Infinity)
+
+  const toggleTheme = () => {
+    setTheme(resolvedTheme === "dark" ? "light" : "dark")
+  }
+
+  const handleNavClick = (id: string, e: React.MouseEvent) => {
+    if (isHome) {
+      e.preventDefault()
+      const el = document.getElementById(id)
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" })
+      }
+    }
+  }
+
+  const items = SECTIONS.map(s => ({
+    id: s.id,
+    title: s.label,
+    icon: s.icon,
+    href: isHome ? `#${s.id}` : `/#${s.id}`,
+    onClick: (e: React.MouseEvent) => handleNavClick(s.id, e),
+    isActive: activeId === s.id
   }))
 
   return (
-    <motion.header
-      initial={{ y: -80, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ type: "spring", stiffness: 120, damping: 20, delay: 0.1 }}
-      className="fixed top-4 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2"
+    <motion.div
+      initial={{ y: 80, opacity: 0, x: "-50%" }}
+      animate={{ y: 0, opacity: 1, x: "-50%" }}
+      transition={{ type: "spring", stiffness: 100, damping: 18, delay: 0.1 }}
+      className="fixed bottom-6 left-1/2 z-50 pointer-events-none"
     >
-      <LimelightNav
-        items={navItems}
-        defaultActiveIndex={activeIndex}
-        onTabChange={() => { }}
-      />
-
-      {/* Divider + theme toggle */}
-      <div
-        className="flex items-center px-1.5 h-14 rounded-xl
-          bg-white/10 dark:bg-black/20
-          backdrop-blur-2xl
-          border border-white/20 dark:border-white/10
-          shadow-2xl"
+      {/* Desktop Floating Dock */}
+      <motion.div
+        onMouseMove={(e) => mouseX.set(e.pageX)}
+        onMouseLeave={() => mouseX.set(Infinity)}
+        className="hidden md:flex h-16 items-end gap-3 px-4 pb-3 rounded-2xl bg-white/60 dark:bg-black/60 backdrop-blur-xl border border-zinc-200/50 dark:border-zinc-800/50 shadow-2xl pointer-events-auto ring-1 ring-black/5 dark:ring-white/5"
       >
-        <ThemeButton />
+        {items.map((item) => (
+          <DockIcon
+            key={item.id}
+            mouseX={mouseX}
+            {...item}
+          />
+        ))}
+
+        {/* Vertical Divider */}
+        <div className="w-[1px] h-8 bg-zinc-200 dark:bg-zinc-800 mb-1" />
+
+        {/* Theme Toggle in Dock */}
+        <DockIcon
+          mouseX={mouseX}
+          id="theme-toggle"
+          title="Theme"
+          icon={mounted && resolvedTheme === "dark" ? <Sun /> : <Moon />}
+          href="#"
+          onClick={(e) => {
+            e.preventDefault()
+            toggleTheme()
+          }}
+          isActive={false}
+        />
+      </motion.div>
+
+      {/* Mobile Floating Dock */}
+      <div
+        className="flex md:hidden h-12 items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/70 dark:bg-black/70 backdrop-blur-xl border border-zinc-200/50 dark:border-zinc-800/50 shadow-xl pointer-events-auto max-w-[95vw] overflow-x-auto no-scrollbar"
+      >
+        {items.map((item) => (
+          <MobileDockIcon
+            key={item.id}
+            {...item}
+          />
+        ))}
+
+        {/* Small vertical divider */}
+        <div className="w-[1px] h-5 bg-zinc-200 dark:bg-zinc-800" />
+
+        {/* Mobile Theme Toggle */}
+        <MobileDockIcon
+          id="theme-toggle"
+          title="Theme"
+          icon={mounted && resolvedTheme === "dark" ? <Sun /> : <Moon />}
+          href="#"
+          onClick={(e) => {
+            e.preventDefault()
+            toggleTheme()
+          }}
+          isActive={false}
+        />
       </div>
-    </motion.header>
+    </motion.div>
+  )
+}
+
+interface DockIconProps {
+  mouseX: MotionValue
+  id: string
+  title: string
+  icon: React.ReactNode
+  href: string
+  onClick: (e: React.MouseEvent) => void
+  isActive: boolean
+}
+
+function DockIcon({ mouseX, id, title, icon, href, onClick, isActive }: DockIconProps) {
+  const ref = useRef<HTMLDivElement>(null)
+
+  const distance = useTransform(mouseX, (val) => {
+    const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 }
+    return val - bounds.x - bounds.width / 2
+  })
+
+  // Width and height mapping for macOS dock effect (44px resting, 64px max)
+  const widthTransform = useTransform(distance, [-120, 0, 120], [44, 64, 44])
+  const heightTransform = useTransform(distance, [-120, 0, 120], [44, 64, 44])
+
+  const widthTransformIcon = useTransform(distance, [-120, 0, 120], [18, 28, 18])
+  const heightTransformIcon = useTransform(distance, [-120, 0, 120], [18, 28, 18])
+
+  const springConfig = { mass: 0.1, stiffness: 180, damping: 15 }
+  const width = useSpring(widthTransform, springConfig)
+  const height = useSpring(heightTransform, springConfig)
+  const widthIcon = useSpring(widthTransformIcon, springConfig)
+  const heightIcon = useSpring(heightTransformIcon, springConfig)
+
+  const [hovered, setHovered] = useState(false)
+
+  const clonedIcon = React.cloneElement(icon as React.ReactElement<any>, {
+    className: "w-full h-full stroke-[1.5]",
+  })
+
+  return (
+    <a href={href} onClick={onClick} className="relative select-none outline-none">
+      <motion.div
+        ref={ref}
+        style={{ width, height }}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        className={`aspect-square rounded-full flex items-center justify-center relative transition-all duration-300
+          ${isActive 
+            ? "bg-[#6366F1]/10 dark:bg-[#818CF8]/10 border border-[#6366F1]/40 dark:border-[#818CF8]/40 text-[#6366F1] dark:text-[#818CF8] shadow-[0_0_15px_rgba(99,102,241,0.3)] dark:shadow-[0_0_20px_rgba(129,140,248,0.25)]" 
+            : "bg-zinc-100/50 dark:bg-zinc-900/50 border border-zinc-200/30 dark:border-zinc-800/30 text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100"
+          }`}
+      >
+        {/* Tooltip */}
+        <AnimatePresence>
+          {hovered && (
+            <motion.div
+              initial={{ opacity: 0, y: 10, x: "-50%" }}
+              animate={{ opacity: 1, y: 0, x: "-50%" }}
+              exit={{ opacity: 0, y: 2, x: "-50%" }}
+              className="px-2.5 py-1 whitespace-nowrap rounded-md bg-zinc-950 dark:bg-white text-white dark:text-zinc-900 border border-zinc-800/50 dark:border-zinc-200/50 absolute left-1/2 -translate-x-1/2 -top-10 w-fit text-[11px] font-medium tracking-wide shadow-md pointer-events-none"
+            >
+              {title}
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        <motion.div
+          style={{ width: widthIcon, height: heightIcon }}
+          className="flex items-center justify-center"
+        >
+          {clonedIcon}
+        </motion.div>
+
+        {/* Active Indicator Dot */}
+        {isActive && (
+          <motion.span
+            layoutId="active-nav-dot"
+            className="absolute bottom-1.5 w-1 h-1 rounded-full bg-[#6366F1] dark:bg-[#818CF8]"
+            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+          />
+        )}
+      </motion.div>
+    </a>
+  )
+}
+
+interface MobileDockIconProps {
+  id: string
+  title: string
+  icon: React.ReactNode
+  href: string
+  onClick: (e: React.MouseEvent) => void
+  isActive: boolean
+}
+
+function MobileDockIcon({ id, title, icon, href, onClick, isActive }: MobileDockIconProps) {
+  const clonedIcon = React.cloneElement(icon as React.ReactElement<any>, {
+    className: "w-5 h-5 stroke-[1.5]",
+  })
+
+  return (
+    <a href={href} onClick={onClick} className="relative select-none outline-none">
+      <div
+        className={`w-9 h-9 rounded-full flex items-center justify-center relative transition-all duration-300
+          ${isActive 
+            ? "bg-[#6366F1]/15 dark:bg-[#818CF8]/15 border border-[#6366F1]/50 dark:border-[#818CF8]/50 text-[#6366F1] dark:text-[#818CF8] shadow-[0_0_12px_rgba(99,102,241,0.25)]" 
+            : "bg-zinc-100/50 dark:bg-zinc-900/50 border border-zinc-200/20 dark:border-zinc-800/20 text-zinc-500 dark:text-zinc-400"
+          }`}
+      >
+        {clonedIcon}
+      </div>
+    </a>
   )
 }
