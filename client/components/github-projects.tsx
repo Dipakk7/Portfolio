@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Github } from "lucide-react"
+import { Code } from "lucide-react"
 import { ProjectBentoGrid, BentoItem } from "@/components/ui/project-bento-grid"
 import type { Project } from "@/lib/data"
 
@@ -16,19 +16,36 @@ interface GithubProjectsProps {
  * No client-side fetching - data is pre-rendered at build time via ISR.
  */
 export function GithubProjects({ projects }: GithubProjectsProps) {
-  const bentoItems: BentoItem[] = projects.map((project, i) => ({
-    title: project.title,
-    description: project.description,
-    icon: <Github className="w-4 h-4 text-white" />,
-    status: project.category,
-    tags: project.technologies,
-    meta: project.featured ? "Featured" : undefined,
-    colSpan: i === 0 || i === 3 || i === 6 ? 2 : 1,
-    hasPersistentHover: false,
-    image: project.image,
-    githubUrl: project.githubUrl,
-    link : project.link,
-  }))
+  const bentoItems: BentoItem[] = projects.map((project, i) => {
+    // Normalize url: since they are all GitHub repositories, map the project titles to their specific repo links.
+    let repoUrl = "https://github.com/Dipakk7";
+    const titleLower = project.title.toLowerCase();
+    if (titleLower.includes("deepfake")) {
+      repoUrl = "https://github.com/Dipakk7/DeepfakeDetect";
+    } else if (titleLower.includes("e-commerce") || titleLower.includes("ecommerce")) {
+      repoUrl = "https://github.com/Dipakk7/Ecommerce-Sales-Analysis";
+    } else if (titleLower.includes("face recognition") || titleLower.includes("attendance")) {
+      repoUrl = "https://github.com/Dipakk7/Face_reco_attendance_management";
+    } else if (project.githubUrl) {
+      repoUrl = project.githubUrl;
+    } else if (project.link) {
+      repoUrl = project.link;
+    }
+
+    return {
+      title: project.title,
+      description: project.description,
+      icon: <Code className="w-4 h-4 text-white" />,
+      status: project.category,
+      tags: project.technologies,
+      meta: project.featured ? "Featured" : undefined,
+      colSpan: i === 0 || i === 3 || i === 6 ? 2 : 1,
+      hasPersistentHover: false,
+      image: project.image,
+      githubUrl: repoUrl,
+      link: undefined, // Clear standard external link so only GitHub action renders
+    };
+  })
 
   return (
     <section className="py-32 px-4 bg-zinc-50 dark:bg-black bg-grid-mesh transition-colors duration-700">

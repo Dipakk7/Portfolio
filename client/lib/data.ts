@@ -151,7 +151,7 @@ const fallbackProjects: Project[] = [
         category: "project",
         featured: true,
         image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&h=400&fit=crop",
-        githubUrl: "https://github.com/Dipakk7",
+        githubUrl: "https://github.com/Dipakk7/DeepfakeDetect",
     },
     {
         _id: "p2",
@@ -161,7 +161,7 @@ const fallbackProjects: Project[] = [
         category: "project",
         featured: true,
         image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
-        githubUrl: "https://github.com/Dipakk7",
+        githubUrl: "https://github.com/Dipakk7/Ecommerce-Sales-Analysis",
     },
     {
         _id: "p3",
@@ -171,7 +171,7 @@ const fallbackProjects: Project[] = [
         category: "project",
         featured: true,
         image: "https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?w=600&h=400&fit=crop",
-        githubUrl: "https://github.com/Dipakk7",
+        githubUrl: "https://github.com/Dipakk7/Face_reco_attendance_management",
     }
 ];
 

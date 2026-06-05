@@ -179,14 +179,35 @@ function BentoGridItem({ item }: { item: BentoItem }) {
                             </span>
                         ))}
                     </div>
-                    <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <div className="flex gap-2 transition-all duration-300">
                         {item.githubUrl && (
-                            <a href={item.githubUrl} target="_blank" rel="noopener noreferrer" className={cn(item.image ? "text-white hover:text-indigo-300" : "text-zinc-600 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400")}>
-                                <Github className="w-4 h-4" />
+                            <a
+                                href={item.githubUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                title="View Source Code"
+                                className={cn(
+                                    "flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-mono transition-all duration-300 shadow-sm",
+                                    item.image
+                                        ? "bg-white/10 hover:bg-white/20 border-white/10 text-white hover:border-white/20 hover:scale-105"
+                                        : "bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-900 dark:hover:bg-zinc-800 border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 hover:scale-105"
+                                )}
+                            >
+                                <Github className="w-3.5 h-3.5" />
+                                <span>Source Code</span>
                             </a>
                         )}
                         {item.link && (
-                            <a href={item.link} target="_blank" rel="noopener noreferrer" className={cn(item.image ? "text-white hover:text-indigo-300" : "text-zinc-600 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400")}>
+                            <a
+                                href={item.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className={cn(
+                                    item.image
+                                        ? "text-white hover:text-indigo-300"
+                                        : "text-zinc-600 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400"
+                                )}
+                            >
                                 <ExternalLink className="w-4 h-4" />
                             </a>
                         )}
