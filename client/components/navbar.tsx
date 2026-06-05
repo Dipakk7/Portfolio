@@ -22,7 +22,7 @@ const SECTIONS = [
 ]
 
 /**
- * Scrollspy hook to detect and highlight active section on scroll
+ * Scrollspy hook to detect and highlight active section on scroll dynamically
  */
 function useActiveSection() {
   const [active, setActive] = useState("hero")
@@ -31,23 +31,49 @@ function useActiveSection() {
   useEffect(() => {
     if (pathname !== "/") return
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActive(entry.target.id)
+    let ticking = false
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          // If at the very bottom, highlight the last section (Contact)
+          if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 100) {
+            setActive("contact")
+            ticking = false
+            return
           }
+
+          // Use 1/3 viewport offset for active section trigger line
+          const scrollPosition = window.scrollY + window.innerHeight / 3
+
+          for (const section of SECTIONS) {
+            const el = document.getElementById(section.id)
+            if (el) {
+              const top = el.offsetTop
+              const height = el.offsetHeight
+              if (scrollPosition >= top && scrollPosition < top + height) {
+                setActive(section.id)
+              }
+            }
+          }
+          ticking = false
         })
-      },
-      { threshold: 0.25, rootMargin: "-15% 0px -45% 0px" }
-    )
+        ticking = true
+      }
+    }
 
-    SECTIONS.forEach(({ id }) => {
-      const el = document.getElementById(id)
-      if (el) observer.observe(el)
-    })
+    window.addEventListener("scroll", handleScroll)
+    window.addEventListener("resize", handleScroll)
+    
+    // Run initial checks
+    handleScroll()
+    const timeout = setTimeout(handleScroll, 600) // account for Suspense/late hydration
 
-    return () => observer.disconnect()
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+      window.removeEventListener("resize", handleScroll)
+      clearTimeout(timeout)
+    }
   }, [pathname])
 
   return active
@@ -63,7 +89,24 @@ export function Navbar() {
   const { resolvedTheme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
-  useEffect(() => setMounted(true), [])
+  useEffect(() => {
+    setMounted(true)
+
+    if (isHome) {
+      const hash = window.location.hash
+      if (hash) {
+        const id = hash.replace("#", "")
+        const interval = setInterval(() => {
+          const el = document.getElementById(id)
+          if (el) {
+            el.scrollIntoView({ behavior: "smooth" })
+            clearInterval(interval)
+          }
+        }, 100)
+        setTimeout(() => clearInterval(interval), 3000)
+      }
+    }
+  }, [isHome])
 
   const mouseX = useMotionValue(Infinity)
 
