@@ -131,8 +131,8 @@ function BentoGridItem({ item }: { item: BentoItem }) {
                             ? "bg-white/10 group-hover:bg-white/20"
                             : "bg-zinc-900/10 dark:bg-white/10 group-hover:bg-zinc-900/20 dark:group-hover:bg-white/20"
                     )}>
-                        {React.isValidElement(item.icon) ? React.cloneElement(item.icon as React.ReactElement<any>, {
-                            className: cn((item.icon.props as any)?.className, item.image ? "text-white" : "text-zinc-900 dark:text-white")
+                        {React.isValidElement(item.icon) ? React.cloneElement(item.icon as React.ReactElement<{ className?: string }>, {
+                            className: cn((item.icon.props as { className?: string })?.className, item.image ? "text-white" : "text-zinc-900 dark:text-white")
                         }) : item.icon}
                     </div>
                     {item.status && (
