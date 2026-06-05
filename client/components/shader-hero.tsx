@@ -130,9 +130,26 @@ export function ShaderAnimation({ heroData }: ShaderAnimationProps) {
                         </motion.span>
                     </h1>
 
+                    {/* Availability Badge */}
+                    <motion.div
+                        className="mt-6 pointer-events-auto"
+                        initial={{ opacity: 0, y: 15 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.4 }}
+                        whileHover={{ scale: 1.03 }}
+                    >
+                        <div className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-full text-xs font-mono tracking-wide bg-green-50/80 dark:bg-green-950/30 border border-green-200/50 dark:border-green-500/20 text-green-700 dark:text-green-400 transition-all duration-300 backdrop-blur-md shadow-[0_2px_10px_rgba(34,197,94,0.05)] select-text">
+                            <span className="relative flex h-2 w-2">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 dark:bg-green-400 opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500 dark:bg-green-400"></span>
+                            </span>
+                            Actively Exploring Opportunities
+                        </div>
+                    </motion.div>
+
                     {/* Title */}
                     <motion.div
-                        className="mt-6 flex flex-wrap items-center justify-center gap-2.5 pointer-events-auto min-h-[40px]"
+                        className="mt-4 flex flex-wrap items-center justify-center gap-2.5 pointer-events-auto min-h-[40px]"
                         initial={{ opacity: 0, y: 15 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.5 }}
