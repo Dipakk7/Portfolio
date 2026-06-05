@@ -248,7 +248,7 @@ function DockIcon({ mouseX, id, title, icon, href, onClick, isActive }: DockIcon
       style={{ width, height }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className={`aspect-square rounded-full flex items-center justify-center relative transition-all duration-300 shrink-0 select-none outline-none
+      className={`aspect-square rounded-full flex items-center justify-center relative transition-colors duration-300 shrink-0 select-none outline-none
         ${isActive 
           ? "bg-[#6366F1]/10 dark:bg-[#818CF8]/10 border border-[#6366F1]/40 dark:border-[#818CF8]/40 text-[#6366F1] dark:text-[#818CF8] shadow-[0_0_15px_rgba(99,102,241,0.3)] dark:shadow-[0_0_20px_rgba(129,140,248,0.25)]" 
           : "bg-zinc-100/50 dark:bg-zinc-900/50 border border-zinc-200/30 dark:border-zinc-800/30 text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100"
@@ -304,7 +304,7 @@ function MobileDockIcon({ id, title, icon, href, onClick, isActive }: MobileDock
   return (
     <a href={href} onClick={onClick} className="relative select-none outline-none shrink-0">
       <div
-        className={`w-9 h-9 rounded-full flex items-center justify-center relative transition-all duration-300 shrink-0
+        className={`w-9 h-9 rounded-full flex items-center justify-center relative transition-colors duration-300 shrink-0
           ${isActive 
             ? "bg-[#6366F1]/15 dark:bg-[#818CF8]/15 border border-[#6366F1]/50 dark:border-[#818CF8]/50 text-[#6366F1] dark:text-[#818CF8] shadow-[0_0_12px_rgba(99,102,241,0.25)]" 
             : "bg-zinc-100/50 dark:bg-zinc-900/50 border border-zinc-200/20 dark:border-zinc-800/20 text-zinc-500 dark:text-zinc-400"
