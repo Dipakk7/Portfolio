@@ -93,8 +93,14 @@ export default async function Home() {
       </Suspense>
 
       <Suspense fallback={<SectionSkeleton />}>
-        <section id="expertise">
-          <Features />
+        <section id="skills">
+          <BentoGrid heroData={heroData} />
+        </section>
+      </Suspense>
+
+      <Suspense fallback={<SectionSkeleton />}>
+        <section id="projects">
+          <GithubProjects projects={projects} />
         </section>
       </Suspense>
 
@@ -106,14 +112,8 @@ export default async function Home() {
       </Suspense>
 
       <Suspense fallback={<SectionSkeleton />}>
-        <section id="skills">
-          <BentoGrid heroData={heroData} />
-        </section>
-      </Suspense>
-
-      <Suspense fallback={<SectionSkeleton />}>
-        <section id="projects">
-          <GithubProjects projects={projects} />
+        <section id="expertise">
+          <Features />
         </section>
       </Suspense>
 
