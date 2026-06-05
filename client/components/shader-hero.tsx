@@ -31,15 +31,8 @@ export function ShaderAnimation({ heroData }: ShaderAnimationProps) {
     const subtitle1 = subtitleParts[0] || "AI Engineer";
 
     const rotatingTitles = [
-        "Data Analyst",
-        "Machine Learning",
-        "Applied AI Engineer",
-        "Generative AI Engineer",
-        "Data Scientist (Fresher)",
-        "AI Research Intern",
-        "Computer Vision Developer",
-        "Python Developer",
-        "AI Engineer"
+        "Machine Learning Engineer",
+        "Data Analyst"
     ];
     const [currentTitleIndex, setCurrentTitleIndex] = useState(0);
 
