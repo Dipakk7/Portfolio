@@ -101,7 +101,7 @@ export function Navbar() {
       <motion.div
         onMouseMove={(e) => mouseX.set(e.pageX)}
         onMouseLeave={() => mouseX.set(Infinity)}
-        className="hidden md:flex h-16 items-end gap-3 px-4 pb-3 rounded-2xl bg-white/60 dark:bg-black/60 backdrop-blur-xl border border-zinc-200/50 dark:border-zinc-800/50 shadow-2xl pointer-events-auto ring-1 ring-black/5 dark:ring-white/5"
+        className="hidden md:flex h-16 items-end gap-2 lg:gap-3 px-4 pb-3 rounded-2xl bg-white/60 dark:bg-black/60 backdrop-blur-xl border border-zinc-200/50 dark:border-zinc-800/50 shadow-2xl pointer-events-auto ring-1 ring-black/5 dark:ring-white/5 shrink-0"
       >
         {items.map((item) => (
           <DockIcon
@@ -112,7 +112,7 @@ export function Navbar() {
         ))}
 
         {/* Vertical Divider */}
-        <div className="w-[1px] h-8 bg-zinc-200 dark:bg-zinc-800 mb-1" />
+        <div className="w-[1px] h-8 bg-zinc-200 dark:bg-zinc-800 mb-1 shrink-0" />
 
         {/* Theme Toggle in Dock */}
         <DockIcon
@@ -131,7 +131,7 @@ export function Navbar() {
 
       {/* Mobile Floating Dock */}
       <div
-        className="flex md:hidden h-12 items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/70 dark:bg-black/70 backdrop-blur-xl border border-zinc-200/50 dark:border-zinc-800/50 shadow-xl pointer-events-auto max-w-[95vw] overflow-x-auto no-scrollbar"
+        className="flex md:hidden h-12 items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/70 dark:bg-black/70 backdrop-blur-xl border border-zinc-200/50 dark:border-zinc-800/50 shadow-xl pointer-events-auto max-w-[95vw] overflow-x-auto no-scrollbar shrink-0"
       >
         {items.map((item) => (
           <MobileDockIcon
@@ -141,7 +141,7 @@ export function Navbar() {
         ))}
 
         {/* Small vertical divider */}
-        <div className="w-[1px] h-5 bg-zinc-200 dark:bg-zinc-800" />
+        <div className="w-[1px] h-5 bg-zinc-200 dark:bg-zinc-800 shrink-0" />
 
         {/* Mobile Theme Toggle */}
         <MobileDockIcon
@@ -198,13 +198,13 @@ function DockIcon({ mouseX, id, title, icon, href, onClick, isActive }: DockIcon
   })
 
   return (
-    <a href={href} onClick={onClick} className="relative select-none outline-none">
+    <a href={href} onClick={onClick} className="relative select-none outline-none shrink-0">
       <motion.div
         ref={ref}
         style={{ width, height }}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
-        className={`aspect-square rounded-full flex items-center justify-center relative transition-all duration-300
+        className={`aspect-square rounded-full flex items-center justify-center relative transition-all duration-300 shrink-0
           ${isActive 
             ? "bg-[#6366F1]/10 dark:bg-[#818CF8]/10 border border-[#6366F1]/40 dark:border-[#818CF8]/40 text-[#6366F1] dark:text-[#818CF8] shadow-[0_0_15px_rgba(99,102,241,0.3)] dark:shadow-[0_0_20px_rgba(129,140,248,0.25)]" 
             : "bg-zinc-100/50 dark:bg-zinc-900/50 border border-zinc-200/30 dark:border-zinc-800/30 text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100"
@@ -226,7 +226,7 @@ function DockIcon({ mouseX, id, title, icon, href, onClick, isActive }: DockIcon
 
         <motion.div
           style={{ width: widthIcon, height: heightIcon }}
-          className="flex items-center justify-center"
+          className="flex items-center justify-center shrink-0"
         >
           {clonedIcon}
         </motion.div>
@@ -259,9 +259,9 @@ function MobileDockIcon({ id, title, icon, href, onClick, isActive }: MobileDock
   })
 
   return (
-    <a href={href} onClick={onClick} className="relative select-none outline-none">
+    <a href={href} onClick={onClick} className="relative select-none outline-none shrink-0">
       <div
-        className={`w-9 h-9 rounded-full flex items-center justify-center relative transition-all duration-300
+        className={`w-9 h-9 rounded-full flex items-center justify-center relative transition-all duration-300 shrink-0
           ${isActive 
             ? "bg-[#6366F1]/15 dark:bg-[#818CF8]/15 border border-[#6366F1]/50 dark:border-[#818CF8]/50 text-[#6366F1] dark:text-[#818CF8] shadow-[0_0_12px_rgba(99,102,241,0.25)]" 
             : "bg-zinc-100/50 dark:bg-zinc-900/50 border border-zinc-200/20 dark:border-zinc-800/20 text-zinc-500 dark:text-zinc-400"
