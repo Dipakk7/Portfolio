@@ -134,7 +134,7 @@ export function ShaderAnimation({ heroData }: ShaderAnimationProps) {
                         </motion.span>
                     </h1>
 
-                    {/* Subtitle with dynamic loop */}
+                    {/* Subtitle */}
                     <motion.div
                         className="mt-6 flex flex-wrap items-center justify-center gap-2.5 pointer-events-auto min-h-[40px]"
                         initial={{ opacity: 0, y: 15 }}
@@ -142,25 +142,10 @@ export function ShaderAnimation({ heroData }: ShaderAnimationProps) {
                         transition={{ duration: 0.8, delay: 0.5 }}
                     >
                         <HyperText
-                            text={subtitle1}
+                            text={subtitle}
                             className="text-lg md:text-xl font-light tracking-wide text-zinc-700 dark:text-zinc-300 font-mono"
                             duration={400}
                         />
-                        <span className="text-zinc-300 dark:text-zinc-600 text-lg md:text-xl">•</span>
-                        <div className="inline-flex items-center">
-                            <AnimatePresence mode="wait">
-                                <motion.span
-                                    key={currentTitleIndex}
-                                    initial={{ opacity: 0, y: 5 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    exit={{ opacity: 0, y: -5 }}
-                                    transition={{ duration: 0.25 }}
-                                    className="text-lg md:text-xl font-light tracking-wide text-zinc-500 dark:text-zinc-400 font-mono"
-                                >
-                                    {rotatingTitles[currentTitleIndex]}
-                                </motion.span>
-                            </AnimatePresence>
-                        </div>
                     </motion.div>
                 </motion.div>
             </div>
