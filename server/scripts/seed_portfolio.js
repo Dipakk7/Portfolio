@@ -22,7 +22,7 @@ const seedPortfolio = async () => {
         console.log('Seeding HomeData...');
         const homeData = {
             heroTitle: "Dipak Khandagale",
-            heroSubtitle: "AI Engineer | ML Engineer | Data Analyst",
+            heroSubtitle: "AI/ML Engineer | Data Analyst",
             footerText: "© 2026 Dipak Khandagale. All rights reserved.",
             aboutTitle: "// About Me",
             aboutSubtitle: "Building AI-powered solutions for real-world challenges.",

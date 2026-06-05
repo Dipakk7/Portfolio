@@ -13,7 +13,7 @@ interface ShaderAnimationProps {
 // Default values for hero section
 const defaultHeroData = {
     heroTitle: "Dipak Khandagale",
-    heroSubtitle: "AI Engineer | ML Engineer | Data Analyst",
+    heroSubtitle: "AI/ML Engineer | Data Analyst",
 };
 
 export function ShaderAnimation({ heroData }: ShaderAnimationProps) {
@@ -27,24 +27,20 @@ export function ShaderAnimation({ heroData }: ShaderAnimationProps) {
 
     // Parse subtitle into parts
     const subtitle = heroData?.heroSubtitle || defaultHeroData.heroSubtitle;
-    const subtitleParts = subtitle.split(/[•|]/).map(s => s.trim()).filter(Boolean);
-    const subtitle1 = subtitleParts[0] || "AI Engineer";
-
-    const rotatingTitles = [
-        "ML Engineer",
-        "Data Analyst"
-    ];
-    const [currentTitleIndex, setCurrentTitleIndex] = useState(0);
-
-    useEffect(() => {
-        const titleInterval = setInterval(() => {
-            setCurrentTitleIndex((prev) => (prev + 1) % rotatingTitles.length);
-        }, 3000);
-        return () => clearInterval(titleInterval);
-    }, []);
 
     // Get resume URL
-    const resumeUrl = heroData?.resumeUrl;
+    const rawGithubResume = "https://raw.githubusercontent.com/Dipakk7/Portfolio/main/client/public/resume.pdf";
+    const resumeLink = (heroData?.resumeUrl && heroData.resumeUrl !== "/resume.pdf")
+      ? heroData.resumeUrl
+      : rawGithubResume;
+
+    const handleScrollToProjects = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault();
+        const element = document.getElementById("projects");
+        if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+        }
+    };
 
     // Interactive mouse coordinates tracking using Framer Motion springs
     const mouseX = useMotionValue(0)
@@ -134,7 +130,7 @@ export function ShaderAnimation({ heroData }: ShaderAnimationProps) {
                         </motion.span>
                     </h1>
 
-                    {/* Subtitle */}
+                    {/* Title */}
                     <motion.div
                         className="mt-6 flex flex-wrap items-center justify-center gap-2.5 pointer-events-auto min-h-[40px]"
                         initial={{ opacity: 0, y: 15 }}
@@ -146,6 +142,42 @@ export function ShaderAnimation({ heroData }: ShaderAnimationProps) {
                             className="text-lg md:text-xl font-light tracking-wide text-zinc-700 dark:text-zinc-300 font-mono"
                             duration={400}
                         />
+                    </motion.div>
+
+                    {/* Subtitle */}
+                    <motion.p
+                        className="mt-4 text-sm md:text-base text-zinc-500 dark:text-zinc-400 font-light tracking-wider max-w-lg pointer-events-auto select-text"
+                        initial={{ opacity: 0, y: 15 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.6 }}
+                    >
+                        Turning data into intelligent solutions.
+                    </motion.p>
+
+                    {/* Hero Buttons */}
+                    <motion.div
+                        className="mt-8 flex flex-wrap items-center justify-center gap-4 pointer-events-auto"
+                        initial={{ opacity: 0, y: 15 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.7 }}
+                    >
+                        <a
+                            href="#projects"
+                            onClick={handleScrollToProjects}
+                            className="inline-flex items-center justify-center px-6 py-3 rounded-full text-sm font-semibold tracking-wide bg-[#6366F1] hover:bg-[#4F46E5] text-white transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_0_15px_rgba(99,102,241,0.2)] hover:shadow-[0_0_20px_rgba(99,102,241,0.4)] cursor-pointer"
+                        >
+                            View Projects
+                        </a>
+                        <a
+                            href={resumeLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            download={true}
+                            className="inline-flex items-center justify-center px-6 py-3 rounded-full text-sm font-semibold tracking-wide border border-zinc-200 dark:border-zinc-800 bg-zinc-50/80 dark:bg-zinc-900/80 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-900 dark:text-zinc-100 transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer backdrop-blur-sm"
+                        >
+                            Download Resume
+                            <Download className="w-4 h-4 ml-2" />
+                        </a>
                     </motion.div>
                 </motion.div>
             </div>
