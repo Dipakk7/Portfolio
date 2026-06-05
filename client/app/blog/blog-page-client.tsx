@@ -4,7 +4,6 @@ import { motion } from "framer-motion"
 import { Calendar, User, ArrowRight } from "lucide-react"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
-import { CursorEffect } from "@/components/cursor-effect"
 import type { Blog } from "@/lib/data"
 
 interface BlogPageClientProps {
@@ -19,8 +18,7 @@ interface BlogPageClientProps {
  */
 export function BlogPageClient({ blogs }: BlogPageClientProps) {
     return (
-        <main className="min-h-screen bg-white dark:bg-black text-zinc-900 dark:text-zinc-100 selection:bg-blue-200 dark:selection:bg-blue-900 selection:text-zinc-900 dark:selection:text-white overflow-x-hidden cursor-none transition-colors duration-700">
-            <CursorEffect />
+        <main className="min-h-screen bg-white dark:bg-black text-zinc-900 dark:text-zinc-100 selection:bg-blue-200 dark:selection:bg-blue-900 selection:text-zinc-900 dark:selection:text-white overflow-x-hidden transition-colors duration-700">
             <Navbar />
 
             <section className="pt-32 pb-16 px-4">

@@ -2,7 +2,6 @@ import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
 import { ShaderAnimation } from "@/components/shader-hero"
 import { About } from "@/components/about"
-import { CursorEffect } from "@/components/cursor-effect"
 import { ScrollProgress } from "@/components/ui/scroll-progress"
 import { Navbar } from "@/components/navbar"
 import { getAllPortfolioData } from "@/lib/data"
@@ -75,9 +74,8 @@ export default async function Home() {
   const { heroData, experiences, projects, blogs, certificates } = await getAllPortfolioData();
 
   return (
-    <main className="min-h-screen bg-white dark:bg-black text-zinc-900 dark:text-zinc-100 selection:bg-[#6366F1]/30 dark:selection:bg-[#818CF8]/30 selection:text-zinc-900 dark:selection:text-white overflow-x-hidden cursor-none transition-colors duration-700">
+    <main className="min-h-screen bg-white dark:bg-black text-zinc-900 dark:text-zinc-100 selection:bg-[#6366F1]/30 dark:selection:bg-[#818CF8]/30 selection:text-zinc-900 dark:selection:text-white overflow-x-hidden transition-colors duration-700">
       <ScrollProgress />
-      <CursorEffect />
 
       {/* Critical above-fold content - loaded immediately */}
       <section id="hero">

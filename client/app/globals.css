@@ -28,15 +28,6 @@
     animation: spin 10s linear infinite reverse;
   }
 
-  /* Enhanced cursor-none support */
-  .cursor-none {
-    cursor: none !important;
-  }
-
-  .cursor-none * {
-    cursor: none !important;
-  }
-
   /* Shimmer animation for loading states */
   .animate-shimmer {
     animation: shimmer 2s linear infinite;
