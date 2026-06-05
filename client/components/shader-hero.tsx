@@ -137,11 +137,9 @@ export function ShaderAnimation({ heroData }: ShaderAnimationProps) {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.5 }}
                     >
-                        <HyperText
-                            text={subtitle}
-                            className="text-lg md:text-xl font-light tracking-wide text-zinc-700 dark:text-zinc-300 font-mono"
-                            duration={400}
-                        />
+                        <span className="text-lg md:text-xl font-light tracking-wide text-zinc-700 dark:text-zinc-300 font-mono">
+                            {subtitle}
+                        </span>
                     </motion.div>
 
                     {/* Subtitle */}
