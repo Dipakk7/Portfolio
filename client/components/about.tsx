@@ -11,7 +11,7 @@ interface AboutProps {
 // Default values used when no data is provided
 const defaultAboutData = {
     title: "// About Me",
-    subtitle: "I build intelligent systems that bridge the gap between data and human experience.",
+    subtitle: "Building intelligent solutions using Artificial Intelligence, Machine Learning, Computer Vision, Deep Learning, and Data Analytics to solve real-world business challenges.",
     description: "As an AI Engineer and Data Scientist, I interpret complex datasets to solve real-world problems. My passion lies in creating machine learning models that are not just accurate, but also interpretable and actionable.\n\nWith a strong foundation in both software engineering and statistical modeling, I approach every project with a holistic view—ensuring that the backend logic is as robust as the frontend is intuitive.\n\nI'm constantly exploring the bleeding edge of AI, from Large Language Models to Computer Vision. I believe the best solutions come from a deep understanding of the problem space combined with the right technological tools.\n\nWhen I'm not coding, you can find me analyzing market trends, contributing to open-source projects, or exploring the latest developments in generative AI.",
 };
 

@@ -48,7 +48,7 @@ async function run() {
             console.log('No HomeData document found. Creating new one with fallback values...');
             await HomeData.create({
                 heroTitle: "Dipak Khandagale",
-                heroSubtitle: "AI Engineer | Data Analyst | Machine Learning ",
+                heroSubtitle: "AI Engineer | Machine Learning Engineer | Data Analyst",
                 skills: skills
             });
             console.log('HomeData document created.');

@@ -16,10 +16,10 @@ const seed = async () => {
 
         const initialData = {
             heroTitle: "Dipak Khandagale",
-            heroSubtitle: "AI Engineer | Data Analyst | Machine Learning Enthusiast",
+            heroSubtitle: "AI Engineer | Machine Learning Engineer | Data Analyst",
             footerText: "© 2026 Dipak Khandagale. All rights reserved.",
             aboutTitle: "// About Me",
-            aboutSubtitle: "Building intelligent systems using Artificial Intelligence, Machine Learning, Data Analytics, Computer Vision, and Generative AI.",
+            aboutSubtitle: "Building intelligent solutions using Artificial Intelligence, Machine Learning, Computer Vision, Deep Learning, and Data Analytics to solve real-world business challenges.",
             aboutDescription: "I am a final-year B.Tech student in Artificial Intelligence and Data Science at MIT College of Engineering, Chhatrapati Sambhajinagar.\n\nMy journey focuses on combining Artificial Intelligence, Data Analytics, and Machine Learning to create practical solutions for real-world challenges.\n\nI enjoy working with:\n• Machine Learning\n• Deep Learning\n• Generative AI\n• Computer Vision\n• Data Analytics\n• Business Intelligence\n• AI Evaluation\n• LLM Testing\n• FastAPI Development\n\nI continuously explore modern AI technologies and enjoy transforming raw data into actionable insights.",
             email: "khandagaledipak47@gmail.com",
             socialLinks: {
