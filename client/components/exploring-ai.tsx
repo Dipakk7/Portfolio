@@ -76,13 +76,13 @@ export function ExploringAI() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
           >
-            {"•// Research Interests"}
+            {"•// Research"}
           </motion.span>
           <h2 className="text-3xl md:text-5xl font-bold text-zinc-900 dark:text-white">
-            Exploring the Future of AI
+            AI Research Interests
           </h2>
           <p className="text-lg text-zinc-500 dark:text-zinc-400 max-w-3xl leading-relaxed">
-            My current interests include exploring Large Language Models (LLMs), Generative AI systems, AI evaluation techniques, prompt engineering, intelligent agents, and next-generation machine learning applications.
+            Exploring cutting-edge AI technologies, machine learning techniques, and real-world applications that shape the future of intelligent systems.
           </p>
         </motion.div>
 

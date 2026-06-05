@@ -17,7 +17,7 @@ const SECTIONS = [
   { id: "skills", label: "Skills", icon: <Zap /> },
   { id: "experience", label: "Experience", icon: <Briefcase /> },
   { id: "projects", label: "Projects", icon: <GitFork /> },
-  { id: "blogs", label: "Blog", icon: <BookOpen /> },
+  { id: "blogs", label: "Research", icon: <BookOpen /> },
   { id: "certificates", label: "Certificates", icon: <Award /> },
   { id: "contact", label: "Contact", icon: <Mail /> },
 ]
