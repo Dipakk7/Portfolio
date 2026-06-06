@@ -92,7 +92,7 @@ const seedPortfolio = async () => {
                 description: "Developed an intelligent deepfake detection system capable of identifying manipulated videos using deep learning techniques. Combined spatial and temporal feature extraction for accurate classification and real-time deployment.\n\nKey Achievements:\n• Trained on 10,000 video samples.\n• Achieved 85% precision.\n• Reduced manual verification workload by 60%.\n• Built deployment-ready inference pipeline.",
                 technologies: ["Python", "TensorFlow", "FastAPI", "Deep Learning"],
                 category: "project",
-                image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&h=400&fit=crop",
+                image: "/projects/deepfake_detection.png",
                 link: "https://github.com/Dipakk7/DeepfakeDetect",
                 date: new Date('2025-11-01')
             },
@@ -101,7 +101,7 @@ const seedPortfolio = async () => {
                 description: "Performed comprehensive business analysis on sales data to identify revenue drivers, customer behavior patterns, and product performance trends.\n\nKey Achievements:\n• Analyzed 15,000+ sales records.\n• Built interactive dashboards.\n• Identified top 20% products contributing 70% of revenue.\n• Generated actionable recommendations.",
                 technologies: ["Python", "SQL", "Power BI"],
                 category: "project",
-                image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
+                image: "/projects/ecommerce_analysis.png",
                 link: "https://github.com/Dipakk7/Ecommerce-Sales-Analysis",
                 date: new Date('2025-08-01')
             },
@@ -110,7 +110,7 @@ const seedPortfolio = async () => {
                 description: "Designed and developed an attendance automation system capable of recognizing users in real time using computer vision and object detection technologies.\n\nKey Achievements:\n• Supports 50+ users.\n• Recognition latency below one second.\n• Automated attendance logging.\n• Improved attendance accuracy.",
                 technologies: ["Python", "OpenCV", "YOLO", "FastAPI"],
                 category: "project",
-                image: "https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?w=600&h=400&fit=crop",
+                image: "/projects/face_recognition.png",
                 link: "https://github.com/Dipakk7/Face_reco_attendance_management",
                 date: new Date('2025-05-01')
             }

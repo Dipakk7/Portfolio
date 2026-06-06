@@ -150,7 +150,7 @@ const fallbackProjects: Project[] = [
         technologies: ["Python", "TensorFlow", "FastAPI", "Deep Learning"],
         category: "project",
         featured: true,
-        image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&h=400&fit=crop",
+        image: "/projects/deepfake_detection.png",
         githubUrl: "https://github.com/Dipakk7/DeepfakeDetect",
     },
     {
@@ -160,7 +160,7 @@ const fallbackProjects: Project[] = [
         technologies: ["Python", "SQL", "Power BI"],
         category: "project",
         featured: true,
-        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
+        image: "/projects/ecommerce_analysis.png",
         githubUrl: "https://github.com/Dipakk7/Ecommerce-Sales-Analysis",
     },
     {
@@ -170,7 +170,7 @@ const fallbackProjects: Project[] = [
         technologies: ["Python", "OpenCV", "YOLO", "FastAPI"],
         category: "project",
         featured: true,
-        image: "https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?w=600&h=400&fit=crop",
+        image: "/projects/face_recognition.png",
         githubUrl: "https://github.com/Dipakk7/Face_reco_attendance_management",
     }
 ];
