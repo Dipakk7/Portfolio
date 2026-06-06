@@ -74,24 +74,10 @@ export function Features() {
           className="text-center"
         >
           <h2 className="text-4xl md:text-7xl font-bold tracking-tighter mb-8 bg-clip-text text-transparent bg-gradient-to-b from-zinc-900 via-zinc-700 to-zinc-500 dark:from-white dark:via-zinc-200 dark:to-zinc-500">
-            Areas of Expertise.
+            Areas of Expertise
           </h2>
           <p className="text-xl md:text-3xl text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-4xl mx-auto">
-            <span className="font-semibold text-zinc-900 dark:text-zinc-100">AI and Data Science student at MIT.</span>
-            <br />
-            Specializing in{" "}
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">
-              Generative AI
-            </span>
-            ,{" "}
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 to-cyan-600 dark:from-emerald-400 dark:to-cyan-400">
-              Data Analytics
-            </span>
-            , and{" "}
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-red-600 dark:from-orange-400 dark:to-red-400">
-              Computer Vision
-            </span>
-            .
+            Specializing in Machine Learning, Generative AI, Data Analytics, and Computer Vision. Passionate about building intelligent systems and data-driven solutions.
           </p>
         </motion.div>
       </div>

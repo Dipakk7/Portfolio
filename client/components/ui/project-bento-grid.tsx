@@ -118,7 +118,7 @@ function BentoGridItem({ item }: { item: BentoItem }) {
                         alt={item.title}
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-black/60 group-hover:bg-black/70 transition-colors duration-300" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/45 to-black/20 group-hover:from-black/90 group-hover:via-black/55 group-hover:to-black/30 transition-all duration-300" />
                 </div>
             )}
 
