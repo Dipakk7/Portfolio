@@ -11,8 +11,8 @@ interface AboutProps {
 // Default values used when no data is provided
 const defaultAboutData = {
     title: "// About Me",
-    subtitle: "Building AI-powered solutions for real-world challenges.",
-    description: "As an AI Engineer and Data Scientist, I interpret complex datasets to solve real-world problems. My passion lies in creating machine learning models that are not just accurate, but also interpretable and actionable.\n\nWith a strong foundation in both software engineering and statistical modeling, I approach every project with a holistic view—ensuring that the backend logic is as robust as the frontend is intuitive.\n\nI'm constantly exploring the bleeding edge of AI, from Large Language Models to Computer Vision. I believe the best solutions come from a deep understanding of the problem space combined with the right technological tools.\n\nWhen I'm not coding, you can find me analyzing market trends, contributing to open-source projects, or exploring the latest developments in generative AI.",
+    subtitle: "Building intelligent AI solutions that turn data into insights, innovation, and impact.",
+    description: "I'm an AI/ML Engineer passionate about developing intelligent systems using Machine Learning, Deep Learning, Computer Vision, and Data Analytics. I enjoy solving complex problems and turning data into meaningful insights that drive better decisions and real-world outcomes.\n\nThrough projects such as Deepfake Video Detection, Face Recognition Attendance Management, and E-commerce Sales Analysis, I have gained hands-on experience in data processing, model development, visualization, and deployment. These experiences have strengthened my ability to build end-to-end AI solutions that are both practical and impactful.\n\nI continuously explore emerging technologies such as Generative AI, Large Language Models (LLMs), and advanced deep learning techniques to expand my knowledge and stay current in the rapidly evolving AI landscape. Beyond technical development, I believe successful AI solutions combine innovation, business understanding, and a user-focused approach.\n\nMy goal is to create intelligent, data-driven solutions that not only solve challenging problems but also deliver measurable value and meaningful impact.",
 };
 
 /**
@@ -66,19 +66,16 @@ export function About({ data }: AboutProps) {
 
                     <div className="prose prose-lg dark:prose-invert max-w-none text-zinc-600 dark:text-zinc-400 leading-relaxed text-left space-y-6">
                         <p className="font-normal text-zinc-600 dark:text-zinc-400">
-                            I’m an AI/ML Engineer passionate about building intelligent solutions that turn data into meaningful insights and real-world impact. I enjoy solving complex problems using Machine Learning, Deep Learning, Computer Vision, and Data Analytics.
+                            I'm an <span className="font-semibold text-zinc-900 dark:text-zinc-100">AI/ML Engineer</span> passionate about developing intelligent systems using <span className="font-semibold text-zinc-900 dark:text-zinc-100">Machine Learning, Deep Learning, Computer Vision, and Data Analytics</span>. I enjoy solving complex problems and turning data into meaningful insights that drive better decisions and real-world outcomes.
                         </p>
                         <p className="font-normal text-zinc-600 dark:text-zinc-400">
-                            Over the years, I have worked on projects such as Deepfake Video Detection, Face Recognition Attendance Management, and E-commerce Sales Analysis, where I gained hands-on experience in data processing, model development, visualization, and deployment. These projects have helped me develop a strong foundation in creating end-to-end AI solutions.
+                            Through projects such as <span className="font-semibold text-zinc-900 dark:text-zinc-100">Deepfake Video Detection</span>, <span className="font-semibold text-zinc-900 dark:text-zinc-100">Face Recognition Attendance Management</span>, and <span className="font-semibold text-zinc-900 dark:text-zinc-100">E-commerce Sales Analysis</span>, I have gained hands-on experience in data processing, model development, visualization, and deployment. These experiences have strengthened my ability to build <span className="font-semibold text-zinc-900 dark:text-zinc-100">end-to-end AI solutions</span> that are both practical and impactful.
                         </p>
                         <p className="font-normal text-zinc-600 dark:text-zinc-400">
-                            I am constantly exploring emerging technologies such as Generative AI, Large Language Models (LLMs), and advanced deep learning techniques to expand my knowledge and stay ahead in the rapidly evolving AI landscape.
+                            I continuously explore emerging technologies such as <span className="font-semibold text-zinc-900 dark:text-zinc-100">Generative AI, Large Language Models (LLMs)</span>, and advanced deep learning techniques to expand my knowledge and stay current in the rapidly evolving AI landscape. Beyond technical development, I believe successful AI solutions combine innovation, business understanding, and a user-focused approach.
                         </p>
                         <p className="font-normal text-zinc-600 dark:text-zinc-400">
-                            Beyond technical development, I believe successful AI solutions require a balance of innovation, business understanding, and user-focused thinking. My goal is to build intelligent systems that not only solve problems but also create measurable value and positive impact.
-                        </p>
-                        <p className="font-normal text-zinc-600 dark:text-zinc-400">
-                            When I’m not coding or working on AI projects, I enjoy learning new technologies, improving my skills, and keeping up with the latest advancements in artificial intelligence and data science.
+                            My goal is to create intelligent, data-driven solutions that not only solve challenging problems but also deliver <span className="font-semibold text-zinc-900 dark:text-zinc-100">measurable value and meaningful impact</span>.
                         </p>
                     </div>
                 </motion.div>
