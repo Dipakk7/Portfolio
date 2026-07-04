@@ -12,7 +12,7 @@
 
 <br />
 
-**[🌐 Live Demo](https://github.com/Dipakk7/Portfolio)** · **[📖 Documentation](#-getting-started)** · **[🐛 Report Bug](https://github.com/Dipakk7/Portfolio/issues)**
+**[🌐 Live Demo](http://dipakkhandagale.vercel.app/)** · **[📖 Documentation](#-getting-started)** · **[🐛 Report Bug](https://github.com/Dipakk7/Portfolio/issues)**
 
 </div>
 
