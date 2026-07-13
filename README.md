@@ -1,12 +1,8 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=220&section=header&text=Dipak%20Khandagale%20Portfolio&fontSize=50&fontColor=ffffff&animation=fadeIn&fontAlignY=45" width="100%"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=260&section=header&text=Dipak%20Khandagale%0APortfolio&fontSize=50&fontColor=ffffff&animation=fadeIn&fontAlignY=40" width="100%"/>
 
 <br/>
-
-<img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=20&duration=3000&pause=800&color=38BDF8&center=true&vCenter=true&width=680&lines=Static-first+architecture+with+ISR;Sub-second+load+times+on+every+page;Full+admin+CMS+for+content+control;Zero+runtime+API+calls+for+visitors" alt="Typing SVG" />
-
-<br/><br/>
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
 [![Next.js](https://img.shields.io/badge/Next.js_15-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
