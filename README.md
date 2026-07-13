@@ -228,9 +228,9 @@ Distributed under the MIT License. See [LICENSE](LICENSE) for details.
 
 ## 📬 Contact
 
-[![GitHub](https://img.shields.io/badge/GitHub-Dipakk7-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Dipakk7)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Dipak%20Khandagale-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/dipakkhandagale/)
-[![Portfolio](https://img.shields.io/badge/Portfolio-Visit%20Site-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://dipakkhandagale.vercel.app/)
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Dipakk7)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/dipakkhandagale/)
+[![Portfolio](https://img.shields.io/badge/Portfolio-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://dipakkhandagale.vercel.app/)
 [![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:khandagaledipak47@gmail.com)
 
 <br/>
