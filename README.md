@@ -35,18 +35,18 @@
 
 ## 📌 Overview
 
-> **Portfolio** is a full-stack personal site built to load instantly, everywhere. It pairs a statically-generated Next.js frontend with an Express + MongoDB backend and a full admin CMS — so every project, blog post, and certificate can be updated without touching code or redeploying.
+> **Portfolio** is a modern AI/ML Engineer portfolio built to showcase my technical expertise, featured projects, and professional journey. It combines a premium user experience with responsive design, smooth animations, and performance-focused architecture to create a polished digital presence.
 >
-> No runtime API calls for visitors. No cold starts. Just a fast, content-driven portfolio.
+> The portfolio highlights my work across **Machine Learning, Generative AI, Large Language Models (LLMs), AI Agents, Computer Vision, FastAPI, and Data Science**, while providing recruiters and developers with an intuitive way to explore my projects, skills, and experience.
 
 <div align="center">
 
 | | |
 |:---:|:---|
-| 🏎️ | **Static-first** — pages are pre-rendered at build time and served instantly from the CDN edge |
-| 🎨 | **Creative UI** — WebGL mosaic shader hero, Framer Motion transitions, limelight nav |
-| 📊 | **Full admin CMS** — manage projects, blogs, certificates, and experience with no code changes |
-| 🛡️ | **Secure by default** — hidden backend, rate limiting, Zod validation, Helmet headers |
+| 🚀 | **Premium Design** — Modern UI with responsive layouts, smooth animations, and clean typography |
+| 🤖 | **AI Engineering** — Showcasing intelligent applications, AI-powered solutions, and production-focused projects |
+| 📂 | **Project Showcase** — Highlighting featured work with live demos, GitHub repositories, and technical details |
+| ⚡ | **Performance & SEO** — Optimized for speed, accessibility, responsiveness, and search engine visibility |
 
 </div>
 
