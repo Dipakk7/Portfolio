@@ -1,46 +1,54 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=260&section=header&text=Dipak%20Khandagale&fontSize=60&fontColor=ffffff&animation=fadeIn&fontAlignY=35&desc=Portfolio&descAlignY=58&descSize=30" width="100%"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=260&section=header&text=Dipak%20Khandagale&fontSize=60&fontColor=ffffff&animation=fadeIn&fontAlignY=35&desc=AI%2FML%20Engineer%20Portfolio&descAlignY=58&descSize=25" width="100%"/>
 
 <br/>
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
-[![Next.js](https://img.shields.io/badge/Next.js_15-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
-[![React](https://img.shields.io/badge/React_18-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
+[![Next.js](https://img.shields.io/badge/Next.js-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
-[![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)](https://mongodb.com/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![Framer Motion](https://img.shields.io/badge/Framer_Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white)](https://www.framer.com/motion/)
+[![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/)
 
 <img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=6,11,20&height=3&width=1000" width="100%"/>
 
 <br/>
 
 <a href="#-overview"><img src="https://img.shields.io/badge/Overview-black?style=flat-square&logo=googledocs&logoColor=white" /></a>
-<a href="#-key-features"><img src="https://img.shields.io/badge/Features-black?style=flat-square&logo=sparkfun&logoColor=white" /></a>
-<a href="#%EF%B8%8F-technology-stack"><img src="https://img.shields.io/badge/Tech%20Stack-black?style=flat-square&logo=techcrunch&logoColor=white" /></a>
-<a href="#-system-architecture"><img src="https://img.shields.io/badge/Architecture-black?style=flat-square&logo=diagramsdotnet&logoColor=white" /></a>
-<a href="#%EF%B8%8F-installation--setup"><img src="https://img.shields.io/badge/Setup-black?style=flat-square&logo=gitbook&logoColor=white" /></a>
+<a href="#-features"><img src="https://img.shields.io/badge/Features-black?style=flat-square&logo=sparkfun&logoColor=white" /></a>
+<a href="#️-technology-stack"><img src="https://img.shields.io/badge/Tech%20Stack-black?style=flat-square&logo=techcrunch&logoColor=white" /></a>
+<a href="#-featured-projects"><img src="https://img.shields.io/badge/Projects-black?style=flat-square&logo=github&logoColor=white" /></a>
+<a href="#-screenshots"><img src="https://img.shields.io/badge/Screenshots-black?style=flat-square&logo=imgur&logoColor=white" /></a>
+<a href="#-installation"><img src="https://img.shields.io/badge/Installation-black?style=flat-square&logo=gitbook&logoColor=white" /></a>
+<a href="#-project-structure"><img src="https://img.shields.io/badge/Structure-black?style=flat-square&logo=files&logoColor=white" /></a>
 <a href="#-deployment"><img src="https://img.shields.io/badge/Deployment-black?style=flat-square&logo=vercel&logoColor=white" /></a>
+<a href="#-contact"><img src="https://img.shields.io/badge/Contact-black?style=flat-square&logo=maildotru&logoColor=white" /></a>
 
 <br/><br/>
+
 </div>
 
 <br/>
 
 ## 📌 Overview
 
-> **Portfolio** is a modern AI/ML Engineer portfolio built to showcase my technical expertise, featured projects, and professional journey. It combines a premium user experience with responsive design, smooth animations, and performance-focused architecture to create a polished digital presence.
+> This repository powers my personal **AI/ML Engineer portfolio** — a modern, responsive site built to showcase my projects, technical skills, and professional journey in a clean, recruiter-friendly experience.
 >
-> The portfolio highlights my work across **Machine Learning, Generative AI, Large Language Models (LLMs), AI Agents, Computer Vision, FastAPI, and Data Science**, while providing recruiters and developers with an intuitive way to explore my projects, skills, and experience.
+> It's designed around performance and clarity: fast page loads, smooth animations, and a focused presentation of the work I've built across **Machine Learning, Generative AI, LLMs, and AI Agents**.
+
+<img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=6,11,20&height=2&width=1000" width="100%"/>
+
+## ✨ Features
 
 <div align="center">
 
-| | |
-|:---:|:---|
-| 🚀 | **Premium Design** — Modern UI with responsive layouts, smooth animations, and clean typography |
-| 🤖 | **AI Engineering** — Showcasing intelligent applications, AI-powered solutions, and production-focused projects |
-| 📂 | **Project Showcase** — Highlighting featured work with live demos, GitHub repositories, and technical details |
-| ⚡ | **Performance & SEO** — Optimized for speed, accessibility, responsiveness, and search engine visibility |
+| | | |
+|:---:|:---:|:---:|
+| 🎨 **Modern Premium UI** | 📱 **Fully Responsive** | 🎬 **Smooth Animations** |
+| 🤖 **AI Project Showcase** | 🧠 **Technical Skills Section** | 📄 **Resume Download** |
+| 🌗 **Dark & Light Mode** | 🔍 **SEO Optimized** | ⚡ **Fast Performance** |
 
 </div>
 
@@ -50,73 +58,186 @@
 
 <div align="center">
 
-<img src="https://skillicons.dev/icons?i=nextjs,react,ts,tailwind,nodejs,express,mongodb,vercel" />
+**Frontend**
+
+<img src="https://skillicons.dev/icons?i=nextjs,react,ts,tailwind" />
+
+**AI / ML Skills Showcased**
+
+<img src="https://skillicons.dev/icons?i=python,fastapi" />
+
+**Tools**
+
+<img src="https://skillicons.dev/icons?i=git,github,vercel" />
 
 </div>
 
-| Layer | Technology | Details |
-|:--|:--|:--|
-| **Frontend** | Next.js 15, React 18, TypeScript | App Router, ISR-driven static rendering |
-| **Styling & Motion** | Tailwind CSS, Framer Motion | Utility-first styling, smooth page/element transitions |
-| **Backend** | Node.js, Express | REST API, proxied through Next.js and never exposed directly |
-| **Database** | MongoDB | Document store for projects, blogs, certificates, experience, messages |
-| **Media** | Cloudinary | Image uploads and optimized delivery for admin-managed content |
-| **Validation & Security** | Zod, Helmet, rate limiting | Type-safe schemas and hardened API surface |
-| **Auth** | JWT | Token-based admin authentication |
-| **Deployment** | Vercel (frontend), Render (backend) | Static CDN hosting + always-on API service |
+<div align="center">
+
+| Category | Stack |
+|:--|:--|
+| **Frontend** | Next.js, React, TypeScript, Tailwind CSS, Framer Motion |
+| **AI Skills Showcased** | Python, Machine Learning, FastAPI, LLMs |
+| **Tools & Deployment** | Git, GitHub, Vercel |
+
+</div>
 
 <img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=6,11,20&height=2&width=1000" width="100%"/>
 
-## 📂 Folder Structure
+## 🚀 Featured Projects
+
+<table>
+<tr>
+<td width="50%" valign="top">
+
+### 🎯 Scorelia
+AI-powered career intelligence platform — resume parsing, ATS scoring, semantic job matching, and mock interviews, all running on local open-source AI.
+
+**Stack:** React, FastAPI, PostgreSQL, Ollama, ChromaDB
+[`GitHub →`](https://github.com/Dipakk7/Scorelia)
+
+</td>
+<td width="50%" valign="top">
+
+### 🕵️ Deepfake Video Detection
+A computer vision system for identifying manipulated video content using deep learning classification models.
+
+**Stack:** Python, TensorFlow/PyTorch, OpenCV
+`GitHub →` *(link coming soon)*
+
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+
+### 📄 Vision Document Parser
+An AI pipeline that extracts structured data from scanned documents using OCR and vision-language models.
+
+**Stack:** Python, OCR, Vision-Language Models
+`GitHub →` *(link coming soon)*
+
+</td>
+<td width="50%" valign="top">
+
+### 🎥 Face Recognition Attendance System
+A real-time attendance system using facial recognition to automate check-ins with high accuracy.
+
+**Stack:** Python, OpenCV, Face Recognition
+`GitHub →` *(link coming soon)*
+
+</td>
+</tr>
+<tr>
+<td width="100%" valign="top">
+
+### 📊 Data Analytics Projects
+A collection of exploratory data analysis and visualization projects covering real-world datasets and business insights.
+
+**Stack:** Python, Pandas, NumPy, Matplotlib/Seaborn
+`GitHub →` *(link coming soon)*
+
+</td>
+</tr>
+</table>
+
+<img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=6,11,20&height=2&width=1000" width="100%"/>
+
+## 🌐 Live Demo
+
+<div align="center">
+
+**🌐 Live Website:** [dipakkhandagale.vercel.app](https://dipakkhandagale.vercel.app)
+
+[![Visit Portfolio](https://img.shields.io/badge/Visit%20Portfolio-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://dipakkhandagale.vercel.app)
+
+</div>
+
+<img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=6,11,20&height=2&width=1000" width="100%"/>
+
+## 📸 Screenshots
+
+<div align="center">
+
+<!-- Add hero section screenshot below -->
+<img src="./public/screenshots/hero.png" alt="Hero Section" width="90%" />
+
+*Hero Section*
+
+<br/><br/>
+
+<!-- Add about section screenshot below -->
+<img src="./public/screenshots/about.png" alt="About Section" width="90%" />
+
+*About Section*
+
+<br/><br/>
+
+<!-- Add skills section screenshot below -->
+<img src="./public/screenshots/skills.png" alt="Skills Section" width="90%" />
+
+*Skills Section*
+
+<br/><br/>
+
+<!-- Add projects section screenshot below -->
+<img src="./public/screenshots/projects.png" alt="Projects Section" width="90%" />
+
+*Projects Section*
+
+<br/><br/>
+
+<!-- Add contact section screenshot below -->
+<img src="./public/screenshots/contact.png" alt="Contact Section" width="90%" />
+
+*Contact Section*
+
+<br/><br/>
+
+<!-- Add mobile view screenshot below -->
+<img src="./public/screenshots/mobile.png" alt="Mobile View" width="40%" />
+
+*Mobile View*
+
+</div>
+
+<img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=6,11,20&height=2&width=1000" width="100%"/>
+
+## ⚙️ Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/Dipakk7/Portfolio.git
+cd Portfolio
+
+# Install dependencies
+npm install
+
+# Run the development server
+npm run dev
+
+# Build for production
+npm run build
+```
+
+<img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=6,11,20&height=2&width=1000" width="100%"/>
+
+## 📂 Project Structure
 
 ```
 Portfolio/
-├── client/                  # Next.js Frontend
-│   ├── app/                 # App Router pages
-│   │   ├── admin/           # Admin dashboard
-│   │   ├── blog/            # Blog pages
-│   │   └── api/             # API routes (revalidation)
-│   ├── components/          # React components
-│   ├── lib/
-│   │   └── data.ts          # ISR data fetching layer
-│   └── public/               # Static assets
-│
-├── server/                   # Express Backend
-│   ├── src/
-│   │   ├── controllers/      # Route handlers
-│   │   ├── models/           # Mongoose schemas
-│   │   ├── router/           # API routes
-│   │   └── middleware/       # Auth, validation, etc.
-│   └── scripts/
-│       └── create_admin.js   # Admin user creation
-│
-├── certificates/              # Certificate assets
-├── Dipak_Khandagale_Resume.pdf
-├── netlify.toml
+├── app/                 # Pages and routes
+├── components/          # Reusable UI components
+├── public/               # Static assets & screenshots
+├── styles/               # Global styles
 ├── LICENSE
 └── README.md
 ```
 
 <img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=6,11,20&height=2&width=1000" width="100%"/>
 
-## 📸 Screenshots
+## 🚢 Deployment
 
-| Feature | Preview |
-|:--|:--:|
-| Hero (WebGL Shader) | *coming soon* |
-| Projects Grid | *coming soon* |
-| Admin Dashboard | *coming soon* |
-| Blog | *coming soon* |
-
-<img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=6,11,20&height=2&width=1000" width="100%"/>
-
-## 🌐 Deployment
-
-Deployed on **Vercel**, connected directly to this GitHub repo:
-
-1. Import the repo into Vercel
-2. Set the required environment variables
-3. Push to `main` — Vercel builds and deploys automatically 🚀
+Hosted on **Vercel**, with automatic deployment triggered on every push to the `main` branch.
 
 <img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=6,11,20&height=2&width=1000" width="100%"/>
 
@@ -128,21 +249,22 @@ Distributed under the MIT License. See [LICENSE](LICENSE) for details.
 
 <div align="center">
 
-## 👨‍💻 Connect With Me
+## 📬 Contact
 
 [![GitHub](https://img.shields.io/badge/GitHub-Dipakk7-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Dipakk7)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Dipak%20Khandagale-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/dipakkhandagale/)
 [![Portfolio](https://img.shields.io/badge/Portfolio-Visit%20Site-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://dipakkhandagale.vercel.app/)
+[![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:your.email@example.com)
 
 <br/>
 
-### ⭐ If you find this useful, consider starring the repo!
+### ⭐ If you like this project, please consider starring the repository!
 
 [![Star on GitHub](https://img.shields.io/github/stars/Dipakk7/Portfolio?style=for-the-badge&color=gold&logo=github)](https://github.com/Dipakk7/Portfolio/stargazers)
 
 <br/><br/>
 
-<a href="#portfolio">
+<a href="#dipak-khandagale">
   <img src="https://img.shields.io/badge/⬆-Back%20to%20Top-black?style=for-the-badge" />
 </a>
 
