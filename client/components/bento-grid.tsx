@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Brain, Sparkles, Eye, Terminal, BarChart3, Cloud, LucideIcon } from "lucide-react"
+import { Brain, Sparkles, Eye, Terminal, BarChart3, Cloud, Cpu, Database, LucideIcon } from "lucide-react"
 import { GlowingEffect } from "@/components/ui/glowing-effect"
 import { cn } from "@/lib/utils"
 import type { HeroData } from "@/lib/data"
@@ -29,7 +29,7 @@ const skillCategories: SkillCategory[] = [
   {
     title: "AI & Machine Learning",
     icon: Brain,
-    skills: ["Machine Learning", "Neural Networks", "Model Development"],
+    skills: ["Machine Learning", "Deep Learning", "Generative AI", "AI Agents"],
     gradient: "from-blue-500/10 via-blue-500/5 to-transparent",
     iconBg: "bg-blue-50 dark:bg-blue-950/20",
     iconBorder: "border-blue-200/50 dark:border-blue-900/30 group-hover:border-blue-500/30",
@@ -40,9 +40,9 @@ const skillCategories: SkillCategory[] = [
     chipText: "text-blue-700 dark:text-blue-300 hover:text-blue-900 dark:hover:text-blue-100",
   },
   {
-    title: "Deep Learning & Generative AI",
+    title: "LLM Engineering",
     icon: Sparkles,
-    skills: ["TensorFlow", "PyTorch", "Generative AI", "LLMs"],
+    skills: ["Large Language Models (LLMs)", "Prompt Engineering", "Retrieval-Augmented Generation (RAG)", "LangChain"],
     gradient: "from-purple-500/10 via-purple-500/5 to-transparent",
     iconBg: "bg-purple-50 dark:bg-purple-950/20",
     iconBorder: "border-purple-200/50 dark:border-purple-900/30 group-hover:border-purple-500/30",
@@ -55,7 +55,7 @@ const skillCategories: SkillCategory[] = [
   {
     title: "Computer Vision",
     icon: Eye,
-    skills: ["OpenCV", "Image Processing", "Face Recognition"],
+    skills: ["Computer Vision", "OpenCV", "Image Processing"],
     gradient: "from-cyan-500/10 via-cyan-500/5 to-transparent",
     iconBg: "bg-cyan-50 dark:bg-cyan-950/20",
     iconBorder: "border-cyan-200/50 dark:border-cyan-900/30 group-hover:border-cyan-500/30",
@@ -68,7 +68,7 @@ const skillCategories: SkillCategory[] = [
   {
     title: "Programming",
     icon: Terminal,
-    skills: ["Python", "SQL", "Java"],
+    skills: ["Python", "SQL"],
     gradient: "from-emerald-500/10 via-emerald-500/5 to-transparent",
     iconBg: "bg-emerald-50 dark:bg-emerald-950/20",
     iconBorder: "border-emerald-200/50 dark:border-emerald-900/30 group-hover:border-emerald-500/30",
@@ -79,9 +79,22 @@ const skillCategories: SkillCategory[] = [
     chipText: "text-emerald-700 dark:text-emerald-300 hover:text-emerald-900 dark:hover:text-emerald-100",
   },
   {
-    title: "Data Analytics",
+    title: "Backend & APIs",
+    icon: Cpu,
+    skills: ["FastAPI", "REST APIs", "OpenAI API", "Ollama"],
+    gradient: "from-indigo-500/10 via-indigo-500/5 to-transparent",
+    iconBg: "bg-indigo-50 dark:bg-indigo-950/20",
+    iconBorder: "border-indigo-200/50 dark:border-indigo-900/30 group-hover:border-indigo-500/30",
+    iconColor: "text-indigo-600 dark:text-indigo-400",
+    cardBorderHover: "hover:border-indigo-500/20 dark:hover:border-indigo-500/30",
+    chipBg: "bg-indigo-50/50 dark:bg-indigo-950/10",
+    chipBorder: "border-indigo-200/30 dark:border-indigo-900/20 hover:border-indigo-500/40 dark:hover:border-indigo-500/40",
+    chipText: "text-indigo-700 dark:text-indigo-300 hover:text-indigo-900 dark:hover:text-indigo-100",
+  },
+  {
+    title: "Data Science",
     icon: BarChart3,
-    skills: ["Power BI", "Excel", "Pandas", "NumPy"],
+    skills: ["Pandas", "NumPy", "Exploratory Data Analysis (EDA)", "Data Visualization"],
     gradient: "from-orange-500/10 via-orange-500/5 to-transparent",
     iconBg: "bg-orange-50 dark:bg-orange-950/20",
     iconBorder: "border-orange-200/50 dark:border-orange-900/30 group-hover:border-orange-500/30",
@@ -92,9 +105,9 @@ const skillCategories: SkillCategory[] = [
     chipText: "text-orange-700 dark:text-orange-300 hover:text-orange-900 dark:hover:text-orange-100",
   },
   {
-    title: "Tools & Deployment",
+    title: "Developer Tools",
     icon: Cloud,
-    skills: ["Git", "GitHub", "FastAPI", "AWS", "Vercel"],
+    skills: ["Git", "GitHub", "Docker", "PostgreSQL", "Google Colab"],
     gradient: "from-pink-500/10 via-pink-500/5 to-transparent",
     iconBg: "bg-pink-50 dark:bg-pink-950/20",
     iconBorder: "border-pink-200/50 dark:border-pink-900/30 group-hover:border-pink-500/30",
@@ -134,8 +147,8 @@ export function BentoGrid({ heroData }: BentoGridProps) {
           </p>
         </motion.div>
 
-        {/* 3x2 Responsive Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Responsive Flex Centered Layout */}
+        <div className="flex flex-wrap justify-center items-start gap-6">
           {skillCategories.map((category, index) => {
             const Icon = category.icon
             return (
@@ -146,7 +159,7 @@ export function BentoGrid({ heroData }: BentoGridProps) {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.08 }}
                 className={cn(
-                  "group relative p-6 rounded-2xl border border-zinc-200 dark:border-zinc-900/60 bg-zinc-50/50 dark:bg-zinc-950/40 backdrop-blur-md transition-all duration-300 min-h-[200px] flex flex-col justify-between hover:shadow-lg hover:-translate-y-1 will-change-transform overflow-hidden",
+                  "w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] group relative p-6 rounded-2xl border border-zinc-200 dark:border-zinc-900/60 bg-zinc-50/50 dark:bg-zinc-950/40 backdrop-blur-md transition-all duration-300 flex flex-col hover:shadow-lg hover:-translate-y-1 will-change-transform overflow-hidden",
                   category.cardBorderHover
                 )}
               >

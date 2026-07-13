@@ -20,7 +20,9 @@ export function GithubProjects({ projects }: GithubProjectsProps) {
     // Normalize url: since they are all GitHub repositories, map the project titles to their specific repo links.
     let repoUrl = "https://github.com/Dipakk7";
     const titleLower = project.title.toLowerCase();
-    if (titleLower.includes("deepfake")) {
+    if (titleLower.includes("scorelia")) {
+      repoUrl = "https://github.com/Dipakk7/Scorelia";
+    } else if (titleLower.includes("deepfake")) {
       repoUrl = "https://github.com/Dipakk7/DeepfakeDetect";
     } else if (titleLower.includes("e-commerce") || titleLower.includes("ecommerce")) {
       repoUrl = "https://github.com/Dipakk7/Ecommerce-Sales-Analysis";

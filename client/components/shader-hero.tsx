@@ -13,7 +13,7 @@ interface ShaderAnimationProps {
 // Default values for hero section
 const defaultHeroData = {
     heroTitle: "Dipak Khandagale",
-    heroSubtitle: "AI/ML Engineer | Data Analyst",
+    heroSubtitle: "AI/ML Engineer",
 };
 
 export function ShaderAnimation({ heroData }: ShaderAnimationProps) {
@@ -158,16 +158,6 @@ export function ShaderAnimation({ heroData }: ShaderAnimationProps) {
                             {subtitle}
                         </span>
                     </motion.div>
-
-                    {/* Subtitle */}
-                    <motion.p
-                        className="mt-4 text-sm md:text-base text-zinc-500 dark:text-zinc-400 font-light tracking-wider max-w-lg pointer-events-auto select-text"
-                        initial={{ opacity: 0, y: 15 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.6 }}
-                    >
-                        Turning data into intelligent solutions.
-                    </motion.p>
 
                     {/* Hero Buttons */}
                     <motion.div

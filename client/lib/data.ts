@@ -88,10 +88,10 @@ export interface Experience {
 
 const fallbackHeroData: HeroData = {
     heroTitle: "Dipak Khandagale",
-    heroSubtitle: "AI/ML Engineer | Data Analyst",
+    heroSubtitle: "AI/ML Engineer",
     aboutTitle: "// About Me",
-    aboutSubtitle: "Building AI-powered solutions for real-world challenges.",
-    aboutDescription: "I am a B.Tech graduate in Artificial Intelligence and Data Science from MIT College of Engineering, Chhatrapati Sambhajinagar.\n\nMy journey focuses on leveraging Artificial Intelligence, Data Analytics, and Machine Learning to develop innovative solutions for real-world challenges. I am passionate about transforming complex data into actionable insights and building AI-powered applications that create meaningful impact.\n\nI enjoy working with:\n\n• Machine Learning\n• Deep Learning\n• Generative AI\n• Computer Vision\n• Data Analytics\n• Business Intelligence\n• AI Evaluation\n• LLM Testing\n• FastAPI Development\n\nI continuously explore emerging AI technologies, Large Language Models (LLMs), and intelligent automation systems while expanding my expertise in building scalable, data-driven solutions.",
+    aboutSubtitle: "Building intelligent AI products that create real-world impact.",
+    aboutDescription: "I'm an **AI Engineer** passionate about building intelligent applications using **Machine Learning, Generative AI, Computer Vision, Large Language Models (LLMs), and Data Analytics**. I enjoy transforming complex problems into AI-powered solutions that automate workflows, generate insights, and deliver real-world value.\n\nThrough projects including **Scorelia, Deepfake Video Detection, Vision Document Parsing, Face Recognition Attendance Management, and Data Analytics Dashboards**, I've gained hands-on experience developing **end-to-end AI applications**—from data preprocessing and model development to backend APIs and modern web interfaces. I focus on building scalable, user-centric solutions that combine technical excellence with practical impact.\n\nI'm continuously exploring **AI Agents, Retrieval-Augmented Generation (RAG), multimodal AI, and modern LLM frameworks** to stay at the forefront of AI innovation. My goal is to build intelligent products that solve meaningful problems and create lasting value through technology.",
     email: "khandagaledipak47@gmail.com",
     socialLinks: {
         github: "https://github.com/Dipakk7",
@@ -143,6 +143,16 @@ const fallbackCertificates: Certificate[] = [
 ];
 
 const fallbackProjects: Project[] = [
+    {
+        _id: "p0",
+        title: "Scorelia",
+        description: "An AI-powered career platform that helps users optimize resumes, analyze ATS compatibility, and gain actionable career insights through intelligent AI-driven analysis. Built with a modern full-stack architecture, Scorelia combines a premium user experience with powerful AI features to streamline the job application process.",
+        technologies: ["React", "TypeScript", "TailwindCSS", "FastAPI", "Python", "PostgreSQL", "AI", "LLMs"],
+        category: "project",
+        featured: true,
+        image: "/projects/scorelia.png",
+        githubUrl: "https://github.com/Dipakk7/Scorelia",
+    },
     {
         _id: "p1",
         title: "Deepfake Video Detection",

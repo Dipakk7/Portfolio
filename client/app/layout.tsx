@@ -17,10 +17,10 @@ const _sourceSerif_4 = V0_Font_Source_Serif_4({ subsets: ['latin'], variable: '-
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://dipakkhandagale.vercel.app'),
   title: {
-    default: "Dipak Khandagale | AI Engineer & Data Analyst",
+    default: "Dipak Khandagale | AI/ML Engineer",
     template: "%s | Dipak Khandagale"
   },
-  description: "Portfolio of Dipak Khandagale showcasing AI Engineering, Machine Learning, Data Analytics, Computer Vision, Deepfake Detection, Generative AI, and Business Intelligence projects.",
+  description: "AI/ML Engineer specializing in Machine Learning, Generative AI, Large Language Models (LLMs), Computer Vision, FastAPI, and intelligent AI-powered applications. Explore my projects, technical expertise, and portfolio.",
   generator: "Next.js",
   icons: {
     icon: [
@@ -44,16 +44,16 @@ export const metadata: Metadata = {
   authors: [{ name: "Dipak Khandagale" }],
   creator: "Dipak Khandagale",
   openGraph: {
-    title: "Dipak Khandagale | AI Engineer & Data Analyst",
-    description: "Portfolio of Dipak Khandagale showcasing AI Engineering, Machine Learning, Data Analytics, Computer Vision, Deepfake Detection, Generative AI, and Business Intelligence projects.",
+    title: "Dipak Khandagale | AI/ML Engineer",
+    description: "AI/ML Engineer specializing in Machine Learning, Generative AI, Large Language Models (LLMs), Computer Vision, FastAPI, and intelligent AI-powered applications. Explore my projects, technical expertise, and portfolio.",
     type: "website",
     locale: "en_US",
     siteName: "Dipak Khandagale Portfolio",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Dipak Khandagale | AI Engineer & Data Analyst",
-    description: "Portfolio of Dipak Khandagale showcasing AI Engineering, Machine Learning, Data Analytics, Computer Vision, Deepfake Detection, Generative AI, and Business Intelligence projects.",
+    title: "Dipak Khandagale | AI/ML Engineer",
+    description: "AI/ML Engineer specializing in Machine Learning, Generative AI, Large Language Models (LLMs), Computer Vision, FastAPI, and intelligent AI-powered applications. Explore my projects, technical expertise, and portfolio.",
   },
   robots: {
     index: true,

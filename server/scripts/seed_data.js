@@ -16,11 +16,11 @@ const seed = async () => {
 
         const initialData = {
             heroTitle: "Dipak Khandagale",
-            heroSubtitle: "AI/ML Engineer | Data Analyst",
+            heroSubtitle: "AI/ML Engineer",
             footerText: "© 2026 Dipak Khandagale. All rights reserved.",
             aboutTitle: "// About Me",
-            aboutSubtitle: "Building AI-powered solutions for real-world challenges.",
-            aboutDescription: "I am a final-year B.Tech student in Artificial Intelligence and Data Science at MIT College of Engineering, Chhatrapati Sambhajinagar.\n\nMy journey focuses on combining Artificial Intelligence, Data Analytics, and Machine Learning to create practical solutions for real-world challenges.\n\nI enjoy working with:\n• Machine Learning\n• Deep Learning\n• Generative AI\n• Computer Vision\n• Data Analytics\n• Business Intelligence\n• AI Evaluation\n• LLM Testing\n• FastAPI Development\n\nI continuously explore modern AI technologies and enjoy transforming raw data into actionable insights.",
+            aboutSubtitle: "Building intelligent AI products that create real-world impact.",
+            aboutDescription: "I'm an **AI Engineer** passionate about building intelligent applications using **Machine Learning, Generative AI, Computer Vision, Large Language Models (LLMs), and Data Analytics**. I enjoy transforming complex problems into AI-powered solutions that automate workflows, generate insights, and deliver real-world value.\n\nThrough projects including **Scorelia, Deepfake Video Detection, Vision Document Parsing, Face Recognition Attendance Management, and Data Analytics Dashboards**, I've gained hands-on experience developing **end-to-end AI applications**—from data preprocessing and model development to backend APIs and modern web interfaces. I focus on building scalable, user-centric solutions that combine technical excellence with practical impact.\n\nI'm continuously exploring **AI Agents, Retrieval-Augmented Generation (RAG), multimodal AI, and modern LLM frameworks** to stay at the forefront of AI innovation. My goal is to build intelligent products that solve meaningful problems and create lasting value through technology.",
             email: "khandagaledipak47@gmail.com",
             socialLinks: {
                 github: "https://github.com/Dipakk7",

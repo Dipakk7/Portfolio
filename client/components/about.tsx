@@ -11,8 +11,8 @@ interface AboutProps {
 // Default values used when no data is provided
 const defaultAboutData = {
     title: "// About Me",
-    subtitle: "Building intelligent AI solutions that turn data into insights, innovation, and impact.",
-    description: "I'm an AI/ML Engineer passionate about developing intelligent systems using Machine Learning, Deep Learning, Computer Vision, and Data Analytics. I enjoy solving complex problems and turning data into meaningful insights that drive better decisions and real-world outcomes.\n\nThrough projects such as Deepfake Video Detection, Face Recognition Attendance Management, and E-commerce Sales Analysis, I have gained hands-on experience in data processing, model development, visualization, and deployment. These experiences have strengthened my ability to build end-to-end AI solutions that are both practical and impactful.\n\nI continuously explore emerging technologies such as Generative AI, Large Language Models (LLMs), and advanced deep learning techniques to expand my knowledge and stay current in the rapidly evolving AI landscape. Beyond technical development, I believe successful AI solutions combine innovation, business understanding, and a user-focused approach.\n\nMy goal is to create intelligent, data-driven solutions that not only solve challenging problems but also deliver measurable value and meaningful impact.",
+    subtitle: "Building intelligent AI products that create real-world impact.",
+    description: "I'm an **AI Engineer** passionate about building intelligent applications using **Machine Learning, Generative AI, Computer Vision, Large Language Models (LLMs), and Data Analytics**. I enjoy transforming complex problems into AI-powered solutions that automate workflows, generate insights, and deliver real-world value.\n\nThrough projects including **Scorelia, Deepfake Video Detection, Vision Document Parsing, Face Recognition Attendance Management, and Data Analytics Dashboards**, I've gained hands-on experience developing **end-to-end AI applications**—from data preprocessing and model development to backend APIs and modern web interfaces. I focus on building scalable, user-centric solutions that combine technical excellence with practical impact.\n\nI'm continuously exploring **AI Agents, Retrieval-Augmented Generation (RAG), multimodal AI, and modern LLM frameworks** to stay at the forefront of AI innovation. My goal is to build intelligent products that solve meaningful problems and create lasting value through technology.",
 };
 
 /**
@@ -30,6 +30,26 @@ export function About({ data }: AboutProps) {
 
     const opacity = useTransform(scrollYProgress, [0.1, 0.3], [0, 1]);
     const y = useTransform(scrollYProgress, [0.1, 0.3], [50, 0]);
+
+    // Helper to render text with markdown bold (**) support
+    const renderFormattedText = (text: string) => {
+        if (!text) return null;
+        const parts = text.split(/(\*\*.*?\*\*)/g);
+        return parts.map((part, index) => {
+            if (part.startsWith("**") && part.endsWith("**")) {
+                return (
+                    <span key={index} className="font-semibold text-zinc-900 dark:text-zinc-100">
+                        {part.slice(2, -2)}
+                    </span>
+                );
+            }
+            return part;
+        });
+    };
+
+    const subtitle = data?.aboutSubtitle || defaultAboutData.subtitle;
+    const description = data?.aboutDescription || defaultAboutData.description;
+    const paragraphs = description.split(/\n\n+/);
 
     return (
         <section ref={containerRef} className="py-32 px-4 bg-zinc-50 dark:bg-black bg-dot-grid relative overflow-hidden">
@@ -57,26 +77,19 @@ export function About({ data }: AboutProps) {
                             }}
                             transition={{ duration: 2, repeat: Infinity }}
                         />
-                        {"// About Me"}
+                        {data?.aboutTitle || defaultAboutData.title}
                     </motion.div>
 
                     <h3 className="text-3xl md:text-5xl font-bold leading-tight text-zinc-900 dark:text-white text-left tracking-tight">
-                        Building intelligent AI solutions that turn data into insights, innovation, and impact.
+                        {subtitle}
                     </h3>
 
                     <div className="prose prose-lg dark:prose-invert max-w-none text-zinc-600 dark:text-zinc-400 leading-relaxed text-left space-y-6">
-                        <p className="font-normal text-zinc-600 dark:text-zinc-400">
-                            I'm an <span className="font-semibold text-zinc-900 dark:text-zinc-100">AI/ML Engineer</span> passionate about developing intelligent systems using <span className="font-semibold text-zinc-900 dark:text-zinc-100">Machine Learning, Deep Learning, Computer Vision, and Data Analytics</span>. I enjoy solving complex problems and turning data into meaningful insights that drive better decisions and real-world outcomes.
-                        </p>
-                        <p className="font-normal text-zinc-600 dark:text-zinc-400">
-                            Through projects such as <span className="font-semibold text-zinc-900 dark:text-zinc-100">Deepfake Video Detection</span>, <span className="font-semibold text-zinc-900 dark:text-zinc-100">Face Recognition Attendance Management</span>, and <span className="font-semibold text-zinc-900 dark:text-zinc-100">E-commerce Sales Analysis</span>, I have gained hands-on experience in data processing, model development, visualization, and deployment. These experiences have strengthened my ability to build <span className="font-semibold text-zinc-900 dark:text-zinc-100">end-to-end AI solutions</span> that are both practical and impactful.
-                        </p>
-                        <p className="font-normal text-zinc-600 dark:text-zinc-400">
-                            I continuously explore emerging technologies such as <span className="font-semibold text-zinc-900 dark:text-zinc-100">Generative AI, Large Language Models (LLMs)</span>, and advanced deep learning techniques to expand my knowledge and stay current in the rapidly evolving AI landscape. Beyond technical development, I believe successful AI solutions combine innovation, business understanding, and a user-focused approach.
-                        </p>
-                        <p className="font-normal text-zinc-600 dark:text-zinc-400">
-                            My goal is to create intelligent, data-driven solutions that not only solve challenging problems but also deliver <span className="font-semibold text-zinc-900 dark:text-zinc-100">measurable value and meaningful impact</span>.
-                        </p>
+                        {paragraphs.map((para, idx) => (
+                            <p key={idx} className="font-normal text-zinc-600 dark:text-zinc-400">
+                                {renderFormattedText(para)}
+                            </p>
+                        ))}
                     </div>
                 </motion.div>
             </div>
