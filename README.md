@@ -23,12 +23,6 @@
 <a href="#-deployment"><img src="https://img.shields.io/badge/Deployment-black?style=flat-square&logo=vercel&logoColor=white" /></a>
 
 <br/><br/>
-
-<img src="https://img.shields.io/github/last-commit/Dipakk7/Portfolio?style=flat-square&color=6366f1&label=last%20commit" />
-<img src="https://img.shields.io/github/languages/top/Dipakk7/Portfolio?style=flat-square&color=38bdf8" />
-<img src="https://komarev.com/ghpvc/?username=Dipakk7&repo=Portfolio&style=flat-square&color=blue&label=repo+views" />
-<img src="https://img.shields.io/badge/status-actively%20developed-brightgreen?style=flat-square" />
-
 </div>
 
 <br/>
@@ -52,33 +46,6 @@
 
 <img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=6,11,20&height=2&width=1000" width="100%"/>
 
-## 🚀 Key Features
-
-<table>
-<tr>
-<td width="50%" valign="top">
-
-### 🎨 Creative UI/UX
-WebGL mosaic shader hero animations, buttery Framer Motion transitions, an interactive limelight nav bar, and a custom cursor — with full dark/light mode theming.
-
-### 🏎️ ISR-Powered Performance
-Every public page is statically generated at build time and revalidated hourly, so visitors never wait on a backend cold start.
-
-</td>
-<td width="50%" valign="top">
-
-### 📊 Admin Dashboard
-A dedicated CMS for hero copy, about section, skills, experience timeline, projects (with image uploads), blogs, and certificates — all reflected on the live site via ISR.
-
-### 🛡️ Security-First Backend
-API fully proxied and hidden behind Next.js, with XSS-sanitized inputs, rate limiting, Zod schema validation, and Helmet security headers.
-
-</td>
-</tr>
-</table>
-
-<img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=6,11,20&height=2&width=1000" width="100%"/>
-
 ## 🛠️ Technology Stack
 
 <div align="center">
@@ -97,27 +64,6 @@ API fully proxied and hidden behind Next.js, with XSS-sanitized inputs, rate lim
 | **Validation & Security** | Zod, Helmet, rate limiting | Type-safe schemas and hardened API surface |
 | **Auth** | JWT | Token-based admin authentication |
 | **Deployment** | Vercel (frontend), Render (backend) | Static CDN hosting + always-on API service |
-
-<img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=6,11,20&height=2&width=1000" width="100%"/>
-
-## 📐 System Architecture
-
-```mermaid
-graph TD
-    User[Visitor] --> CDN[Vercel CDN - Static HTML]
-    CDN --> Frontend[Next.js 15 Frontend]
-
-    Admin[Admin User] --> AdminUI[Admin Dashboard]
-    AdminUI --> API[Express API]
-    API --> Auth[JWT Auth Guard]
-    API --> DB[(MongoDB)]
-    API --> Cloudinary[Cloudinary Media Storage]
-
-    API -->|content update| Revalidate[Revalidation Trigger]
-    Revalidate -->|automatic, hourly| Build[Rebuild Static Pages]
-    Revalidate -->|manual, /api/revalidate| Build
-    Build --> CDN
-```
 
 <img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=6,11,20&height=2&width=1000" width="100%"/>
 
@@ -164,133 +110,13 @@ Portfolio/
 
 <img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=6,11,20&height=2&width=1000" width="100%"/>
 
-## ⚙️ Installation & Setup
-
-<details open>
-<summary><b>Prerequisites</b></summary>
-<br/>
-
-- Node.js 18+
-- MongoDB Atlas account
-- Cloudinary account (for media)
-
-</details>
-
-<details open>
-<summary><b>1. Clone the repository</b></summary>
-<br/>
-
-```bash
-git clone https://github.com/Dipakk7/Portfolio.git
-cd Portfolio
-```
-
-</details>
-
-<details>
-<summary><b>2. Install dependencies</b></summary>
-<br/>
-
-```bash
-npm install          # Root package.json
-cd client && npm install
-cd ../server && npm install
-```
-
-</details>
-
-<details>
-<summary><b>3. Client environment</b></summary>
-<br/>
-
-Create `client/.env.local`:
-
-```env
-# Server-side only (for ISR data fetching)
-API_URL=http://localhost:5000
-
-# Optional: On-demand revalidation
-REVALIDATE_SECRET=your-super-secret-key
-```
-
-</details>
-
-<details>
-<summary><b>4. Server environment</b></summary>
-<br/>
-
-Create `server/.env`:
-
-```env
-PORT=5000
-NODE_ENV=development
-
-# Database
-MONGODB_URI=mongodb+srv://...
-
-# Authentication
-JWT_SECRET=your-jwt-secret
-
-# Cloudinary
-CLOUDINARY_CLOUD_NAME=your-cloud
-CLOUDINARY_API_KEY=your-key
-CLOUDINARY_API_SECRET=your-secret
-```
-
-</details>
-
-<details open>
-<summary><b>5. Run locally</b></summary>
-<br/>
-
-**Backend:**
-
-```bash
-cd server
-npm run dev
-# → http://localhost:5000
-```
-
-**Frontend:**
-
-```bash
-cd client
-npm run dev
-# → http://localhost:3000
-```
-
-</details>
-
-<img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=6,11,20&height=2&width=1000" width="100%"/>
-
 ## 🌐 Deployment
 
-<table>
-<tr>
-<td width="50%" valign="top">
+Deployed on **Vercel**, connected directly to this GitHub repo:
 
-### Frontend (Vercel)
-1. Import the `client` folder to Vercel
-2. Set `API_URL` and `REVALIDATE_SECRET`
-3. Deploy 🚀
-
-</td>
-<td width="50%" valign="top">
-
-### Backend (Render)
-1. Create a new Web Service from the `server` folder
-2. Set all backend environment variables
-3. Deploy 🚀
-
-</td>
-</tr>
-</table>
-
-**On-demand revalidation** — after updating content in admin, trigger an instant cache refresh:
-
-```bash
-curl "https://your-site.vercel.app/api/revalidate?secret=YOUR_SECRET"
-```
+1. Import the repo into Vercel
+2. Set the required environment variables
+3. Push to `main` — Vercel builds and deploys automatically 🚀
 
 <img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=6,11,20&height=2&width=1000" width="100%"/>
 
