@@ -84,63 +84,52 @@
 
 <img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=6,11,20&height=2&width=1000" width="100%"/>
 
-## 🚀 Featured Projects
+## 🛠️ Featured Projects
 
 <table>
 <tr>
 <td width="50%" valign="top">
 
-### 🎯 Scorelia
-AI-powered career intelligence platform — resume parsing, ATS scoring, semantic job matching, and mock interviews, all running on local open-source AI.
+**[🧭 Scorelia](https://github.com/Dipakk7/Scorelia)** — *Flagship Project*
 
-**Stack:** React, FastAPI, PostgreSQL, Ollama, ChromaDB
-[`GitHub →`](https://github.com/Dipakk7/Scorelia)
+AI-powered career intelligence platform featuring resume parsing, ATS scoring, semantic job matching, a multi-agent AI system, and a local RAG-based career assistant — built with FastAPI, React, and PostgreSQL.
+
+`Python` `FastAPI` `React` `PostgreSQL` `Ollama` `RAG`
 
 </td>
 <td width="50%" valign="top">
 
-### 🕵️ Deepfake Video Detection
-A computer vision system for identifying manipulated video content using deep learning classification models.
+**[🎭 Deepfake Video Detection](https://github.com/Dipakk7/DeepfakeDetect)**
 
-**Stack:** Python, TensorFlow/PyTorch, OpenCV
-`GitHub →` *(link coming soon)*
+Deepfake video detection using ResNet50 and BiLSTM for temporal feature learning.
+
+`PyTorch` `Computer Vision` `Deep Learning`
 
 </td>
 </tr>
 <tr>
 <td width="50%" valign="top">
 
-### 📄 Vision Document Parser
-An AI pipeline that extracts structured data from scanned documents using OCR and vision-language models.
+**[🎥 Face Recognition Attendance System](https://github.com/Dipakk7/Face_reco_attendance_management)**
 
-**Stack:** Python, OCR, Vision-Language Models
-`GitHub →` *(link coming soon)*
+Real-time attendance system using OpenCV and face recognition for automated classroom attendance.
+
+`OpenCV` `Python` `Computer Vision`
 
 </td>
 <td width="50%" valign="top">
 
-### 🎥 Face Recognition Attendance System
-A real-time attendance system using facial recognition to automate check-ins with high accuracy.
+**[📊 Sales Analytics Dashboard](https://github.com/Dipakk7/Ecommerce-Sales-Analysis)**
 
-**Stack:** Python, OpenCV, Face Recognition
-`GitHub →` *(link coming soon)*
+Interactive Power BI dashboard analyzing sales trends, KPIs, and customer insights using SQL.
 
-</td>
-</tr>
-<tr>
-<td width="100%" valign="top">
-
-### 📊 Data Analytics Projects
-A collection of exploratory data analysis and visualization projects covering real-world datasets and business insights.
-
-**Stack:** Python, Pandas, NumPy, Matplotlib/Seaborn
-`GitHub →` *(link coming soon)*
+`Power BI` `SQL` `Data Analytics`
 
 </td>
 </tr>
 </table>
 
-<img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=6,11,20&height=2&width=1000" width="100%"/>
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0:E11D48,100:7C3AED&height=2&width=1000" width="100%"/>
 
 ## 🌐 Live Demo
 
