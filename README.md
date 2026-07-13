@@ -147,31 +147,31 @@ Interactive Power BI dashboard analyzing sales trends, KPIs, and customer insigh
 
 <div align="center">
 
-<img src="./public/screenshots/hero.png" alt="Hero Section" width="90%" />
+<img src="./screenshots/hero.png" alt="Hero Section" width="90%" />
 
 *Hero Section*
 
 <br/><br/>
 
-<img src="./public/screenshots/about.png" alt="About Section" width="90%" />
+<img src="./screenshots/about.png" alt="About Section" width="90%" />
 
 *About Section*
 
 <br/><br/>
 
-<img src="./public/screenshots/skills.png" alt="Skills Section" width="90%" />
+<img src="./screenshots/skills.png" alt="Skills Section" width="90%" />
 
 *Skills Section*
 
 <br/><br/>
 
-<img src="./public/screenshots/projects.png" alt="Projects Section" width="90%" />
+<img src="./screenshots/projects.png" alt="Projects Section" width="90%" />
 
 *Projects Section*
 
 <br/><br/>
 
-<img src="./public/screenshots/contact.png" alt="Contact Section" width="90%" />
+<img src="./screenshots/contact.png" alt="Contact Section" width="90%" />
 
 *Contact Section*
 
