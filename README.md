@@ -1,218 +1,213 @@
 <div align="center">
 
-# 🚀 Personal Portfolio
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=220&section=header&text=Portfolio&fontSize=70&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=A%20Blazing-Fast%2C%20ISR-Powered%20Personal%20Site&descAlignY=58&descSize=20" width="100%"/>
 
-### A blazing-fast, visually stunning portfolio with ISR-powered static architecture
+<br/>
 
-[![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
-[![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react)](https://react.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript)](https://typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind-CSS-38B2AC?style=for-the-badge&logo=tailwindcss)](https://tailwindcss.com/)
-[![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-47A248?style=for-the-badge&logo=mongodb)](https://mongodb.com/)
+<img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=20&duration=3000&pause=800&color=38BDF8&center=true&vCenter=true&width=680&lines=Static-first+architecture+with+ISR;Sub-second+load+times+on+every+page;Full+admin+CMS+for+content+control;Zero+runtime+API+calls+for+visitors" alt="Typing SVG" />
+
+<br/><br/>
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
+[![Next.js](https://img.shields.io/badge/Next.js_15-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React_18-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)](https://mongodb.com/)
 
-<br />
+<img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=6,11,20&height=3&width=1000" width="100%"/>
 
-**[🌐 Live Demo](http://dipakkhandagale.vercel.app/)** · **[📖 Documentation](#-getting-started)** · **[🐛 Report Bug](https://github.com/Dipakk7/Portfolio/issues)**
+<br/>
+
+<a href="#-overview"><img src="https://img.shields.io/badge/Overview-black?style=flat-square&logo=googledocs&logoColor=white" /></a>
+<a href="#-key-features"><img src="https://img.shields.io/badge/Features-black?style=flat-square&logo=sparkfun&logoColor=white" /></a>
+<a href="#%EF%B8%8F-technology-stack"><img src="https://img.shields.io/badge/Tech%20Stack-black?style=flat-square&logo=techcrunch&logoColor=white" /></a>
+<a href="#-system-architecture"><img src="https://img.shields.io/badge/Architecture-black?style=flat-square&logo=diagramsdotnet&logoColor=white" /></a>
+<a href="#%EF%B8%8F-installation--setup"><img src="https://img.shields.io/badge/Setup-black?style=flat-square&logo=gitbook&logoColor=white" /></a>
+<a href="#-deployment"><img src="https://img.shields.io/badge/Deployment-black?style=flat-square&logo=vercel&logoColor=white" /></a>
+
+<br/><br/>
+
+<img src="https://img.shields.io/github/last-commit/Dipakk7/Portfolio?style=flat-square&color=6366f1&label=last%20commit" />
+<img src="https://img.shields.io/github/languages/top/Dipakk7/Portfolio?style=flat-square&color=38bdf8" />
+<img src="https://komarev.com/ghpvc/?username=Dipakk7&repo=Portfolio&style=flat-square&color=blue&label=repo+views" />
+<img src="https://img.shields.io/badge/status-actively%20developed-brightgreen?style=flat-square" />
 
 </div>
 
----
+<br/>
 
-## 📸 Preview
+## 📌 Overview
+
+> **Portfolio** is a full-stack personal site built to load instantly, everywhere. It pairs a statically-generated Next.js frontend with an Express + MongoDB backend and a full admin CMS — so every project, blog post, and certificate can be updated without touching code or redeploying.
+>
+> No runtime API calls for visitors. No cold starts. Just a fast, content-driven portfolio.
 
 <div align="center">
 
-<!-- Replace with real screenshots. Recruiters skim a README before they clone — this is the single highest-impact section. -->
-<img src="./client/public/preview-hero.png" alt="Portfolio Hero Section" width="90%" />
-
-*WebGL mosaic shader hero with real-time theme switching*
+| | |
+|:---:|:---|
+| 🏎️ | **Static-first** — pages are pre-rendered at build time and served instantly from the CDN edge |
+| 🎨 | **Creative UI** — WebGL mosaic shader hero, Framer Motion transitions, limelight nav |
+| 📊 | **Full admin CMS** — manage projects, blogs, certificates, and experience with no code changes |
+| 🛡️ | **Secure by default** — hidden backend, rate limiting, Zod validation, Helmet headers |
 
 </div>
 
-<details>
-<summary><b>📷 More screenshots</b> (Projects · Admin Dashboard · Mobile view)</summary>
+<img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=6,11,20&height=2&width=1000" width="100%"/>
 
-<br />
-
-<img src="./client/public/preview-projects.png" alt="Projects Section" width="90%" />
-<img src="./client/public/preview-admin.png" alt="Admin Dashboard" width="90%" />
-
-</details>
-
----
-
-## 📑 Table of Contents
-
-- [Performance First](#-performance-first)
-- [Features](#-features)
-- [Admin Content Management](#-admin-content-management)
-- [Tech Stack](#️-tech-stack)
-- [Getting Started](#-getting-started)
-- [Deployment](#-deployment)
-- [Project Structure](#-project-structure)
-- [ISR Data Flow](#-isr-data-flow)
-- [Roadmap](#-roadmap)
-- [License](#-license)
-- [Contact](#-contact)
-
----
-
-## ⚡ Performance First
+## 🚀 Key Features
 
 <table>
 <tr>
-<td width="50%">
-
-### 🏎️ Static-First Architecture
-
-Built with **Incremental Static Regeneration (ISR)**, the site loads **instantly** from Vercel's CDN. Backend cold starts? They don't affect your visitors.
-
-| Metric | Value |
-|--------|-------|
-| First Contentful Paint | < 1s |
-| Time to Interactive | < 2s |
-| Runtime API Calls | **0** |
-
-</td>
-<td width="50%">
-
-### 🔄 How It Works
-
-```mermaid
-flowchart TB
-    A[Build Time - Vercel] -->|generates| B[Static HTML - CDN Edge]
-    A -->|fetches once per hour| C[Backend API]
-    B -->|instant load| D[All Visitors]
-```
-
-</td>
-</tr>
-</table>
-
----
-
-## ✨ Features
-
-<table>
-<tr>
-<td width="33%" valign="top">
+<td width="50%" valign="top">
 
 ### 🎨 Creative UI/UX
-- **WebGL Mosaic Shaders** - Stunning pixelated wave hero animations
-- **Framer Motion** - Buttery smooth transitions
-- **Limelight Navigation** - Interactive spotlight nav bar
-- **Custom Cursor** - Unique browsing experience
-- **Dark/Light Mode** - System-aware theming
+WebGL mosaic shader hero animations, buttery Framer Motion transitions, an interactive limelight nav bar, and a custom cursor — with full dark/light mode theming.
+
+### 🏎️ ISR-Powered Performance
+Every public page is statically generated at build time and revalidated hourly, so visitors never wait on a backend cold start.
 
 </td>
-<td width="33%" valign="top">
-
-### 🛡️ Security
-- **Hidden Backend** - API proxied via Next.js
-- **XSS Protected** - Sanitized inputs
-- **Rate Limited** - Abuse prevention
-- **Zod Validation** - Type-safe schemas
-- **Helmet Headers** - Security-first
-
-</td>
-<td width="33%" valign="top">
+<td width="50%" valign="top">
 
 ### 📊 Admin Dashboard
-- **Home Content** - Hero, About, Skills, Footer
-- **Projects** - CRUD with image uploads
-- **Blogs** - Rich content management
-- **Certificates** - Showcase credentials
-- **Experience** - Timeline management
-- **Messages** - Contact form inbox
+A dedicated CMS for hero copy, about section, skills, experience timeline, projects (with image uploads), blogs, and certificates — all reflected on the live site via ISR.
+
+### 🛡️ Security-First Backend
+API fully proxied and hidden behind Next.js, with XSS-sanitized inputs, rate limiting, Zod schema validation, and Helmet security headers.
 
 </td>
 </tr>
 </table>
 
----
+<img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=6,11,20&height=2&width=1000" width="100%"/>
 
-## 📝 Admin Content Management
+## 🛠️ Technology Stack
 
-All content is managed through the admin dashboard and reflected on the site via ISR:
+<div align="center">
 
-| Admin Section | Controls |
-|---------------|----------|
-| **Home Content** | Hero title/subtitle, About section, Skills, Social links, Footer |
-| **Experience** | Work history timeline with roles, companies, descriptions |
-| **Projects** | Portfolio projects with images, GitHub links, tech tags |
-| **Blogs** | Blog posts with rich content and tags |
-| **Certificates** | Professional certifications with images |
-| **Skills** | Technology icons displayed in staggered grid |
+<img src="https://skillicons.dev/icons?i=nextjs,react,ts,tailwind,nodejs,express,mongodb,vercel" />
 
----
+</div>
 
-## 🛠️ Tech Stack
+| Layer | Technology | Details |
+|:--|:--|:--|
+| **Frontend** | Next.js 15, React 18, TypeScript | App Router, ISR-driven static rendering |
+| **Styling & Motion** | Tailwind CSS, Framer Motion | Utility-first styling, smooth page/element transitions |
+| **Backend** | Node.js, Express | REST API, proxied through Next.js and never exposed directly |
+| **Database** | MongoDB | Document store for projects, blogs, certificates, experience, messages |
+| **Media** | Cloudinary | Image uploads and optimized delivery for admin-managed content |
+| **Validation & Security** | Zod, Helmet, rate limiting | Type-safe schemas and hardened API surface |
+| **Auth** | JWT | Token-based admin authentication |
+| **Deployment** | Vercel (frontend), Render (backend) | Static CDN hosting + always-on API service |
 
-<table>
-<tr>
-<td align="center" width="96">
-<img src="https://skillicons.dev/icons?i=nextjs" width="48" height="48" alt="Next.js" />
-<br>Next.js 15
-</td>
-<td align="center" width="96">
-<img src="https://skillicons.dev/icons?i=react" width="48" height="48" alt="React" />
-<br>React 18
-</td>
-<td align="center" width="96">
-<img src="https://skillicons.dev/icons?i=ts" width="48" height="48" alt="TypeScript" />
-<br>TypeScript
-</td>
-<td align="center" width="96">
-<img src="https://skillicons.dev/icons?i=tailwind" width="48" height="48" alt="Tailwind" />
-<br>Tailwind
-</td>
-<td align="center" width="96">
-<img src="https://skillicons.dev/icons?i=nodejs" width="48" height="48" alt="Node.js" />
-<br>Node.js
-</td>
-<td align="center" width="96">
-<img src="https://skillicons.dev/icons?i=express" width="48" height="48" alt="Express" />
-<br>Express
-</td>
-<td align="center" width="96">
-<img src="https://skillicons.dev/icons?i=mongodb" width="48" height="48" alt="MongoDB" />
-<br>MongoDB
-</td>
-<td align="center" width="96">
-<img src="https://skillicons.dev/icons?i=vercel" width="48" height="48" alt="Vercel" />
-<br>Vercel
-</td>
-</tr>
-</table>
+<img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=6,11,20&height=2&width=1000" width="100%"/>
 
----
+## 📐 System Architecture
 
-## 🚀 Getting Started
+```mermaid
+graph TD
+    User[Visitor] --> CDN[Vercel CDN - Static HTML]
+    CDN --> Frontend[Next.js 15 Frontend]
 
-### Prerequisites
+    Admin[Admin User] --> AdminUI[Admin Dashboard]
+    AdminUI --> API[Express API]
+    API --> Auth[JWT Auth Guard]
+    API --> DB[(MongoDB)]
+    API --> Cloudinary[Cloudinary Media Storage]
+
+    API -->|content update| Revalidate[Revalidation Trigger]
+    Revalidate -->|automatic, hourly| Build[Rebuild Static Pages]
+    Revalidate -->|manual, /api/revalidate| Build
+    Build --> CDN
+```
+
+<img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=6,11,20&height=2&width=1000" width="100%"/>
+
+## 📂 Folder Structure
+
+```
+Portfolio/
+├── client/                  # Next.js Frontend
+│   ├── app/                 # App Router pages
+│   │   ├── admin/           # Admin dashboard
+│   │   ├── blog/            # Blog pages
+│   │   └── api/             # API routes (revalidation)
+│   ├── components/          # React components
+│   ├── lib/
+│   │   └── data.ts          # ISR data fetching layer
+│   └── public/               # Static assets
+│
+├── server/                   # Express Backend
+│   ├── src/
+│   │   ├── controllers/      # Route handlers
+│   │   ├── models/           # Mongoose schemas
+│   │   ├── router/           # API routes
+│   │   └── middleware/       # Auth, validation, etc.
+│   └── scripts/
+│       └── create_admin.js   # Admin user creation
+│
+├── certificates/              # Certificate assets
+├── Dipak_Khandagale_Resume.pdf
+├── netlify.toml
+├── LICENSE
+└── README.md
+```
+
+<img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=6,11,20&height=2&width=1000" width="100%"/>
+
+## 📸 Screenshots
+
+| Feature | Preview |
+|:--|:--:|
+| Hero (WebGL Shader) | *coming soon* |
+| Projects Grid | *coming soon* |
+| Admin Dashboard | *coming soon* |
+| Blog | *coming soon* |
+
+<img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=6,11,20&height=2&width=1000" width="100%"/>
+
+## ⚙️ Installation & Setup
+
+<details open>
+<summary><b>Prerequisites</b></summary>
+<br/>
 
 - Node.js 18+
 - MongoDB Atlas account
 - Cloudinary account (for media)
 
-### Installation
+</details>
+
+<details open>
+<summary><b>1. Clone the repository</b></summary>
+<br/>
 
 ```bash
-# Clone the repository
 git clone https://github.com/Dipakk7/Portfolio.git
 cd Portfolio
+```
 
-# Install all dependencies
+</details>
+
+<details>
+<summary><b>2. Install dependencies</b></summary>
+<br/>
+
+```bash
 npm install          # Root package.json
 cd client && npm install
 cd ../server && npm install
 ```
 
-### Environment Setup
+</details>
 
 <details>
-<summary><b>📁 Client Environment</b> (<code>client/.env.local</code>)</summary>
+<summary><b>3. Client environment</b></summary>
+<br/>
+
+Create `client/.env.local`:
 
 ```env
 # Server-side only (for ISR data fetching)
@@ -225,7 +220,10 @@ REVALIDATE_SECRET=your-super-secret-key
 </details>
 
 <details>
-<summary><b>📁 Server Environment</b> (<code>server/.env</code>)</summary>
+<summary><b>4. Server environment</b></summary>
+<br/>
+
+Create `server/.env`:
 
 ```env
 PORT=5000
@@ -245,139 +243,87 @@ CLOUDINARY_API_SECRET=your-secret
 
 </details>
 
-### Run Locally
+<details open>
+<summary><b>5. Run locally</b></summary>
+<br/>
+
+**Backend:**
 
 ```bash
-# Terminal 1 - Start Backend
 cd server
 npm run dev
 # → http://localhost:5000
+```
 
-# Terminal 2 - Start Frontend  
+**Frontend:**
+
+```bash
 cd client
 npm run dev
 # → http://localhost:3000
 ```
 
----
+</details>
+
+<img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=6,11,20&height=2&width=1000" width="100%"/>
 
 ## 🌐 Deployment
 
-### Frontend (Vercel)
+<table>
+<tr>
+<td width="50%" valign="top">
 
-1. Import `client` folder to Vercel
-2. Set environment variables:
-   ```
-   API_URL = https://your-backend.onrender.com
-   REVALIDATE_SECRET = <your-secret>
-   ```
-3. Deploy! 🚀
+### Frontend (Vercel)
+1. Import the `client` folder to Vercel
+2. Set `API_URL` and `REVALIDATE_SECRET`
+3. Deploy 🚀
+
+</td>
+<td width="50%" valign="top">
 
 ### Backend (Render)
-
-1. Create new Web Service from `server` folder
+1. Create a new Web Service from the `server` folder
 2. Set all backend environment variables
-3. Deploy! 🚀
+3. Deploy 🚀
 
-### On-Demand Revalidation
+</td>
+</tr>
+</table>
 
-After updating content in admin, trigger instant cache refresh:
+**On-demand revalidation** — after updating content in admin, trigger an instant cache refresh:
 
 ```bash
 curl "https://your-site.vercel.app/api/revalidate?secret=YOUR_SECRET"
 ```
 
-Or add a "Publish Changes" button in the admin dashboard.
+<img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=6,11,20&height=2&width=1000" width="100%"/>
 
----
+## 📄 License
 
-## 📁 Project Structure
+Distributed under the MIT License. See [LICENSE](LICENSE) for details.
 
-```
-Portfolio/
-├── client/                 # Next.js Frontend
-│   ├── app/               # App Router pages
-│   │   ├── admin/        # Admin dashboard
-│   │   ├── blog/         # Blog pages
-│   │   └── api/          # API routes (revalidation)
-│   ├── components/        # React components
-│   ├── lib/
-│   │   └── data.ts       # ISR data fetching layer
-│   └── public/           # Static assets
-│
-├── server/                # Express Backend
-│   ├── src/
-│   │   ├── controllers/  # Route handlers
-│   │   ├── models/       # Mongoose schemas
-│   │   ├── router/       # API routes
-│   │   └── middleware/   # Auth, validation, etc.
-│   └── scripts/
-│       └── create_admin.js  # Admin user creation
-│
-└── README.md
-```
-
----
-
-## 🔄 ISR Data Flow
-
-All public pages are **statically generated** at build time:
-
-```mermaid
-flowchart LR
-    A[Admin Updates Content] --> B[Backend API]
-    B --> C{Revalidation Trigger}
-    C -->|Automatic| D[Every 1 Hour]
-    C -->|Manual| E[/api/revalidate]
-    D --> F[Regenerate Static Pages]
-    E --> F
-    F --> G[CDN Serves Fresh Content]
-```
-
-### Components Using ISR Data
-
-| Component | Data Source |
-|-----------|-------------|
-| `ShaderAnimation` | `heroTitle`, `heroSubtitle` |
-| `About` | `aboutTitle`, `aboutSubtitle`, `aboutDescription` |
-| `BentoGrid` (Skills) | `skills[]` |
-| `Experience` | `experiences[]` |
-| `GithubProjects` | `projects[]` |
-| `BlogsPapers` | `blogs[]` |
-| `Certificates` | `certificates[]` |
-| `Footer` | `email`, `socialLinks`, `footerText` |
-
----
-
-## 🗺️ Roadmap
-
-- [ ] Automated tests (Jest / Playwright)
-- [ ] CI pipeline (GitHub Actions) for lint + build checks on PRs
-- [ ] Analytics dashboard for admin
-- [ ] Blog post view counters + reactions
-
----
-
-## 📜 License
-
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
-
----
-
-## 📬 Contact
+<br/>
 
 <div align="center">
 
-**Dipak Khandagale** — AI/ML Engineer
+## 👨‍💻 Connect With Me
 
-[![Portfolio](https://img.shields.io/badge/Portfolio-000?style=for-the-badge&logo=vercel&logoColor=white)](https://dipakkhandagale.vercel.app/)
-[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github)](https://github.com/Dipakk7)
-<!-- Add LinkedIn / Email badges here -->
+[![GitHub](https://img.shields.io/badge/GitHub-Dipakk7-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Dipakk7)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Dipak%20Khandagale-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/dipakkhandagale/)
+[![Portfolio](https://img.shields.io/badge/Portfolio-Visit%20Site-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://dipakkhandagale.vercel.app/)
 
-<br />
+<br/>
 
-**Built with ❤️ and ☕ by [Dipak Khandagale](https://github.com/Dipakk7)**
+### ⭐ If you find this useful, consider starring the repo!
 
-⭐ Star this repo if you find it useful!
+[![Star on GitHub](https://img.shields.io/github/stars/Dipakk7/Portfolio?style=for-the-badge&color=gold&logo=github)](https://github.com/Dipakk7/Portfolio/stargazers)
+
+<br/><br/>
+
+<a href="#portfolio">
+  <img src="https://img.shields.io/badge/⬆-Back%20to%20Top-black?style=for-the-badge" />
+</a>
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=100&section=footer" width="100%"/>
 
 </div>
