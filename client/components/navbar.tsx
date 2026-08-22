@@ -1,319 +1,422 @@
 "use client"
 
-import React, { useEffect, useState, useRef } from "react"
-import { motion, AnimatePresence, MotionValue, useMotionValue, useSpring, useTransform } from "framer-motion"
-import {
-  Home, User, Briefcase, Zap, GitFork,
-  Award, BookOpen, Mail, Sun, Moon,
-} from "lucide-react"
-import { useTheme } from "next-themes"
+import React, { useEffect, useState, useCallback, useRef } from "react"
+import Link from "next/link"
+import Image from "next/image"
 import { usePathname } from "next/navigation"
+import { useTheme } from "next-themes"
+import { motion, AnimatePresence } from "framer-motion"
+import { Github, Linkedin, Sun, Moon, Menu, X, ArrowUpRight } from "lucide-react"
 
-// Sections definitions matching the portfolio layout
-const SECTIONS = [
-  { id: "hero", label: "Home", icon: <Home /> },
-  { id: "about", label: "About", icon: <User /> },
-  { id: "skills", label: "Skills", icon: <Zap /> },
-  { id: "projects", label: "Projects", icon: <GitFork /> },
-  { id: "experience", label: "Experience", icon: <Briefcase /> },
-  { id: "blogs", label: "Research", icon: <BookOpen /> },
-  { id: "certificates", label: "Certificates", icon: <Award /> },
-  { id: "contact", label: "Contact", icon: <Mail /> },
+// Navigation items matching portfolio structure
+const NAV_ITEMS = [
+  { id: "about", label: "About", href: "#about" },
+  { id: "projects", label: "Projects", href: "#projects" },
+  { id: "skills", label: "Skills", href: "#skills" },
+  { id: "certificates", label: "Certifications", href: "#certificates" },
 ]
 
+const SOCIAL_LINKS = {
+  github: "https://github.com/Dipakk7",
+  linkedin: "https://linkedin.com/in/dipakkhandagale",
+}
+
 /**
- * Scrollspy hook to detect and highlight active section on scroll dynamically
+ * Scrollspy hook to detect active section using scroll position + offset
  */
 function useActiveSection() {
-  const [active, setActive] = useState("hero")
+  const [activeSection, setActiveSection] = useState<string>("")
   const pathname = usePathname()
 
   useEffect(() => {
-    if (pathname !== "/") return
+    if (pathname !== "/") {
+      setActiveSection("")
+      return
+    }
+
+    const sectionIds = ["hero", "about", "projects", "skills", "certificates", "contact"]
+    
+    // Map section IDs to primary nav item IDs
+    const sectionToNavMap: Record<string, string> = {
+      about: "about",
+      projects: "projects",
+      skills: "skills",
+      certificates: "certificates",
+    }
 
     let ticking = false
 
     const handleScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
-          // If at the very bottom, highlight the last section (Contact)
-          if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 100) {
-            setActive("contact")
+          const scrollY = window.scrollY
+          const windowHeight = window.innerHeight
+
+          // Check if at the very top (Hero)
+          if (scrollY < 120) {
+            setActiveSection("")
             ticking = false
             return
           }
 
-          // Use 1/3 viewport offset for active section trigger line
-          const scrollPosition = window.scrollY + window.innerHeight / 3
+          // Active detection line at ~35% down viewport
+          const triggerLine = scrollY + windowHeight * 0.35
 
-          for (const section of SECTIONS) {
-            const el = document.getElementById(section.id)
+          let currentActive = ""
+          for (const id of sectionIds) {
+            const el = document.getElementById(id)
             if (el) {
               const top = el.offsetTop
               const height = el.offsetHeight
-              if (scrollPosition >= top && scrollPosition < top + height) {
-                setActive(section.id)
+              if (triggerLine >= top && triggerLine < top + height) {
+                currentActive = sectionToNavMap[id] || ""
               }
             }
           }
+
+          setActiveSection(currentActive)
           ticking = false
         })
         ticking = true
       }
     }
 
-    window.addEventListener("scroll", handleScroll)
-    window.addEventListener("resize", handleScroll)
-    
-    // Run initial checks
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    window.addEventListener("resize", handleScroll, { passive: true })
     handleScroll()
-    const timeout = setTimeout(handleScroll, 600) // account for Suspense/late hydration
 
+    const timer = setTimeout(handleScroll, 500)
     return () => {
       window.removeEventListener("scroll", handleScroll)
       window.removeEventListener("resize", handleScroll)
-      clearTimeout(timeout)
+      clearTimeout(timer)
     }
   }, [pathname])
 
-  return active
+  return activeSection
 }
 
-/**
- * Main Navbar - Renders a premium floating dock inspired by macOS.
- */
 export function Navbar() {
-  const activeId = useActiveSection()
   const pathname = usePathname()
   const isHome = pathname === "/"
+  const activeSection = useActiveSection()
   const { resolvedTheme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const mobileMenuRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     setMounted(true)
 
-    if (isHome) {
-      const hash = window.location.hash
-      if (hash) {
-        const id = hash.replace("#", "")
-        const interval = setInterval(() => {
-          const el = document.getElementById(id)
-          if (el) {
-            el.scrollIntoView({ behavior: "smooth" })
-            clearInterval(interval)
-          }
-        }, 100)
-        setTimeout(() => clearInterval(interval), 3000)
-      }
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20)
     }
-  }, [isHome])
 
-  const mouseX = useMotionValue(Infinity)
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    handleScroll()
+
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  // Close mobile menu on Escape key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMobileMenuOpen(false)
+    }
+    window.addEventListener("keydown", handleKeyDown)
+    return () => window.removeEventListener("keydown", handleKeyDown)
+  }, [])
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setMobileMenuOpen(false)
+  }, [pathname])
+
+  const scrollToSection = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+      if (isHome && href.startsWith("#")) {
+        e.preventDefault()
+        const targetId = href.replace("#", "")
+        const targetElement = document.getElementById(targetId)
+        if (targetElement) {
+          targetElement.scrollIntoView({ behavior: "smooth" })
+          // Update URL hash without jumping
+          window.history.pushState(null, "", href)
+        }
+        setMobileMenuOpen(false)
+      } else {
+        setMobileMenuOpen(false)
+      }
+    },
+    [isHome]
+  )
+
+  const scrollToTop = useCallback(
+    (e: React.MouseEvent) => {
+      if (isHome) {
+        e.preventDefault()
+        window.scrollTo({ top: 0, behavior: "smooth" })
+        window.history.pushState(null, "", "/")
+      }
+      setMobileMenuOpen(false)
+    },
+    [isHome]
+  )
 
   const toggleTheme = () => {
     setTheme(resolvedTheme === "dark" ? "light" : "dark")
   }
 
-  const handleNavClick = (id: string, e: React.MouseEvent) => {
-    if (isHome) {
-      e.preventDefault()
-      const el = document.getElementById(id)
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth" })
-      }
-    }
-  }
-
-  const items = SECTIONS.map(s => ({
-    id: s.id,
-    title: s.label,
-    icon: s.icon,
-    href: isHome ? `#${s.id}` : `/#${s.id}`,
-    onClick: (e: React.MouseEvent) => handleNavClick(s.id, e),
-    isActive: activeId === s.id
-  }))
-
   return (
-    <motion.div
-      initial={{ y: 80, opacity: 0, x: "-50%" }}
-      animate={{ y: 0, opacity: 1, x: "-50%" }}
-      transition={{ type: "spring", stiffness: 100, damping: 18, delay: 0.1 }}
-      className="fixed bottom-6 left-1/2 z-50 pointer-events-none"
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? "bg-white/80 dark:bg-black/80 backdrop-blur-xl border-b border-zinc-200/80 dark:border-zinc-800/80 shadow-xs dark:shadow-[0_4px_30px_rgba(0,0,0,0.5)] py-3"
+          : "bg-transparent border-b border-transparent py-4 sm:py-5"
+      }`}
     >
-      {/* Desktop Floating Dock */}
-      <motion.div
-        onMouseMove={(e) => mouseX.set(e.clientX)}
-        onMouseLeave={() => mouseX.set(Infinity)}
-        className="hidden md:flex h-16 items-end gap-2 lg:gap-3 px-4 pb-3 rounded-2xl bg-white/60 dark:bg-black/60 backdrop-blur-xl border border-zinc-200/50 dark:border-zinc-800/50 shadow-2xl pointer-events-auto ring-1 ring-black/5 dark:ring-white/5 shrink-0"
-      >
-        {items.map((item) => (
-          <DockIcon
-            key={item.id}
-            mouseX={mouseX}
-            {...item}
-          />
-        ))}
-
-        {/* Vertical Divider */}
-        <div className="w-[1px] h-8 bg-zinc-200 dark:bg-zinc-800 mb-1 shrink-0" />
-
-        {/* Theme Toggle in Dock */}
-        <DockIcon
-          mouseX={mouseX}
-          id="theme-toggle"
-          title={mounted ? (resolvedTheme === "dark" ? "Light Mode" : "Dark Mode") : "Theme"}
-          icon={mounted && resolvedTheme === "dark" ? <Sun /> : <Moon />}
-          href="#"
-          onClick={(e) => {
-            e.preventDefault()
-            toggleTheme()
-          }}
-          isActive={false}
-        />
-      </motion.div>
-
-      {/* Mobile Floating Dock */}
-      <div
-        className="flex md:hidden h-12 items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/70 dark:bg-black/70 backdrop-blur-xl border border-zinc-200/50 dark:border-zinc-800/50 shadow-xl pointer-events-auto max-w-[95vw] overflow-x-auto no-scrollbar shrink-0"
-      >
-        {items.map((item) => (
-          <MobileDockIcon
-            key={item.id}
-            {...item}
-          />
-        ))}
-
-        {/* Small vertical divider */}
-        <div className="w-[1px] h-5 bg-zinc-200 dark:bg-zinc-800 shrink-0" />
-
-        {/* Mobile Theme Toggle */}
-        <MobileDockIcon
-          id="theme-toggle"
-          title={mounted ? (resolvedTheme === "dark" ? "Light Mode" : "Dark Mode") : "Theme"}
-          icon={mounted && resolvedTheme === "dark" ? <Sun /> : <Moon />}
-          href="#"
-          onClick={(e) => {
-            e.preventDefault()
-            toggleTheme()
-          }}
-          isActive={false}
-        />
-      </div>
-    </motion.div>
-  )
-}
-
-interface DockIconProps {
-  mouseX: MotionValue
-  id: string
-  title: string
-  icon: React.ReactNode
-  href: string
-  onClick: (e: React.MouseEvent) => void
-  isActive: boolean
-}
-
-function DockIcon({ mouseX, id, title, icon, href, onClick, isActive }: DockIconProps) {
-  const ref = useRef<HTMLAnchorElement>(null)
-
-  const distance = useTransform(mouseX, (val) => {
-    const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 }
-    return val - bounds.x - bounds.width / 2
-  })
-
-  // Width and height mapping for macOS dock effect (44px resting, 64px max)
-  const widthTransform = useTransform(distance, [-120, 0, 120], [44, 64, 44])
-  const heightTransform = useTransform(distance, [-120, 0, 120], [44, 64, 44])
-
-  const widthTransformIcon = useTransform(distance, [-120, 0, 120], [18, 28, 18])
-  const heightTransformIcon = useTransform(distance, [-120, 0, 120], [18, 28, 18])
-
-  const springConfig = { mass: 0.1, stiffness: 180, damping: 15 }
-  const width = useSpring(widthTransform, springConfig)
-  const height = useSpring(heightTransform, springConfig)
-  const widthIcon = useSpring(widthTransformIcon, springConfig)
-  const heightIcon = useSpring(heightTransformIcon, springConfig)
-
-  const [hovered, setHovered] = useState(false)
-
-  const clonedIcon = React.cloneElement(icon as React.ReactElement<any>, {
-    className: "w-full h-full stroke-[1.5]",
-  })
-
-  return (
-    <motion.a
-      ref={ref}
-      href={href}
-      onClick={onClick}
-      style={{ width, height }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      aria-label={title}
-      title={title}
-      className={`aspect-square rounded-full flex items-center justify-center relative transition-colors duration-300 shrink-0 select-none outline-none
-        ${isActive 
-          ? "bg-[#6366F1]/10 dark:bg-[#818CF8]/10 border border-[#6366F1]/40 dark:border-[#818CF8]/40 text-[#6366F1] dark:text-[#818CF8] shadow-[0_0_15px_rgba(99,102,241,0.3)] dark:shadow-[0_0_20px_rgba(129,140,248,0.25)]" 
-          : "bg-zinc-100/50 dark:bg-zinc-900/50 border border-zinc-200/30 dark:border-zinc-800/30 text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100"
-        }`}
-    >
-      {/* Tooltip */}
-      <AnimatePresence>
-        {hovered && (
-          <motion.div
-            initial={{ opacity: 0, y: 10, x: "-50%" }}
-            animate={{ opacity: 1, y: 0, x: "-50%" }}
-            exit={{ opacity: 0, y: 2, x: "-50%" }}
-            className="px-2.5 py-1 whitespace-nowrap rounded-md bg-zinc-950 dark:bg-white text-white dark:text-zinc-900 border border-zinc-800/50 dark:border-zinc-200/50 absolute left-1/2 -translate-x-1/2 -top-10 w-fit text-[11px] font-medium tracking-wide shadow-md pointer-events-none"
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between gap-4">
+          
+          {/* ============================================================ */}
+          {/* LEFT: Official Logo + Dipak Branding                        */}
+          {/* ============================================================ */}
+          <Link
+            href="/"
+            onClick={scrollToTop}
+            className="group flex items-center select-none outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 rounded-lg p-1 -ml-1 transition-transform active:scale-95 shrink-0"
+            aria-label="Dipak Khandagale - AI/ML Engineer"
           >
-            {title}
+            {/* Official Logo Artwork (DK | DIPAK) */}
+            <div className="relative h-7 sm:h-8 w-[128px] sm:w-[146px] shrink-0 transition-transform duration-300 group-hover:scale-105">
+              <Image
+                src="/brand/dk-brand-dark.png"
+                alt="Dipak"
+                fill
+                priority
+                sizes="(max-width: 768px) 130px, 150px"
+                className="hidden dark:block object-contain object-left"
+              />
+              <Image
+                src="/brand/dk-brand-light.png"
+                alt="Dipak"
+                fill
+                priority
+                sizes="(max-width: 768px) 130px, 150px"
+                className="block dark:hidden object-contain object-left"
+              />
+            </div>
+          </Link>
+
+          {/* ============================================================ */}
+          {/* CENTER: Clean Navigation (Desktop & Tablet)                  */}
+          {/* ============================================================ */}
+          <nav
+            aria-label="Main Navigation"
+            className="hidden md:flex items-center gap-1 p-1 rounded-full bg-zinc-100/70 dark:bg-zinc-900/60 border border-zinc-200/60 dark:border-zinc-800/60 backdrop-blur-md shadow-inner"
+          >
+            {NAV_ITEMS.map((item) => {
+              const isActive = activeSection === item.id
+              const itemHref = isHome ? item.href : `/${item.href}`
+
+              return (
+                <a
+                  key={item.id}
+                  href={itemHref}
+                  onClick={(e) => scrollToSection(e, item.href)}
+                  className={`relative px-3.5 py-1.5 text-[13px] font-medium transition-colors duration-200 rounded-full select-none outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 ${
+                    isActive
+                      ? "text-zinc-950 dark:text-white font-semibold"
+                      : "text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white"
+                  }`}
+                >
+                  {/* Subtle active pill highlight */}
+                  {isActive && (
+                    <motion.div
+                      layoutId="navbar-active-pill"
+                      className="absolute inset-0 rounded-full bg-white dark:bg-zinc-800 shadow-xs border border-zinc-200/80 dark:border-zinc-700/80"
+                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                  <span className="relative z-10">{item.label}</span>
+                </a>
+              )
+            })}
+          </nav>
+
+          {/* ============================================================ */}
+          {/* RIGHT: GitHub + LinkedIn + Theme Toggle                     */}
+          {/* ============================================================ */}
+          <div className="flex items-center gap-2 sm:gap-2.5">
+            {/* Desktop Social Icons */}
+            <div className="hidden sm:flex items-center gap-1 text-zinc-600 dark:text-zinc-400">
+              <a
+                href={SOCIAL_LINKS.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Dipak Khandagale GitHub Profile"
+                title="GitHub Profile"
+                className="p-2 rounded-full hover:text-zinc-950 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800/80 transition-all duration-200 outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 active:scale-95"
+              >
+                <Github className="w-4 h-4 stroke-[2]" />
+              </a>
+
+              <a
+                href={SOCIAL_LINKS.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Dipak Khandagale LinkedIn Profile"
+                title="LinkedIn Profile"
+                className="p-2 rounded-full hover:text-zinc-950 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800/80 transition-all duration-200 outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 active:scale-95"
+              >
+                <Linkedin className="w-4 h-4 stroke-[2]" />
+              </a>
+            </div>
+
+            {/* Subtle Divider (Desktop) */}
+            <div className="hidden sm:block w-[1px] h-5 bg-zinc-200 dark:bg-zinc-800 my-auto" />
+
+            {/* Theme Toggle Button */}
+            <button
+              onClick={toggleTheme}
+              aria-label={mounted ? (resolvedTheme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode") : "Toggle Theme"}
+              title={mounted ? (resolvedTheme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode") : "Toggle Theme"}
+              className="p-2 rounded-full text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800/80 transition-all duration-200 outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 active:scale-95 relative"
+            >
+              <AnimatePresence mode="wait" initial={false}>
+                {mounted && resolvedTheme === "dark" ? (
+                  <motion.div
+                    key="sun"
+                    initial={{ scale: 0.5, opacity: 0, rotate: -45 }}
+                    animate={{ scale: 1, opacity: 1, rotate: 0 }}
+                    exit={{ scale: 0.5, opacity: 0, rotate: 45 }}
+                    transition={{ duration: 0.15 }}
+                  >
+                    <Sun className="w-4 h-4 stroke-[2] text-amber-400" />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="moon"
+                    initial={{ scale: 0.5, opacity: 0, rotate: 45 }}
+                    animate={{ scale: 1, opacity: 1, rotate: 0 }}
+                    exit={{ scale: 0.5, opacity: 0, rotate: -45 }}
+                    transition={{ duration: 0.15 }}
+                  >
+                    <Moon className="w-4 h-4 stroke-[2] text-zinc-700" />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </button>
+
+            {/* Mobile Hamburger Menu Toggle */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+              aria-expanded={mobileMenuOpen}
+              className="md:hidden p-2 rounded-full text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800/80 transition-all duration-200 outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 active:scale-95"
+            >
+              <AnimatePresence mode="wait" initial={false}>
+                {mobileMenuOpen ? (
+                  <motion.div
+                    key="close"
+                    initial={{ rotate: -90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: 90, opacity: 0 }}
+                    transition={{ duration: 0.15 }}
+                  >
+                    <X className="w-5 h-5 stroke-[2]" />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="menu"
+                    initial={{ rotate: 90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: -90, opacity: 0 }}
+                    transition={{ duration: 0.15 }}
+                  >
+                    <Menu className="w-5 h-5 stroke-[2]" />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* ============================================================ */}
+      {/* MOBILE MENU DRAWER / DROPDOWN                                */}
+      {/* ============================================================ */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            ref={mobileMenuRef}
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.25, ease: "easeInOut" }}
+            className="md:hidden overflow-hidden bg-white/95 dark:bg-zinc-950/95 backdrop-blur-2xl border-b border-zinc-200/80 dark:border-zinc-800/80 shadow-2xl"
+          >
+            <div className="px-5 py-6 space-y-4 max-w-7xl mx-auto">
+              {/* Nav Links */}
+              <nav aria-label="Mobile Navigation" className="flex flex-col space-y-1">
+                {NAV_ITEMS.map((item) => {
+                  const isActive = activeSection === item.id
+                  const itemHref = isHome ? item.href : `/${item.href}`
+
+                  return (
+                    <a
+                      key={item.id}
+                      href={itemHref}
+                      onClick={(e) => scrollToSection(e, item.href)}
+                      className={`flex items-center justify-between px-4 py-2.5 rounded-xl text-[15px] font-medium transition-all ${
+                        isActive
+                          ? "bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 font-semibold"
+                          : "text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-900"
+                      }`}
+                    >
+                      <span>{item.label}</span>
+                      {isActive && (
+                        <div className="w-1.5 h-1.5 rounded-full bg-indigo-600 dark:bg-indigo-400" />
+                      )}
+                    </a>
+                  )
+                })}
+              </nav>
+
+              {/* Mobile Divider */}
+              <div className="h-[1px] bg-zinc-200/70 dark:bg-zinc-800/70 my-2" />
+
+              {/* Social Quick Links */}
+              <div className="grid grid-cols-2 gap-2 pt-1">
+                <a
+                  href={SOCIAL_LINKS.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="GitHub Profile"
+                  className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-zinc-100 dark:bg-zinc-900 border border-zinc-200/60 dark:border-zinc-800/60 text-xs font-semibold text-zinc-800 dark:text-zinc-200 hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors"
+                >
+                  <Github className="w-4 h-4" />
+                  <span>GitHub</span>
+                  <ArrowUpRight className="w-3.5 h-3.5 text-zinc-400 ml-auto" />
+                </a>
+
+                <a
+                  href={SOCIAL_LINKS.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn Profile"
+                  className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-zinc-100 dark:bg-zinc-900 border border-zinc-200/60 dark:border-zinc-800/60 text-xs font-semibold text-zinc-800 dark:text-zinc-200 hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors"
+                >
+                  <Linkedin className="w-4 h-4" />
+                  <span>LinkedIn</span>
+                  <ArrowUpRight className="w-3.5 h-3.5 text-zinc-400 ml-auto" />
+                </a>
+              </div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
-
-      <motion.div
-        style={{ width: widthIcon, height: heightIcon }}
-        className="flex items-center justify-center shrink-0"
-      >
-        {clonedIcon}
-      </motion.div>
-
-      {/* Active Indicator Dot */}
-      {isActive && (
-        <motion.span
-          layoutId="active-nav-dot"
-          className="absolute bottom-1.5 w-1 h-1 rounded-full bg-[#6366F1] dark:bg-[#818CF8]"
-          transition={{ type: "spring", stiffness: 300, damping: 30 }}
-        />
-      )}
-    </motion.a>
-  )
-}
-
-interface MobileDockIconProps {
-  id: string
-  title: string
-  icon: React.ReactNode
-  href: string
-  onClick: (e: React.MouseEvent) => void
-  isActive: boolean
-}
-
-function MobileDockIcon({ id, title, icon, href, onClick, isActive }: MobileDockIconProps) {
-  const clonedIcon = React.cloneElement(icon as React.ReactElement<any>, {
-    className: "w-5 h-5 stroke-[1.5]",
-  })
-
-  return (
-    <a href={href} onClick={onClick} aria-label={title} title={title} className="relative select-none outline-none shrink-0">
-      <div
-        className={`w-9 h-9 rounded-full flex items-center justify-center relative transition-colors duration-300 shrink-0
-          ${isActive 
-            ? "bg-[#6366F1]/15 dark:bg-[#818CF8]/15 border border-[#6366F1]/50 dark:border-[#818CF8]/50 text-[#6366F1] dark:text-[#818CF8] shadow-[0_0_12px_rgba(99,102,241,0.25)]" 
-            : "bg-zinc-100/50 dark:bg-zinc-900/50 border border-zinc-200/20 dark:border-zinc-800/20 text-zinc-500 dark:text-zinc-400"
-          }`}
-      >
-        {clonedIcon}
-      </div>
-    </a>
+    </header>
   )
 }

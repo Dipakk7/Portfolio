@@ -7,6 +7,9 @@ const nextConfig: NextConfig = {
   // Security: Remove X-Powered-By header
   poweredByHeader: false,
 
+  // Disable Next.js dev indicator widget (circular 'N' badge)
+  devIndicators: false,
+
   // Enable React Strict Mode for better error detection
   reactStrictMode: true,
 

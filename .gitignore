@@ -45,6 +45,8 @@ Thumbs.db
 # Logs
 logs/
 *.log
+*build_log*.txt
+*lint_errors*.txt
 
 # Source maps (hide code structure in production)
 *.map

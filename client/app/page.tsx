@@ -12,17 +12,7 @@ const BentoGrid = dynamic(() => import("@/components/bento-grid").then(mod => ({
   ssr: true
 })
 
-const Experience = dynamic(() => import("@/components/experience").then(mod => ({ default: mod.Experience })), {
-  loading: () => <SectionSkeleton />,
-  ssr: true
-})
-
 const GithubProjects = dynamic(() => import("@/components/github-projects").then(mod => ({ default: mod.GithubProjects })), {
-  loading: () => <SectionSkeleton />,
-  ssr: true
-})
-
-const ExploringAI = dynamic(() => import("@/components/exploring-ai").then(mod => ({ default: mod.ExploringAI })), {
   loading: () => <SectionSkeleton />,
   ssr: true
 })
@@ -33,16 +23,6 @@ const Certificates = dynamic(() => import("@/components/certificates").then(mod 
 })
 
 const Footer = dynamic(() => import("@/components/footer").then(mod => ({ default: mod.Footer })), {
-  loading: () => <SectionSkeleton />,
-  ssr: true
-})
-
-const StatsGrid = dynamic(() => import("@/components/stats-grid").then(mod => ({ default: mod.StatsGrid })), {
-  loading: () => <SectionSkeleton />,
-  ssr: true
-})
-
-const Features = dynamic(() => import("@/components/features").then(mod => ({ default: mod.Features })), {
   loading: () => <SectionSkeleton />,
   ssr: true
 })
@@ -66,15 +46,16 @@ function SectionSkeleton() {
 /**
  * Homepage - Server Component with ISR
  *
+ * Final structure: About -> Projects -> Skills -> Certifications
  * All portfolio data is fetched at build time and revalidated hourly.
- * This ensures instant page loads without any backend dependency at runtime.
  */
 export default async function Home() {
   // Fetch all data at build time (ISR enabled - revalidates hourly)
-  const { heroData, experiences, projects, blogs, certificates } = await getAllPortfolioData();
+  const { heroData, projects, certificates } = await getAllPortfolioData();
 
   return (
     <main className="min-h-screen bg-white dark:bg-black text-zinc-900 dark:text-zinc-100 selection:bg-[#6366F1]/30 dark:selection:bg-[#818CF8]/30 selection:text-zinc-900 dark:selection:text-white overflow-x-hidden transition-colors duration-700">
+      <Navbar />
       <ScrollProgress />
 
       {/* Critical above-fold content - loaded immediately */}
@@ -82,60 +63,38 @@ export default async function Home() {
         <ShaderAnimation heroData={heroData} />
       </section>
 
-      <section id="about">
+      {/* 1. About */}
+      <section id="about" className="scroll-mt-20">
         <About data={heroData} />
       </section>
 
+      {/* 2. Projects */}
       <Suspense fallback={<SectionSkeleton />}>
-        <section id="stats">
-          <StatsGrid />
-        </section>
-      </Suspense>
-
-      <Suspense fallback={<SectionSkeleton />}>
-        <section id="skills">
-          <BentoGrid heroData={heroData} />
-        </section>
-      </Suspense>
-
-      <Suspense fallback={<SectionSkeleton />}>
-        <section id="projects">
+        <section id="projects" className="scroll-mt-20">
           <GithubProjects projects={projects} />
         </section>
       </Suspense>
 
-      {/* Below-fold content - lazy loaded with pre-fetched data */}
+      {/* 3. Skills */}
       <Suspense fallback={<SectionSkeleton />}>
-        <section id="experience">
-          <Experience experiences={experiences} />
+        <section id="skills" className="scroll-mt-20">
+          <BentoGrid heroData={heroData} />
         </section>
       </Suspense>
 
+      {/* 4. Certifications */}
       <Suspense fallback={<SectionSkeleton />}>
-        <section id="expertise">
-          <Features />
-        </section>
-      </Suspense>
-
-      <Suspense fallback={<SectionSkeleton />}>
-        <section id="blogs">
-          <ExploringAI />
-        </section>
-      </Suspense>
-
-      <Suspense fallback={<SectionSkeleton />}>
-        <section id="certificates">
+        <section id="certificates" className="scroll-mt-20">
           <Certificates certificates={certificates} />
         </section>
       </Suspense>
 
+      {/* Contact / Footer */}
       <Suspense fallback={<SectionSkeleton />}>
-        <section id="contact">
+        <section id="contact" className="scroll-mt-20">
           <Footer footerData={heroData} />
         </section>
       </Suspense>
-
-      <Navbar />
     </main>
   )
 }

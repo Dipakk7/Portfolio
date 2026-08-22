@@ -1,220 +1,290 @@
 "use client"
 
-import { motion } from "framer-motion"
-import { Brain, Sparkles, Eye, Terminal, BarChart3, Cloud, Cpu, Database, LucideIcon } from "lucide-react"
-import { GlowingEffect } from "@/components/ui/glowing-effect"
-import { cn } from "@/lib/utils"
+import { useRef } from "react"
+import { motion, useInView } from "framer-motion"
+import { Brain, Sparkles, Eye, Database, Server, Wrench } from "lucide-react"
 import type { HeroData } from "@/lib/data"
-import React from "react"
 
 interface BentoGridProps {
   heroData?: HeroData | null
 }
 
-interface SkillCategory {
-  title: string
-  icon: LucideIcon
-  skills: string[]
-  gradient: string
-  iconBg: string
-  iconBorder: string
-  iconColor: string
-  cardBorderHover: string
-  chipBg: string
-  chipBorder: string
-  chipText: string
-}
-
-const skillCategories: SkillCategory[] = [
-  {
-    title: "AI & Machine Learning",
-    icon: Brain,
-    skills: ["Machine Learning", "Deep Learning", "Generative AI", "AI Agents"],
-    gradient: "from-blue-500/10 via-blue-500/5 to-transparent",
-    iconBg: "bg-blue-50 dark:bg-blue-950/20",
-    iconBorder: "border-blue-200/50 dark:border-blue-900/30 group-hover:border-blue-500/30",
-    iconColor: "text-blue-600 dark:text-blue-400",
-    cardBorderHover: "hover:border-blue-500/20 dark:hover:border-blue-500/30",
-    chipBg: "bg-blue-50/50 dark:bg-blue-950/10",
-    chipBorder: "border-blue-200/30 dark:border-blue-900/20 hover:border-blue-500/40 dark:hover:border-blue-500/40",
-    chipText: "text-blue-700 dark:text-blue-300 hover:text-blue-900 dark:hover:text-blue-100",
-  },
-  {
-    title: "LLM Engineering",
-    icon: Sparkles,
-    skills: ["Large Language Models (LLMs)", "Prompt Engineering", "Retrieval-Augmented Generation (RAG)", "LangChain"],
-    gradient: "from-purple-500/10 via-purple-500/5 to-transparent",
-    iconBg: "bg-purple-50 dark:bg-purple-950/20",
-    iconBorder: "border-purple-200/50 dark:border-purple-900/30 group-hover:border-purple-500/30",
-    iconColor: "text-purple-600 dark:text-purple-400",
-    cardBorderHover: "hover:border-purple-500/20 dark:hover:border-purple-500/30",
-    chipBg: "bg-purple-50/50 dark:bg-purple-950/10",
-    chipBorder: "border-purple-200/30 dark:border-purple-900/20 hover:border-purple-500/40 dark:hover:border-purple-500/40",
-    chipText: "text-purple-700 dark:text-purple-300 hover:text-purple-900 dark:hover:text-purple-100",
-  },
-  {
-    title: "Computer Vision",
-    icon: Eye,
-    skills: ["Computer Vision", "OpenCV", "Image Processing"],
-    gradient: "from-cyan-500/10 via-cyan-500/5 to-transparent",
-    iconBg: "bg-cyan-50 dark:bg-cyan-950/20",
-    iconBorder: "border-cyan-200/50 dark:border-cyan-900/30 group-hover:border-cyan-500/30",
-    iconColor: "text-cyan-600 dark:text-cyan-400",
-    cardBorderHover: "hover:border-cyan-500/20 dark:hover:border-cyan-500/30",
-    chipBg: "bg-cyan-50/50 dark:bg-cyan-950/10",
-    chipBorder: "border-cyan-200/30 dark:border-cyan-900/20 hover:border-cyan-500/40 dark:hover:border-cyan-500/40",
-    chipText: "text-cyan-700 dark:text-cyan-300 hover:text-cyan-900 dark:hover:text-cyan-100",
-  },
-  {
-    title: "Programming",
-    icon: Terminal,
-    skills: ["Python", "SQL"],
-    gradient: "from-emerald-500/10 via-emerald-500/5 to-transparent",
-    iconBg: "bg-emerald-50 dark:bg-emerald-950/20",
-    iconBorder: "border-emerald-200/50 dark:border-emerald-900/30 group-hover:border-emerald-500/30",
-    iconColor: "text-emerald-600 dark:text-emerald-400",
-    cardBorderHover: "hover:border-emerald-500/20 dark:hover:border-emerald-500/30",
-    chipBg: "bg-emerald-50/50 dark:bg-emerald-950/10",
-    chipBorder: "border-emerald-200/30 dark:border-emerald-900/20 hover:border-emerald-500/40 dark:hover:border-emerald-500/40",
-    chipText: "text-emerald-700 dark:text-emerald-300 hover:text-emerald-900 dark:hover:text-emerald-100",
-  },
-  {
-    title: "Backend & APIs",
-    icon: Cpu,
-    skills: ["FastAPI", "REST APIs", "OpenAI API", "Ollama"],
-    gradient: "from-indigo-500/10 via-indigo-500/5 to-transparent",
-    iconBg: "bg-indigo-50 dark:bg-indigo-950/20",
-    iconBorder: "border-indigo-200/50 dark:border-indigo-900/30 group-hover:border-indigo-500/30",
-    iconColor: "text-indigo-600 dark:text-indigo-400",
-    cardBorderHover: "hover:border-indigo-500/20 dark:hover:border-indigo-500/30",
-    chipBg: "bg-indigo-50/50 dark:bg-indigo-950/10",
-    chipBorder: "border-indigo-200/30 dark:border-indigo-900/20 hover:border-indigo-500/40 dark:hover:border-indigo-500/40",
-    chipText: "text-indigo-700 dark:text-indigo-300 hover:text-indigo-900 dark:hover:text-indigo-100",
-  },
-  {
-    title: "Data Science",
-    icon: BarChart3,
-    skills: ["Pandas", "NumPy", "Exploratory Data Analysis (EDA)", "Data Visualization"],
-    gradient: "from-orange-500/10 via-orange-500/5 to-transparent",
-    iconBg: "bg-orange-50 dark:bg-orange-950/20",
-    iconBorder: "border-orange-200/50 dark:border-orange-900/30 group-hover:border-orange-500/30",
-    iconColor: "text-orange-600 dark:text-orange-400",
-    cardBorderHover: "hover:border-orange-500/20 dark:hover:border-orange-500/30",
-    chipBg: "bg-orange-50/50 dark:bg-orange-950/10",
-    chipBorder: "border-orange-200/30 dark:border-orange-900/20 hover:border-orange-500/40 dark:hover:border-orange-500/40",
-    chipText: "text-orange-700 dark:text-orange-300 hover:text-orange-900 dark:hover:text-orange-100",
-  },
-  {
-    title: "Developer Tools",
-    icon: Cloud,
-    skills: ["Git", "GitHub", "Docker", "PostgreSQL", "Google Colab"],
-    gradient: "from-pink-500/10 via-pink-500/5 to-transparent",
-    iconBg: "bg-pink-50 dark:bg-pink-950/20",
-    iconBorder: "border-pink-200/50 dark:border-pink-900/30 group-hover:border-pink-500/30",
-    iconColor: "text-pink-600 dark:text-pink-400",
-    cardBorderHover: "hover:border-pink-500/20 dark:hover:border-pink-500/30",
-    chipBg: "bg-pink-50/50 dark:bg-pink-950/10",
-    chipBorder: "border-pink-200/30 dark:border-pink-900/20 hover:border-pink-500/40 dark:hover:border-pink-500/40",
-    chipText: "text-pink-700 dark:text-pink-300 hover:text-pink-900 dark:hover:text-pink-100",
-  },
-]
-
 export function BentoGrid({ heroData }: BentoGridProps) {
+  const sectionRef = useRef<HTMLElement>(null)
+  const isInView = useInView(sectionRef, { once: true, margin: "-60px" })
+
+  const easeCurve: [number, number, number, number] = [0.16, 1, 0.3, 1]
+
   return (
-    <section id="skills" className="py-24 md:py-32 px-4 bg-white dark:bg-black bg-grid-mesh transition-colors duration-700 relative overflow-hidden">
-      <div className="max-w-6xl mx-auto relative z-10">
+    <section
+      id="skills"
+      ref={sectionRef}
+      className="relative w-full py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-white dark:bg-black overflow-hidden transition-colors duration-700 select-none"
+    >
+      {/* ============================================================ */}
+      {/* 1. BACKGROUND: Precision Grid & Subtle Atmospheric Glow       */}
+      {/* ============================================================ */}
+      <div className="absolute inset-0 bg-dot-grid pointer-events-none opacity-50 dark:opacity-30" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-indigo-500/[0.03] dark:bg-indigo-500/[0.04] rounded-full blur-[160px] pointer-events-none" />
+
+      <div className="relative z-10 max-w-6xl mx-auto">
         
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          className="mb-16 flex flex-col gap-4"
-        >
-          <motion.span
-            className="inline-block px-4 py-2 w-fit rounded-full bg-[#6366F1]/10 border border-[#6366F1]/20 text-[#6366F1] dark:text-[#818CF8] text-sm font-mono"
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
+        {/* ============================================================ */}
+        {/* 2. SECTION HEADER: Simple, Direct "SKILLS" Heading           */}
+        {/* ============================================================ */}
+        <div className="mb-10 sm:mb-12">
+          <motion.h2
+            initial={{ opacity: 0, y: 14 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, ease: easeCurve }}
+            className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-zinc-950 dark:text-white select-text"
           >
-            {"•// Technical Expertise"}
-          </motion.span>
-          <h2 className="text-3xl md:text-5xl font-bold text-zinc-900 dark:text-white tracking-tight">
-            Technical Expertise
-          </h2>
-          <p className="text-zinc-500 dark:text-zinc-400 text-base md:text-lg max-w-xl">
-            Technologies and tools I use to build intelligent solutions.
-          </p>
+            Skills
+          </motion.h2>
+        </div>
+
+        {/* ============================================================ */}
+        {/* 3. FEATURED AI / ML CAPABILITY (Indigo / Violet Accent)      */}
+        {/* ============================================================ */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.15, ease: easeCurve }}
+          className="mb-6 p-5 sm:p-6 rounded-2xl border border-indigo-200/90 dark:border-indigo-500/25 bg-indigo-50/70 dark:bg-indigo-950/20 backdrop-blur-xs shadow-xs relative overflow-hidden group hover:border-indigo-500/50 dark:hover:border-indigo-400/50 hover:-translate-y-1 hover:shadow-lg hover:shadow-indigo-500/[0.05] transition-all duration-200 ease-out"
+        >
+          {/* Subtle top edge specular highlight */}
+          <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-indigo-500/40 via-indigo-400/20 to-transparent pointer-events-none" />
+
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="flex items-center gap-3 shrink-0">
+              <div className="p-2.5 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-600 dark:text-indigo-400 group-hover:scale-105 transition-transform duration-200">
+                <Brain className="w-5 h-5" />
+              </div>
+              <div>
+                <span className="text-xs font-mono font-bold tracking-[0.16em] uppercase text-indigo-950 dark:text-indigo-200">
+                  AI / Machine Learning
+                </span>
+                <span className="block text-[11px] text-zinc-500 dark:text-zinc-400">
+                  Core Foundations & Architectures
+                </span>
+              </div>
+            </div>
+
+            {/* Featured Category-Integrated Skill Chips */}
+            <div className="flex flex-wrap items-center gap-2 select-text">
+              {[
+                "Machine Learning",
+                "Deep Learning",
+                "Generative AI",
+                "Computer Vision",
+                "Large Language Models",
+                "AI Agents",
+              ].map((skill) => (
+                <span
+                  key={skill}
+                  className="inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-semibold tracking-tight bg-indigo-100/60 dark:bg-indigo-950/40 border border-indigo-200/90 dark:border-indigo-800/60 text-indigo-900 dark:text-indigo-200 hover:bg-indigo-200/70 dark:hover:bg-indigo-900/50 hover:border-indigo-300 dark:hover:border-indigo-500/70 hover:text-indigo-950 dark:hover:text-indigo-100 hover:-translate-y-0.5 transition-all duration-200 ease-out shadow-xs cursor-default motion-reduce:transform-none"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
         </motion.div>
 
-        {/* Responsive Flex Centered Layout */}
-        <div className="flex flex-wrap justify-center items-start gap-6">
-          {skillCategories.map((category, index) => {
-            const Icon = category.icon
-            return (
-              <motion.div
-                key={category.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.08 }}
-                className={cn(
-                  "w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] group relative p-6 rounded-2xl border border-zinc-200 dark:border-zinc-900/60 bg-zinc-50/50 dark:bg-zinc-950/40 backdrop-blur-md transition-all duration-300 flex flex-col hover:shadow-lg hover:-translate-y-1 will-change-transform overflow-hidden",
-                  category.cardBorderHover
-                )}
-              >
-                {/* Glowing Effect border trail */}
-                <GlowingEffect
-                  spread={40}
-                  glow={true}
-                  disabled={false}
-                  proximity={64}
-                  inactiveZone={0.01}
-                  borderWidth={1.2}
-                />
+        {/* ============================================================ */}
+        {/* 4. TWO-COLUMN SKILL GROUPS (4 Specialized Domains)           */}
+        {/* ============================================================ */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
+          
+          {/* ---------------------------------------------------------- */}
+          {/* Card 1: LLM & AI SYSTEMS (Purple / Magenta Accent)        */}
+          {/* ---------------------------------------------------------- */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.25, ease: easeCurve }}
+            className="p-5 sm:p-6 rounded-2xl border border-purple-200/85 dark:border-purple-500/25 bg-purple-50/60 dark:bg-purple-950/20 backdrop-blur-xs hover:border-purple-500/50 dark:hover:border-purple-400/50 hover:-translate-y-1 hover:shadow-lg hover:shadow-purple-500/[0.05] transition-all duration-200 ease-out shadow-xs group"
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <div className="p-2.5 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-600 dark:text-purple-400 group-hover:scale-105 transition-transform duration-200">
+                <Sparkles className="w-4 h-4" />
+              </div>
+              <h3 className="text-xs font-mono font-bold tracking-[0.16em] uppercase text-purple-950 dark:text-purple-200">
+                LLM & AI Systems
+              </h3>
+            </div>
 
-                {/* Gentle glow effect behind card */}
-                <div className={`absolute inset-0 bg-gradient-to-tr ${category.gradient} opacity-20 group-hover:opacity-30 transition-opacity duration-500 pointer-events-none -z-10`} />
+            <div className="flex flex-wrap items-center gap-2 select-text">
+              {[
+                "LLMs",
+                "Prompt Engineering",
+                "AI Evaluation",
+                "RAG",
+                "LangChain",
+                "ChromaDB",
+                "Ollama",
+                "Qwen",
+              ].map((skill) => (
+                <span
+                  key={skill}
+                  className="inline-flex items-center px-2.5 py-1.5 rounded-lg text-xs font-medium bg-purple-100/60 dark:bg-purple-950/40 border border-purple-200/85 dark:border-purple-800/60 text-purple-900 dark:text-purple-200 hover:bg-purple-200/70 dark:hover:bg-purple-900/50 hover:border-purple-300 dark:hover:border-purple-500/70 hover:text-purple-950 dark:hover:text-purple-100 hover:-translate-y-0.5 transition-all duration-200 ease-out shadow-xs cursor-default motion-reduce:transform-none"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </motion.div>
 
-                {/* Soft gradient hover effect using portfolio's existing blue-violet palette */}
-                <div className="absolute inset-0 bg-gradient-to-br from-[#6366F1]/0 via-[#818CF8]/0 to-[#6366F1]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none -z-10" />
+          {/* ---------------------------------------------------------- */}
+          {/* Card 2: ML & COMPUTER VISION (Cyan / Blue Accent)          */}
+          {/* ---------------------------------------------------------- */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.3, ease: easeCurve }}
+            className="p-5 sm:p-6 rounded-2xl border border-cyan-200/85 dark:border-cyan-500/25 bg-cyan-50/60 dark:bg-cyan-950/20 backdrop-blur-xs hover:border-cyan-500/50 dark:hover:border-cyan-400/50 hover:-translate-y-1 hover:shadow-lg hover:shadow-cyan-500/[0.05] transition-all duration-200 ease-out shadow-xs group"
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <div className="p-2.5 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-600 dark:text-cyan-400 group-hover:scale-105 transition-transform duration-200">
+                <Eye className="w-4 h-4" />
+              </div>
+              <h3 className="text-xs font-mono font-bold tracking-[0.16em] uppercase text-cyan-950 dark:text-cyan-200">
+                ML & Computer Vision
+              </h3>
+            </div>
 
-                <div className="space-y-4 relative z-10">
-                  {/* Category Header */}
-                  <div className="flex items-center gap-3">
-                    <div className={cn(
-                      "w-10 h-10 rounded-xl flex items-center justify-center border transition-colors duration-300",
-                      category.iconBg,
-                      category.iconBorder
-                    )}>
-                      <Icon className={cn("w-5 h-5 transition-colors duration-300", category.iconColor)} />
-                    </div>
-                    <h3 className="font-bold text-lg text-zinc-900 dark:text-white tracking-tight group-hover:text-zinc-950 dark:group-hover:text-zinc-100 transition-colors">
-                      {category.title}
-                    </h3>
-                  </div>
-                </div>
+            <div className="flex flex-wrap items-center gap-2 select-text">
+              {[
+                "Python",
+                "Scikit-Learn",
+                "TensorFlow",
+                "Keras",
+                "OpenCV",
+                "YOLO",
+                "Matplotlib",
+                "Seaborn",
+              ].map((skill) => (
+                <span
+                  key={skill}
+                  className="inline-flex items-center px-2.5 py-1.5 rounded-lg text-xs font-medium bg-cyan-100/60 dark:bg-cyan-950/40 border border-cyan-200/85 dark:border-cyan-800/60 text-cyan-900 dark:text-cyan-200 hover:bg-cyan-200/70 dark:hover:bg-cyan-900/50 hover:border-cyan-300 dark:hover:border-cyan-500/70 hover:text-cyan-950 dark:hover:text-cyan-100 hover:-translate-y-0.5 transition-all duration-200 ease-out shadow-xs cursor-default motion-reduce:transform-none"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </motion.div>
 
-                {/* Skills Chips / Badges */}
-                <div className="flex flex-wrap gap-2 mt-6 relative z-10">
-                  {category.skills.map((skill) => (
-                    <span
-                      key={skill}
-                      className={cn(
-                        "px-3 py-1.5 rounded-lg border text-xs font-mono font-medium transition-all duration-300 hover:bg-zinc-100/80 dark:hover:bg-zinc-800/40",
-                        category.chipBg,
-                        category.chipBorder,
-                        category.chipText
-                      )}
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </motion.div>
-            )
-          })}
+          {/* ---------------------------------------------------------- */}
+          {/* Card 3: BACKEND & SYSTEMS (Blue / Indigo Accent)           */}
+          {/* ---------------------------------------------------------- */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.35, ease: easeCurve }}
+            className="p-5 sm:p-6 rounded-2xl border border-blue-200/85 dark:border-blue-500/25 bg-blue-50/60 dark:bg-blue-950/20 backdrop-blur-xs hover:border-blue-500/50 dark:hover:border-blue-400/50 hover:-translate-y-1 hover:shadow-lg hover:shadow-blue-500/[0.05] transition-all duration-200 ease-out shadow-xs group"
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <div className="p-2.5 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-600 dark:text-blue-400 group-hover:scale-105 transition-transform duration-200">
+                <Server className="w-4 h-4" />
+              </div>
+              <h3 className="text-xs font-mono font-bold tracking-[0.16em] uppercase text-blue-950 dark:text-blue-200">
+                Backend & Systems
+              </h3>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-2 select-text">
+              {[
+                "FastAPI",
+                "REST APIs",
+                "PostgreSQL",
+                "Elasticsearch",
+              ].map((skill) => (
+                <span
+                  key={skill}
+                  className="inline-flex items-center px-2.5 py-1.5 rounded-lg text-xs font-medium bg-blue-100/60 dark:bg-blue-950/40 border border-blue-200/85 dark:border-blue-800/60 text-blue-900 dark:text-blue-200 hover:bg-blue-200/70 dark:hover:bg-blue-900/50 hover:border-blue-300 dark:hover:border-blue-500/70 hover:text-blue-950 dark:hover:text-blue-100 hover:-translate-y-0.5 transition-all duration-200 ease-out shadow-xs cursor-default motion-reduce:transform-none"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* ---------------------------------------------------------- */}
+          {/* Card 4: DATA & ANALYTICS (Teal / Emerald Accent)           */}
+          {/* ---------------------------------------------------------- */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.4, ease: easeCurve }}
+            className="p-5 sm:p-6 rounded-2xl border border-teal-200/85 dark:border-teal-500/25 bg-teal-50/60 dark:bg-teal-950/20 backdrop-blur-xs hover:border-teal-500/50 dark:hover:border-teal-400/50 hover:-translate-y-1 hover:shadow-lg hover:shadow-teal-500/[0.05] transition-all duration-200 ease-out shadow-xs group"
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <div className="p-2.5 rounded-xl bg-teal-500/10 border border-teal-500/20 text-teal-600 dark:text-teal-400 group-hover:scale-105 transition-transform duration-200">
+                <Database className="w-4 h-4" />
+              </div>
+              <h3 className="text-xs font-mono font-bold tracking-[0.16em] uppercase text-teal-950 dark:text-teal-200">
+                Data & Analytics
+              </h3>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-2 select-text">
+              {[
+                "Pandas",
+                "NumPy",
+                "SQL",
+                "MySQL",
+                "Power BI",
+                "MS Excel",
+              ].map((skill) => (
+                <span
+                  key={skill}
+                  className="inline-flex items-center px-2.5 py-1.5 rounded-lg text-xs font-medium bg-teal-100/60 dark:bg-teal-950/40 border border-teal-200/85 dark:border-teal-800/60 text-teal-900 dark:text-teal-200 hover:bg-teal-200/70 dark:hover:bg-teal-900/50 hover:border-teal-300 dark:hover:border-teal-500/70 hover:text-teal-950 dark:hover:text-teal-100 hover:-translate-y-0.5 transition-all duration-200 ease-out shadow-xs cursor-default motion-reduce:transform-none"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </motion.div>
+
         </div>
+
+        {/* ============================================================ */}
+        {/* 5. TOOLS & ENVIRONMENT (Rose / Pink Accent Bottom Strip)     */}
+        {/* ============================================================ */}
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.45, ease: easeCurve }}
+          className="mt-6 p-4 sm:p-5 rounded-2xl border border-rose-200/70 dark:border-rose-500/20 bg-rose-50/40 dark:bg-rose-950/15 backdrop-blur-xs select-text shadow-xs hover:border-rose-500/40 dark:hover:border-rose-400/40 hover:-translate-y-0.5 hover:shadow-md hover:shadow-rose-500/[0.04] transition-all duration-200 ease-out flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 group"
+        >
+          <div className="flex items-center gap-2.5 shrink-0">
+            <div className="p-2 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-600 dark:text-rose-400 group-hover:scale-105 transition-transform duration-200">
+              <Wrench className="w-4 h-4" />
+            </div>
+            <span className="text-xs font-mono font-bold tracking-wider text-rose-950 dark:text-rose-200 uppercase">
+              Tools & Environment
+            </span>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2">
+            {[
+              "Git",
+              "GitHub",
+              "Docker",
+              "Jupyter Notebook",
+              "Google Colab",
+              "VS Code",
+            ].map((tool) => (
+              <span
+                key={tool}
+                className="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-mono font-normal bg-rose-100/60 dark:bg-rose-950/40 border border-rose-200/75 dark:border-rose-800/50 text-rose-900 dark:text-rose-200 hover:text-rose-950 dark:hover:text-rose-100 hover:border-rose-300 dark:hover:border-rose-500/60 hover:bg-rose-200/70 dark:hover:bg-rose-900/45 hover:-translate-y-0.5 transition-all duration-200 ease-out cursor-default motion-reduce:transform-none"
+              >
+                {tool}
+              </span>
+            ))}
+          </div>
+        </motion.div>
+
       </div>
     </section>
   )

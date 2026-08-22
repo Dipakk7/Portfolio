@@ -1,98 +1,221 @@
-"use client";
+"use client"
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import type { HeroData } from "@/lib/data";
+import { useRef } from "react"
+import { motion, useInView } from "framer-motion"
+import { GraduationCap, MapPin, Briefcase, Sparkles, FolderGit2, Clock, Calendar } from "lucide-react"
+import type { HeroData } from "@/lib/data"
 
 interface AboutProps {
-    data: HeroData | null;
+  data?: HeroData | null
 }
 
-// Default values used when no data is provided
-const defaultAboutData = {
-    title: "// About Me",
-    subtitle: "Building intelligent AI products that create real-world impact.",
-    description: "I'm an **AI Engineer** passionate about building intelligent applications using **Machine Learning, Generative AI, Computer Vision, Large Language Models (LLMs), and Data Analytics**. I enjoy transforming complex problems into AI-powered solutions that automate workflows, generate insights, and deliver real-world value.\n\nThrough projects including **Scorelia, Deepfake Video Detection, Vision Document Parsing, Face Recognition Attendance Management, and Data Analytics Dashboards**, I've gained hands-on experience developing **end-to-end AI applications**—from data preprocessing and model development to backend APIs and modern web interfaces. I focus on building scalable, user-centric solutions that combine technical excellence with practical impact.\n\nI'm continuously exploring **AI Agents, Retrieval-Augmented Generation (RAG), multimodal AI, and modern LLM frameworks** to stay at the forefront of AI innovation. My goal is to build intelligent products that solve meaningful problems and create lasting value through technology.",
-};
-
-/**
- * About Section Component
- * 
- * This component receives data as props from the parent server component.
- * No client-side fetching - data is pre-rendered at build time via ISR.
- */
 export function About({ data }: AboutProps) {
-    const containerRef = useRef<HTMLDivElement>(null);
-    const { scrollYProgress } = useScroll({
-        target: containerRef,
-        offset: ["start end", "end start"],
-    });
+  const sectionRef = useRef<HTMLElement>(null)
+  const isInView = useInView(sectionRef, { once: true, margin: "-60px" })
 
-    const opacity = useTransform(scrollYProgress, [0.1, 0.3], [0, 1]);
-    const y = useTransform(scrollYProgress, [0.1, 0.3], [50, 0]);
+  const easeCurve: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
-    // Helper to render text with markdown bold (**) support
-    const renderFormattedText = (text: string) => {
-        if (!text) return null;
-        const parts = text.split(/(\*\*.*?\*\*)/g);
-        return parts.map((part, index) => {
-            if (part.startsWith("**") && part.endsWith("**")) {
-                return (
-                    <span key={index} className="font-semibold text-zinc-900 dark:text-zinc-100">
-                        {part.slice(2, -2)}
+  return (
+    <section
+      id="about"
+      ref={sectionRef}
+      className="relative w-full py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-zinc-50 dark:bg-black overflow-hidden transition-colors duration-700 select-none"
+    >
+      {/* ============================================================ */}
+      {/* 1. BACKGROUND: Subtle Dot Grid & Atmosphere                   */}
+      {/* ============================================================ */}
+      <div className="absolute inset-0 bg-dot-grid pointer-events-none opacity-60 dark:opacity-30" />
+      <div className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[350px] bg-indigo-500/[0.03] dark:bg-indigo-500/[0.04] rounded-full blur-[140px] pointer-events-none" />
+
+      <div className="relative z-10 max-w-6xl mx-auto">
+        
+        {/* ============================================================ */}
+        {/* 2. TWO-COLUMN LAYOUT: About Me (Left) vs Experience (Right)  */}
+        {/* ============================================================ */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+          
+          {/* ---------------------------------------------------------- */}
+          {/* LEFT COLUMN: About Me Heading & Narrative Paragraphs       */}
+          {/* ---------------------------------------------------------- */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, ease: easeCurve }}
+            className="lg:col-span-7 flex flex-col justify-between h-full"
+          >
+            <div>
+              {/* Section Heading: About Me */}
+              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-950 dark:text-white select-text">
+                About{" "}
+                <span className="text-indigo-600 dark:text-indigo-400">
+                  Me
+                </span>
+              </h2>
+
+              {/* Exact AI/ML Engineer Positioned Narrative */}
+              <div className="mt-6 space-y-4 text-sm sm:text-[15px] leading-relaxed text-zinc-600 dark:text-zinc-400 select-text">
+                <p>
+                  I&apos;m an <strong className="font-semibold text-zinc-900 dark:text-zinc-100">AI/ML Engineer</strong> passionate about building intelligent applications using <strong className="font-semibold text-zinc-900 dark:text-zinc-100">Machine Learning, Generative AI, Computer Vision, Large Language Models (LLMs), and AI Agents</strong>. I enjoy transforming complex problems into AI-powered solutions that automate workflows, improve decision-making, and deliver real-world value.
+                </p>
+
+                <p>
+                  Through projects including <strong className="font-semibold text-zinc-900 dark:text-zinc-100">Scorelia, Deepfake Video Detection, Vision Document Parsing, and Face Recognition Attendance Management</strong>, I&apos;ve gained hands-on experience developing <strong className="font-semibold text-zinc-900 dark:text-zinc-100">end-to-end AI applications</strong> — from data preprocessing and model development to AI pipelines, backend APIs, and modern web interfaces.
+                </p>
+
+                <p>
+                  I&apos;m continuously exploring <strong className="font-semibold text-zinc-900 dark:text-zinc-100">Agentic AI, Retrieval-Augmented Generation (RAG), multimodal AI, and modern LLM frameworks</strong> to build more capable and reliable intelligent systems. My goal is to engineer production-oriented AI products that solve meaningful problems and create measurable impact.
+                </p>
+              </div>
+            </div>
+
+            {/* Education Card (Anchored Bottom of Left Column - Blue / Cyan Accent) */}
+            <div className="mt-8 p-4 sm:p-5 rounded-2xl border border-blue-200/90 dark:border-blue-500/30 bg-blue-50/50 dark:bg-blue-950/20 backdrop-blur-xs select-text shadow-xs hover:border-blue-400/80 dark:hover:border-blue-400/60 hover:-translate-y-0.5 transition-all duration-200 hover:shadow-md hover:shadow-blue-500/5 group">
+              <div className="flex items-start gap-3.5">
+                <div className="p-2.5 rounded-xl bg-blue-500/10 dark:bg-blue-500/20 border border-blue-500/25 text-blue-600 dark:text-blue-400 shrink-0 group-hover:scale-105 transition-transform duration-200">
+                  <GraduationCap className="w-5 h-5" />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <h3 className="text-sm sm:text-base font-bold text-zinc-900 dark:text-zinc-100 tracking-tight">
+                    Bachelor of Technology (B.Tech)
+                  </h3>
+                  <div className="text-xs sm:text-sm font-medium text-blue-600 dark:text-blue-400 mt-0.5">
+                    Artificial Intelligence & Data Science
+                  </div>
+                  <div className="text-xs text-zinc-500 dark:text-zinc-400 mt-1">
+                    MIT College of Engineering, Chhatrapati Sambhajinagar
+                  </div>
+                  
+                  {/* Badges / Chips */}
+                  <div className="mt-3 flex flex-wrap items-center gap-2">
+                    <span className="px-2.5 py-1 rounded-md text-[11px] font-mono font-medium bg-blue-100/60 dark:bg-blue-950/40 border border-blue-200/80 dark:border-blue-800/60 text-blue-900 dark:text-blue-200">
+                      B.Tech AI & DS
                     </span>
-                );
-            }
-            return part;
-        });
-    };
+                    <span className="px-2.5 py-1 rounded-md text-[11px] font-mono font-medium bg-blue-100/60 dark:bg-blue-950/40 border border-blue-200/80 dark:border-blue-800/60 text-blue-900 dark:text-blue-200">
+                      Nov 2022 – July 2026
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
 
-    const subtitle = data?.aboutSubtitle || defaultAboutData.subtitle;
-    const description = data?.aboutDescription || defaultAboutData.description;
-    const paragraphs = description.split(/\n\n+/);
+          {/* ---------------------------------------------------------- */}
+          {/* RIGHT COLUMN: Experience Section & Supporting Quick Info   */}
+          {/* ---------------------------------------------------------- */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.15, ease: easeCurve }}
+            className="lg:col-span-5 flex flex-col justify-between h-full"
+          >
+            <div>
+              {/* Section Heading: Experience */}
+              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 dark:text-white select-text">
+                Experience
+              </h2>
 
-    return (
-        <section ref={containerRef} className="py-32 px-4 bg-zinc-50 dark:bg-black bg-dot-grid relative overflow-hidden">
-            {/* Background decoration */}
-            <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute top-1/2 left-1/4 w-[400px] h-[400px] bg-[#6366F1]/5 blur-[150px] rounded-full -translate-y-1/2" />
+              {/* Experience Entry: RaiTalk */}
+              <div className="mt-6 border-l-2 border-indigo-500/40 dark:border-indigo-400/40 pl-4 sm:pl-5 space-y-3 select-text">
+                <div>
+                  <div className="text-sm sm:text-base font-bold text-zinc-900 dark:text-zinc-100">
+                    AI Intern{" "}
+                    <span className="text-indigo-600 dark:text-indigo-400 font-semibold">
+                      · RaiTalk
+                    </span>
+                  </div>
+                  {/* Subtle Secondary Date Line */}
+                  <div className="flex items-center gap-1.5 text-xs font-mono text-zinc-500 dark:text-zinc-400 mt-1">
+                    <Calendar className="w-3.5 h-3.5 text-indigo-500/80" />
+                    <span>Jan 2026 — May 2026</span>
+                  </div>
+                </div>
+
+                <ul className="space-y-2 text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 list-disc list-outside ml-4">
+                  <li>
+                    Evaluated 50+ AI prompt variations for response quality, consistency, and model performance.
+                  </li>
+                  <li>
+                    Performed AI output evaluation, workflow validation, and functional/API testing across real-world use cases.
+                  </li>
+                  <li>
+                    Identified response issues, documented defects, and collaborated with developers to improve AI application reliability.
+                  </li>
+                  <li>
+                    Validated AI-generated outputs and supported continuous improvement of AI models and workflows.
+                  </li>
+                </ul>
+              </div>
             </div>
 
-            <div className="max-w-2xl mx-auto relative z-10">
-                <motion.div style={{ opacity, y }} className="space-y-8">
-                    <motion.div
-                        className="flex items-center gap-2 px-4 py-2 w-fit rounded-full bg-[#6366F1]/10 border border-[#6366F1]/20 text-[#6366F1] dark:text-[#818CF8] text-xs font-mono tracking-wider"
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                    >
-                        <motion.span
-                            className="w-2 h-2 rounded-full bg-[#6366F1]"
-                            animate={{
-                                opacity: [1, 0.5, 1],
-                                boxShadow: [
-                                    "0 0 0 0 rgba(99, 102, 241, 0.4)",
-                                    "0 0 0 8px rgba(99, 102, 241, 0)",
-                                ]
-                            }}
-                            transition={{ duration: 2, repeat: Infinity }}
-                        />
-                        {data?.aboutTitle || defaultAboutData.title}
-                    </motion.div>
+            {/* Supporting Metadata Quick Info Grid (Distinct Premium V2 Accents) */}
+            <div className="mt-8 grid grid-cols-2 gap-2.5 sm:gap-3 select-text">
+              
+              {/* 1. Location (Indigo / Violet) */}
+              <div className="flex items-center gap-2.5 p-2.5 rounded-xl border border-indigo-200/90 dark:border-indigo-500/30 bg-indigo-50/70 dark:bg-indigo-950/30 backdrop-blur-xs hover:bg-indigo-100/80 dark:hover:bg-indigo-900/50 hover:border-indigo-400/80 dark:hover:border-indigo-400/60 hover:-translate-y-0.5 transition-all duration-200 shadow-2xs hover:shadow-md hover:shadow-indigo-500/5 group">
+                <div className="p-1.5 rounded-lg bg-indigo-500/10 dark:bg-indigo-500/20 border border-indigo-500/25 text-indigo-600 dark:text-indigo-400 shrink-0 group-hover:scale-105 transition-transform duration-200">
+                  <MapPin className="w-3.5 h-3.5" />
+                </div>
+                <span className="text-xs font-semibold text-zinc-900 dark:text-zinc-100 truncate">
+                  Pune, Maharashtra
+                </span>
+              </div>
 
-                    <h3 className="text-3xl md:text-5xl font-bold leading-tight text-zinc-900 dark:text-white text-left tracking-tight">
-                        {subtitle}
-                    </h3>
+              {/* 2. Education (Blue / Cyan) */}
+              <div className="flex items-center gap-2.5 p-2.5 rounded-xl border border-blue-200/90 dark:border-blue-500/30 bg-blue-50/70 dark:bg-blue-950/30 backdrop-blur-xs hover:bg-blue-100/80 dark:hover:bg-blue-900/50 hover:border-blue-400/80 dark:hover:border-blue-400/60 hover:-translate-y-0.5 transition-all duration-200 shadow-2xs hover:shadow-md hover:shadow-blue-500/5 group">
+                <div className="p-1.5 rounded-lg bg-blue-500/10 dark:bg-blue-500/20 border border-blue-500/25 text-blue-600 dark:text-blue-400 shrink-0 group-hover:scale-105 transition-transform duration-200">
+                  <GraduationCap className="w-3.5 h-3.5" />
+                </div>
+                <span className="text-xs font-semibold text-zinc-900 dark:text-zinc-100 truncate">
+                  B.Tech AI & Data Science
+                </span>
+              </div>
 
-                    <div className="prose prose-lg dark:prose-invert max-w-none text-zinc-600 dark:text-zinc-400 leading-relaxed text-left space-y-6">
-                        {paragraphs.map((para, idx) => (
-                            <p key={idx} className="font-normal text-zinc-600 dark:text-zinc-400">
-                                {renderFormattedText(para)}
-                            </p>
-                        ))}
-                    </div>
-                </motion.div>
+              {/* 3. Role (Purple) */}
+              <div className="flex items-center gap-2.5 p-2.5 rounded-xl border border-purple-200/90 dark:border-purple-500/30 bg-purple-50/70 dark:bg-purple-950/30 backdrop-blur-xs hover:bg-purple-100/80 dark:hover:bg-purple-900/50 hover:border-purple-400/80 dark:hover:border-purple-400/60 hover:-translate-y-0.5 transition-all duration-200 shadow-2xs hover:shadow-md hover:shadow-purple-500/5 group">
+                <div className="p-1.5 rounded-lg bg-purple-500/10 dark:bg-purple-500/20 border border-purple-500/25 text-purple-600 dark:text-purple-400 shrink-0 group-hover:scale-105 transition-transform duration-200">
+                  <Sparkles className="w-3.5 h-3.5" />
+                </div>
+                <span className="text-xs font-semibold text-zinc-900 dark:text-zinc-100 truncate">
+                  AI/ML Engineer
+                </span>
+              </div>
+
+              {/* 4. Internship (Teal) */}
+              <div className="flex items-center gap-2.5 p-2.5 rounded-xl border border-teal-200/90 dark:border-teal-500/30 bg-teal-50/70 dark:bg-teal-950/30 backdrop-blur-xs hover:bg-teal-100/80 dark:hover:bg-teal-900/50 hover:border-teal-400/80 dark:hover:border-teal-400/60 hover:-translate-y-0.5 transition-all duration-200 shadow-2xs hover:shadow-md hover:shadow-teal-500/5 group">
+                <div className="p-1.5 rounded-lg bg-teal-500/10 dark:bg-teal-500/20 border border-teal-500/25 text-teal-600 dark:text-teal-400 shrink-0 group-hover:scale-105 transition-transform duration-200">
+                  <Briefcase className="w-3.5 h-3.5" />
+                </div>
+                <span className="text-xs font-semibold text-zinc-900 dark:text-zinc-100 truncate">
+                  1 Internship (RaiTalk)
+                </span>
+              </div>
+
+              {/* 5. Projects (Sky / Cyan) */}
+              <div className="flex items-center gap-2.5 p-2.5 rounded-xl border border-sky-200/90 dark:border-sky-500/30 bg-sky-50/70 dark:bg-sky-950/30 backdrop-blur-xs hover:bg-sky-100/80 dark:hover:bg-sky-900/50 hover:border-sky-400/80 dark:hover:border-sky-400/60 hover:-translate-y-0.5 transition-all duration-200 shadow-2xs hover:shadow-md hover:shadow-sky-500/5 group">
+                <div className="p-1.5 rounded-lg bg-sky-500/10 dark:bg-sky-500/20 border border-sky-500/25 text-sky-600 dark:text-sky-400 shrink-0 group-hover:scale-105 transition-transform duration-200">
+                  <FolderGit2 className="w-3.5 h-3.5" />
+                </div>
+                <span className="text-xs font-semibold text-zinc-900 dark:text-zinc-100 truncate">
+                  04+ AI Projects
+                </span>
+              </div>
+
+              {/* 6. Availability (Emerald / Green) */}
+              <div className="flex items-center gap-2.5 p-2.5 rounded-xl border border-emerald-200/90 dark:border-emerald-500/30 bg-emerald-50/70 dark:bg-emerald-950/30 backdrop-blur-xs hover:bg-emerald-100/80 dark:hover:bg-emerald-900/50 hover:border-emerald-400/80 dark:hover:border-emerald-400/60 hover:-translate-y-0.5 transition-all duration-200 shadow-2xs hover:shadow-md hover:shadow-emerald-500/5 group">
+                <div className="p-1.5 rounded-lg bg-emerald-500/10 dark:bg-emerald-500/20 border border-emerald-500/25 text-emerald-600 dark:text-emerald-400 shrink-0 group-hover:scale-105 transition-transform duration-200">
+                  <Clock className="w-3.5 h-3.5" />
+                </div>
+                <span className="text-xs font-semibold text-zinc-900 dark:text-zinc-100 truncate">
+                  Available for Full-Time
+                </span>
+              </div>
+
             </div>
-        </section>
-    );
+          </motion.div>
+
+        </div>
+
+      </div>
+    </section>
+  )
 }

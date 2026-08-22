@@ -67,9 +67,14 @@ export interface Blog {
 export interface Certificate {
     _id: string;
     title: string;
+    issuer?: string;
+    issueDate?: string;
+    expiration?: string;
     serialId: string;
     image: string;
     pdf?: string;
+    credentialUrl?: string;
+    description?: string;
 }
 
 export interface Experience {
@@ -90,8 +95,7 @@ const fallbackHeroData: HeroData = {
     heroTitle: "Dipak Khandagale",
     heroSubtitle: "AI/ML Engineer",
     aboutTitle: "// About Me",
-    aboutSubtitle: "Building intelligent AI products that create real-world impact.",
-    aboutDescription: "I'm an **AI Engineer** passionate about building intelligent applications using **Machine Learning, Generative AI, Computer Vision, Large Language Models (LLMs), and Data Analytics**. I enjoy transforming complex problems into AI-powered solutions that automate workflows, generate insights, and deliver real-world value.\n\nThrough projects including **Scorelia, Deepfake Video Detection, Vision Document Parsing, Face Recognition Attendance Management, and Data Analytics Dashboards**, I've gained hands-on experience developing **end-to-end AI applications**—from data preprocessing and model development to backend APIs and modern web interfaces. I focus on building scalable, user-centric solutions that combine technical excellence with practical impact.\n\nI'm continuously exploring **AI Agents, Retrieval-Augmented Generation (RAG), multimodal AI, and modern LLM frameworks** to stay at the forefront of AI innovation. My goal is to build intelligent products that solve meaningful problems and create lasting value through technology.",
+    aboutDescription: "I'm an **AI/ML Engineer** passionate about building intelligent applications using **Machine Learning, Generative AI, Computer Vision, Large Language Models (LLMs), and AI Agents**. I enjoy transforming complex problems into AI-powered solutions that automate workflows, improve decision-making, and deliver real-world value.\n\nThrough projects including **Scorelia, Deepfake Video Detection, Vision Document Parsing, and Face Recognition Attendance Management**, I've gained hands-on experience developing **end-to-end AI applications** — from data preprocessing and model development to AI pipelines, backend APIs, and modern web interfaces.\n\nI'm continuously exploring **Agentic AI, Retrieval-Augmented Generation (RAG), multimodal AI, and modern LLM frameworks** to build more capable and reliable intelligent systems. My goal is to engineer production-oriented AI products that solve meaningful problems and create measurable impact.",
     email: "khandagaledipak47@gmail.com",
     socialLinks: {
         github: "https://github.com/Dipakk7",
@@ -100,7 +104,7 @@ const fallbackHeroData: HeroData = {
         website: "",
     },
     footerText: "© 2026 Dipak Khandagale. All rights reserved.",
-    resumeUrl: "https://raw.githubusercontent.com/Dipakk7/Portfolio/main/client/public/resume.pdf",
+    resumeUrl: "/resume/Dipak_Khandagale_Resume.docx",
 };
 
 const fallbackExperiences: Experience[] = [
@@ -109,7 +113,7 @@ const fallbackExperiences: Experience[] = [
         company: "RaiTalk",
         role: "AI Intern",
         period: "January 2026 – May 2026",
-        description: "Evaluated more than 50 prompt variations to improve AI response quality and consistency. Performed AI system testing across multiple use cases and scenarios. Supported LLM evaluation workflows and response quality assessment. Participated in API integration testing and validation. Documented experimentation results used in product improvement decisions. Assisted in identifying failure patterns and optimization opportunities. Contributed to AI evaluation and model performance analysis.",
+        description: "• Evaluated 50+ AI prompt variations for response quality, consistency, and model performance.\n• Performed AI output evaluation, workflow validation, and functional/API testing across real-world use cases.\n• Identified response issues, documented defects, and collaborated with developers to improve AI application reliability.\n• Validated AI-generated outputs and supported continuous improvement of AI models and workflows.",
         tags: ["Prompt Engineering", "LLM Evaluation", "AI Testing", "FastAPI", "API Integration", "Model Performance"],
         order: 0,
     },
@@ -119,26 +123,53 @@ const fallbackCertificates: Certificate[] = [
     {
         _id: "1",
         title: "Oracle AI Foundations Associate",
+        issuer: "Oracle Cloud Infrastructure",
+        issueDate: "2025",
+        expiration: "Does not expire",
         serialId: "OCI-AI-2025",
         image: "/certificates/OCI_AI_Foundations.png",
+        pdf: "/certificates/Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate.pdf",
     },
     {
         _id: "2",
         title: "Oracle Generative AI Professional",
+        issuer: "Oracle Cloud Infrastructure",
+        issueDate: "2025",
+        expiration: "Does not expire",
         serialId: "OCI-GENAI-2025",
         image: "/certificates/OCI_Generative_AI_Professional.png",
+        pdf: "/certificates/Oracle Cloud Infrastructure 2025 Certified Generative AI Professional.pdf",
     },
     {
         _id: "3",
         title: "Oracle Multicloud Architect Professional",
+        issuer: "Oracle Cloud Infrastructure",
+        issueDate: "2025",
+        expiration: "Does not expire",
         serialId: "OCI-MCARCH-2025",
         image: "/certificates/OCI_Multicloud_Architect.png",
+        pdf: "/certificates/OCI Multicloud Architect Professional .pdf",
     },
     {
         _id: "4",
+        title: "Artificial Intelligence Fundamentals",
+        issuer: "IBM SkillsBuild",
+        issueDate: "Jul 2026",
+        expiration: "Does not expire",
+        serialId: "e627ba96-d7ba-41da-9560-f879147771b5",
+        image: "/certificates/IBM_AI_Fundamentals.png",
+        credentialUrl: "https://www.credly.com/earner/earned/badge/e627ba96-d7ba-41da-9560-f879147771b5",
+        description: "This credential demonstrates knowledge of core artificial intelligence concepts.",
+    },
+    {
+        _id: "5",
         title: "Crash Course on Python – Coursera",
+        issuer: "Coursera · Google",
+        issueDate: "2024",
+        expiration: "Does not expire",
         serialId: "COURSERA-PY-2024",
         image: "/certificates/Coursera_Dipak.png",
+        pdf: "/certificates/Coursera Dipak.pdf",
     },
 ];
 
@@ -165,16 +196,6 @@ const fallbackProjects: Project[] = [
     },
     {
         _id: "p2",
-        title: "E-Commerce Sales Analysis",
-        description: "Performed comprehensive business analysis on sales data to identify revenue drivers, customer behavior patterns, and product performance trends.\n\nKey Achievements:\n• Analyzed 15,000+ sales records.\n• Built interactive dashboards.\n• Identified top 20% products contributing 70% of revenue.\n• Generated actionable recommendations.",
-        technologies: ["Python", "SQL", "Power BI"],
-        category: "project",
-        featured: true,
-        image: "/projects/ecommerce_analysis.png",
-        githubUrl: "https://github.com/Dipakk7/Ecommerce-Sales-Analysis",
-    },
-    {
-        _id: "p3",
         title: "Real-Time Face Recognition Attendance System",
         description: "Designed and developed an attendance automation system capable of recognizing users in real time using computer vision and object detection technologies.\n\nKey Achievements:\n• Supports 50+ users.\n• Recognition latency below one second.\n• Automated attendance logging.\n• Improved attendance accuracy.",
         technologies: ["Python", "OpenCV", "YOLO", "FastAPI"],
@@ -182,6 +203,16 @@ const fallbackProjects: Project[] = [
         featured: true,
         image: "/projects/face_recognition.png",
         githubUrl: "https://github.com/Dipakk7/Face_reco_attendance_management",
+    },
+    {
+        _id: "p3",
+        title: "E-Commerce Sales Analysis",
+        description: "Performed comprehensive business analysis on sales data to identify revenue drivers, customer behavior patterns, and product performance trends.\n\nKey Achievements:\n• Analyzed 15,000+ sales records.\n• Built interactive dashboards.\n• Identified top 20% products contributing 70% of revenue.\n• Generated actionable recommendations.",
+        technologies: ["Python", "SQL", "Power BI"],
+        category: "project",
+        featured: true,
+        image: "/projects/ecommerce_analysis.png",
+        githubUrl: "https://github.com/Dipakk7/Ecommerce-Sales-Analysis",
     }
 ];
 
@@ -218,14 +249,12 @@ export async function getHeroData(): Promise<HeroData> {
         });
 
         if (!res.ok) {
-            console.warn(`[ISR] Hero fetch failed with status ${res.status}, using fallback`);
             return fallbackHeroData;
         }
 
         const json = await res.json();
         return json.data || fallbackHeroData;
-    } catch (error) {
-        console.warn('[ISR] Hero fetch error, using fallback:', error);
+    } catch {
         return fallbackHeroData;
     }
 }
@@ -240,14 +269,12 @@ export async function getProjects(): Promise<Project[]> {
         });
 
         if (!res.ok) {
-            console.warn(`[ISR] Projects fetch failed with status ${res.status}, using fallback`);
             return fallbackProjects;
         }
 
         const json = await res.json();
         return json.data && json.data.length > 0 ? json.data : fallbackProjects;
-    } catch (error) {
-        console.warn('[ISR] Projects fetch error, using fallback:', error);
+    } catch {
         return fallbackProjects;
     }
 }
@@ -262,14 +289,12 @@ export async function getBlogs(): Promise<Blog[]> {
         });
 
         if (!res.ok) {
-            console.warn(`[ISR] Blogs fetch failed with status ${res.status}, using fallback`);
             return fallbackBlogs;
         }
 
         const json = await res.json();
         return json.data && json.data.length > 0 ? json.data : fallbackBlogs;
-    } catch (error) {
-        console.warn('[ISR] Blogs fetch error, using fallback:', error);
+    } catch {
         return fallbackBlogs;
     }
 }
@@ -284,14 +309,12 @@ export async function getCertificates(): Promise<Certificate[]> {
         });
 
         if (!res.ok) {
-            console.warn(`[ISR] Certificates fetch failed with status ${res.status}, using fallback`);
             return fallbackCertificates;
         }
 
         const json = await res.json();
         return json.data && json.data.length > 0 ? json.data : fallbackCertificates;
-    } catch (error) {
-        console.warn('[ISR] Certificates fetch error, using fallback:', error);
+    } catch {
         return fallbackCertificates;
     }
 }
@@ -306,14 +329,12 @@ export async function getExperiences(): Promise<Experience[]> {
         });
 
         if (!res.ok) {
-            console.warn(`[ISR] Experiences fetch failed with status ${res.status}, using fallback`);
             return fallbackExperiences;
         }
 
         const json = await res.json();
         return json.data && json.data.length > 0 ? json.data : fallbackExperiences;
-    } catch (error) {
-        console.warn('[ISR] Experiences fetch error, using fallback:', error);
+    } catch {
         return fallbackExperiences;
     }
 }
