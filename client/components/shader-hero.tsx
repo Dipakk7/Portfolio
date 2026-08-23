@@ -5,7 +5,7 @@ import Image from "next/image"
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion"
 import { ArrowDown, ArrowRight, Download, Mail } from "lucide-react"
 import type { HeroData } from "@/lib/data"
-import { OFFICE_RESUME_VIEWER_URL, handleResumeClick } from "@/lib/utils"
+import { RESUME_URL } from "@/lib/utils"
 
 // Custom SVG Icons for GitHub and LinkedIn for crisp rendering
 function GithubIcon({ className = "w-4 h-4" }: { className?: string }) {
@@ -35,7 +35,7 @@ export function ShaderAnimation({ heroData }: ShaderAnimationProps) {
   const containerRef = useRef<HTMLDivElement>(null)
 
   // Get social & resume URLs from data or authentic default fallbacks
-  const resumeLink = OFFICE_RESUME_VIEWER_URL
+  const resumeLink = heroData?.resumeUrl || RESUME_URL
 
   const githubUrl = heroData?.socialLinks?.github || "https://github.com/Dipakk7"
   const linkedinUrl = heroData?.socialLinks?.linkedin || "https://linkedin.com/in/dipakkhandagale"
@@ -212,7 +212,6 @@ export function ShaderAnimation({ heroData }: ShaderAnimationProps) {
                 href={resumeLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={(e) => handleResumeClick(e)}
                 className="group inline-flex items-center justify-center gap-2 px-5 sm:px-6 h-11 rounded-xl text-sm font-semibold tracking-wide border border-zinc-200/90 dark:border-zinc-800 bg-white/70 dark:bg-zinc-900/70 hover:bg-zinc-100/90 dark:hover:bg-zinc-800/80 hover:border-indigo-300/60 dark:hover:border-indigo-500/40 text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white transition-all duration-150 ease-out hover:scale-[1.02] hover:-translate-y-0.5 active:scale-[0.98] active:translate-y-0 cursor-pointer backdrop-blur-md shadow-xs hover:shadow-sm outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-black motion-reduce:transform-none"
               >
                 <span>Resume</span>

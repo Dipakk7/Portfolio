@@ -104,7 +104,7 @@ const fallbackHeroData: HeroData = {
         website: "",
     },
     footerText: "© 2026 Dipak Khandagale. All rights reserved.",
-    resumeUrl: "/resume/Dipak_Khandagale_Resume.docx",
+    resumeUrl: "/resume/Dipak_Khandagale_Resume.pdf",
 };
 
 const fallbackExperiences: Experience[] = [

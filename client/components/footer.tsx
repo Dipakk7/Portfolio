@@ -5,7 +5,7 @@ import { motion, useInView } from "framer-motion"
 import { Github, Linkedin, Mail, Download, ArrowUp } from "lucide-react"
 import type { HeroData } from "@/lib/data"
 
-import { OFFICE_RESUME_VIEWER_URL, handleResumeClick } from "@/lib/utils"
+import { RESUME_URL } from "@/lib/utils"
 
 interface FooterProps {
   footerData: HeroData | null
@@ -26,7 +26,7 @@ export function Footer({ footerData }: FooterProps) {
 
   const easeCurve: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
-  const resumeUrl = OFFICE_RESUME_VIEWER_URL
+  const resumeUrl = footerData?.resumeUrl || RESUME_URL
 
   const githubUrl = footerData?.socialLinks?.github || defaultFooterData.socialLinks.github
   const linkedinUrl = footerData?.socialLinks?.linkedin || defaultFooterData.socialLinks.linkedin
@@ -41,7 +41,6 @@ export function Footer({ footerData }: FooterProps) {
       label: "GitHub",
       href: githubUrl,
       icon: Github,
-      isResume: false,
       styles: {
         container: "bg-indigo-50/70 dark:bg-indigo-950/30 border-indigo-200/90 dark:border-indigo-800/60 text-indigo-950 dark:text-indigo-200 hover:bg-indigo-100/80 dark:hover:bg-indigo-900/50 hover:border-indigo-400/80 dark:hover:border-indigo-500/70 hover:text-indigo-900 dark:hover:text-indigo-100 shadow-indigo-500/5",
         icon: "text-indigo-600 dark:text-indigo-400 group-hover:text-indigo-700 dark:group-hover:text-indigo-300",
@@ -51,7 +50,6 @@ export function Footer({ footerData }: FooterProps) {
       label: "LinkedIn",
       href: linkedinUrl,
       icon: Linkedin,
-      isResume: false,
       styles: {
         container: "bg-blue-50/70 dark:bg-blue-950/30 border-blue-200/90 dark:border-blue-800/60 text-blue-950 dark:text-blue-200 hover:bg-blue-100/80 dark:hover:bg-blue-900/50 hover:border-blue-400/80 dark:hover:border-blue-500/70 hover:text-blue-900 dark:hover:text-blue-100 shadow-blue-500/5",
         icon: "text-blue-600 dark:text-blue-400 group-hover:text-blue-700 dark:group-hover:text-blue-300",
@@ -61,7 +59,6 @@ export function Footer({ footerData }: FooterProps) {
       label: "Email",
       href: emailUrl,
       icon: Mail,
-      isResume: false,
       styles: {
         container: "bg-teal-50/70 dark:bg-teal-950/30 border-teal-200/90 dark:border-teal-800/60 text-teal-950 dark:text-teal-200 hover:bg-teal-100/80 dark:hover:bg-teal-900/50 hover:border-teal-400/80 dark:hover:border-teal-500/70 hover:text-teal-900 dark:hover:text-teal-100 shadow-teal-500/5",
         icon: "text-teal-600 dark:text-teal-400 group-hover:text-teal-700 dark:group-hover:text-teal-300",
@@ -71,7 +68,6 @@ export function Footer({ footerData }: FooterProps) {
       label: "Resume",
       href: resumeUrl,
       icon: Download,
-      isResume: true,
       styles: {
         container: "bg-purple-50/70 dark:bg-purple-950/30 border-purple-200/90 dark:border-purple-800/60 text-purple-950 dark:text-purple-200 hover:bg-purple-100/80 dark:hover:bg-purple-900/50 hover:border-purple-400/80 dark:hover:border-purple-500/70 hover:text-purple-900 dark:hover:text-purple-100 shadow-purple-500/5",
         icon: "text-purple-600 dark:text-purple-400 group-hover:text-purple-700 dark:group-hover:text-purple-300",
@@ -152,7 +148,6 @@ export function Footer({ footerData }: FooterProps) {
                 href={btn.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={btn.isResume ? (e) => handleResumeClick(e) : undefined}
                 className={`group inline-flex items-center gap-2.5 px-4 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold tracking-wide border backdrop-blur-xs transition-all duration-200 ease-out hover:-translate-y-0.5 hover:scale-[1.02] shadow-2xs hover:shadow-md cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 ${btn.styles.container}`}
               >
                 <Icon className={`w-4 h-4 transition-colors duration-200 ${btn.styles.icon}`} />
