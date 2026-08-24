@@ -163,6 +163,16 @@ const fallbackCertificates: Certificate[] = [
     },
     {
         _id: "5",
+        title: "Artificial Intelligence & Machine Learning",
+        issuer: "KODACY · SPACE",
+        issueDate: "Completed Apr 2026",
+        expiration: "30-Day Virtual Internship",
+        serialId: "274f93f1d6433613",
+        image: "/certificates/Kodacy_AI_ML.png",
+        pdf: "/certificates/Kodacy_Certificate.pdf",
+    },
+    {
+        _id: "6",
         title: "Crash Course on Python – Coursera",
         issuer: "Coursera · Google",
         issueDate: "2024",

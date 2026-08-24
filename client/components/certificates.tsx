@@ -53,6 +53,16 @@ const fallbackCertificatesList: Certificate[] = [
   },
   {
     _id: "5",
+    title: "Artificial Intelligence & Machine Learning",
+    issuer: "KODACY · SPACE",
+    issueDate: "Completed Apr 2026",
+    expiration: "30-Day Virtual Internship",
+    serialId: "274f93f1d6433613",
+    image: "/certificates/Kodacy_AI_ML.png",
+    pdf: "/certificates/Kodacy_Certificate.pdf",
+  },
+  {
+    _id: "6",
     title: "Crash Course on Python – Coursera",
     issuer: "Coursera · Google",
     issueDate: "2024",
@@ -69,8 +79,8 @@ export function Certificates({ certificates }: CertificatesProps) {
 
   const easeCurve: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
-  // Ensure all 5 credentials are displayable even if upstream returns partial
-  const displayCertificates = certificates && certificates.length >= 5
+  // Ensure all 6 credentials are displayable even if upstream returns partial
+  const displayCertificates = certificates && certificates.length >= 6
     ? certificates
     : fallbackCertificatesList
 
@@ -147,7 +157,11 @@ export function Certificates({ certificates }: CertificatesProps) {
 
                     {/* Metadata: Issued date & Expiration */}
                     <div className="flex items-center gap-2 text-xs text-zinc-500 dark:text-zinc-400 mb-4">
-                      <span>Issued {cert.issueDate || "2025"}</span>
+                      <span>
+                        {cert.issueDate?.startsWith("Completed")
+                          ? cert.issueDate
+                          : `Issued ${cert.issueDate || "2025"}`}
+                      </span>
                       <span>•</span>
                       <span>{cert.expiration || "Does not expire"}</span>
                     </div>

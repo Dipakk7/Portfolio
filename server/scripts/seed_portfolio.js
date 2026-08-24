@@ -151,6 +151,18 @@ const seedPortfolio = async () => {
                 pdf: "/certificates/OCI%20Multicloud%20Architect%20Professional%20.pdf"
             },
             {
+                title: "Artificial Intelligence Fundamentals",
+                serialId: "e627ba96-d7ba-41da-9560-f879147771b5",
+                image: "/certificates/IBM_AI_Fundamentals.png",
+                credentialUrl: "https://www.credly.com/earner/earned/badge/e627ba96-d7ba-41da-9560-f879147771b5"
+            },
+            {
+                title: "Artificial Intelligence & Machine Learning",
+                serialId: "274f93f1d6433613",
+                image: "/certificates/Kodacy_AI_ML.png",
+                pdf: "/certificates/Kodacy_Certificate.pdf"
+            },
+            {
                 title: "Crash Course on Python – Coursera",
                 serialId: "COURSERA-PY-2024",
                 image: "/certificates/Coursera_Dipak.png",

@@ -42,10 +42,10 @@ export function CertificatesPageClient({ certificates, footerData }: Certificate
                                         alt={cert.title}
                                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                                     />
-                                    {cert.pdf && (
+                                    {(cert.pdf || cert.credentialUrl) && (
                                         <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                                             <a
-                                                href={cert.pdf}
+                                                href={cert.credentialUrl || cert.pdf}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="inline-flex items-center gap-2 px-4 py-2 bg-white text-black rounded-full text-sm font-medium hover:scale-105 transition-transform"
