@@ -12,6 +12,11 @@ const BentoGrid = dynamic(() => import("@/components/bento-grid").then(mod => ({
   ssr: true
 })
 
+const TechStackOrbit = dynamic(() => import("@/components/tech-stack-orbit").then(mod => ({ default: mod.TechStackOrbit })), {
+  loading: () => <SectionSkeleton />,
+  ssr: true
+})
+
 const GithubProjects = dynamic(() => import("@/components/github-projects").then(mod => ({ default: mod.GithubProjects })), {
   loading: () => <SectionSkeleton />,
   ssr: true
@@ -79,6 +84,13 @@ export default async function Home() {
       <Suspense fallback={<SectionSkeleton />}>
         <section id="skills" className="scroll-mt-20">
           <BentoGrid heroData={heroData} />
+        </section>
+      </Suspense>
+
+      {/* 3.5. Interactive Tech Stack Orbit */}
+      <Suspense fallback={<SectionSkeleton />}>
+        <section id="tech-orbit" className="scroll-mt-20">
+          <TechStackOrbit />
         </section>
       </Suspense>
 

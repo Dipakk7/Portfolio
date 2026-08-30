@@ -5,6 +5,105 @@ import { motion, useInView } from "framer-motion"
 import { Brain, Sparkles, Eye, Database, Server, Wrench } from "lucide-react"
 import type { HeroData } from "@/lib/data"
 
+export interface SkillCategory {
+  id: string
+  name: string
+  subtitle?: string
+  icon: React.ComponentType<{ className?: string }>
+  accentColor: "indigo" | "purple" | "cyan" | "blue" | "teal" | "rose"
+  skills: string[]
+}
+
+export const SKILL_CATEGORIES: SkillCategory[] = [
+  {
+    id: "ai-ml",
+    name: "AI / Machine Learning",
+    subtitle: "Core Foundations & Architectures",
+    icon: Brain,
+    accentColor: "indigo",
+    skills: [
+      "Machine Learning",
+      "Deep Learning",
+      "Generative AI",
+      "Computer Vision",
+      "Large Language Models",
+      "AI Agents",
+    ],
+  },
+  {
+    id: "llm-ai",
+    name: "LLM & AI Systems",
+    icon: Sparkles,
+    accentColor: "purple",
+    skills: [
+      "LLMs",
+      "Prompt Engineering",
+      "AI Evaluation",
+      "RAG",
+      "LangChain",
+      "ChromaDB",
+      "Ollama",
+      "Qwen",
+    ],
+  },
+  {
+    id: "ml-cv",
+    name: "ML & Computer Vision",
+    icon: Eye,
+    accentColor: "cyan",
+    skills: [
+      "Python",
+      "Scikit-Learn",
+      "TensorFlow",
+      "Keras",
+      "OpenCV",
+      "YOLO",
+      "Matplotlib",
+      "Seaborn",
+    ],
+  },
+  {
+    id: "backend",
+    name: "Backend & Systems",
+    icon: Server,
+    accentColor: "blue",
+    skills: [
+      "FastAPI",
+      "REST APIs",
+      "PostgreSQL",
+      "Elasticsearch",
+    ],
+  },
+  {
+    id: "data-analytics",
+    name: "Data & Analytics",
+    icon: Database,
+    accentColor: "teal",
+    skills: [
+      "Pandas",
+      "NumPy",
+      "SQL",
+      "MySQL",
+      "Power BI",
+      "MS Excel",
+    ],
+  },
+  {
+    id: "tools",
+    name: "Tools & Environment",
+    icon: Wrench,
+    accentColor: "rose",
+    skills: [
+      "Git",
+      "GitHub",
+      "Docker",
+      "Jupyter Notebook",
+      "Google Colab",
+      "VS Code",
+    ],
+  },
+]
+
 interface BentoGridProps {
   heroData?: HeroData | null
 }

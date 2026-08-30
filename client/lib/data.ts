@@ -253,6 +253,9 @@ const fallbackBlogs: Blog[] = [
  * Fetch hero/about data with ISR caching
  */
 export async function getHeroData(): Promise<HeroData> {
+    if (process.env.NODE_ENV === 'development' && (!process.env.API_URL || process.env.API_URL.includes('localhost:5000'))) {
+        return fallbackHeroData;
+    }
     try {
         const res = await fetch(`${API_URL}/api/hero`, {
             next: { revalidate: REVALIDATE_SECONDS },
@@ -273,6 +276,9 @@ export async function getHeroData(): Promise<HeroData> {
  * Fetch projects with ISR caching
  */
 export async function getProjects(): Promise<Project[]> {
+    if (process.env.NODE_ENV === 'development' && (!process.env.API_URL || process.env.API_URL.includes('localhost:5000'))) {
+        return fallbackProjects;
+    }
     try {
         const res = await fetch(`${API_URL}/api/projects`, {
             next: { revalidate: REVALIDATE_SECONDS },
@@ -293,6 +299,9 @@ export async function getProjects(): Promise<Project[]> {
  * Fetch blogs with ISR caching
  */
 export async function getBlogs(): Promise<Blog[]> {
+    if (process.env.NODE_ENV === 'development' && (!process.env.API_URL || process.env.API_URL.includes('localhost:5000'))) {
+        return fallbackBlogs;
+    }
     try {
         const res = await fetch(`${API_URL}/api/blogs`, {
             next: { revalidate: REVALIDATE_SECONDS },
@@ -313,6 +322,9 @@ export async function getBlogs(): Promise<Blog[]> {
  * Fetch certificates with ISR caching
  */
 export async function getCertificates(): Promise<Certificate[]> {
+    if (process.env.NODE_ENV === 'development' && (!process.env.API_URL || process.env.API_URL.includes('localhost:5000'))) {
+        return fallbackCertificates;
+    }
     try {
         const res = await fetch(`${API_URL}/api/certificates`, {
             next: { revalidate: REVALIDATE_SECONDS },
@@ -333,6 +345,9 @@ export async function getCertificates(): Promise<Certificate[]> {
  * Fetch experiences with ISR caching
  */
 export async function getExperiences(): Promise<Experience[]> {
+    if (process.env.NODE_ENV === 'development' && (!process.env.API_URL || process.env.API_URL.includes('localhost:5000'))) {
+        return fallbackExperiences;
+    }
     try {
         const res = await fetch(`${API_URL}/api/experiences`, {
             next: { revalidate: REVALIDATE_SECONDS },
