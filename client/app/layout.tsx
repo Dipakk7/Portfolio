@@ -25,6 +25,10 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
+        url: "/favicon.ico",
+        sizes: "any",
+      },
+      {
         url: "/icon-48x48.png",
         sizes: "48x48",
         type: "image/png",
@@ -39,21 +43,9 @@ export const metadata: Metadata = {
         sizes: "192x192",
         type: "image/png",
       },
-      {
-        url: "/favicon.ico",
-        sizes: "any",
-      },
     ],
-    apple: [
-      {
-        url: "/apple-icon.png",
-        sizes: "180x180",
-        type: "image/png",
-      },
-    ],
-    shortcut: "/favicon.ico",
+    apple: "/apple-icon.png",
   },
-  manifest: "/site.webmanifest",
   // SEO enhancements
   keywords: ["AI Engineer", "Data Analyst", "Machine Learning Engineer", "Generative AI", "LLM", "Computer Vision", "Deep Learning", "FastAPI", "Python Developer", "Power BI", "SQL", "Artificial Intelligence Portfolio"],
   authors: [{ name: "Dipak Khandagale" }],
