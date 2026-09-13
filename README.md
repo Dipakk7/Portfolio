@@ -34,9 +34,9 @@
 
 ## 📌 Overview
 
-> This repository powers my personal **AI/ML Engineer portfolio** — a modern, responsive site built to showcase my projects, technical skills, and professional journey in a clean, recruiter-friendly experience.
+> This repository powers my personal **AI/ML Engineer portfolio** — a modern, responsive site built to showcase my projects, technical skills, certifications, and professional journey in a clean, recruiter-friendly experience.
 >
-> It's designed around performance and clarity: fast page loads, smooth animations, and a focused presentation of the work I've built across **Machine Learning, Generative AI, LLMs, and AI Agents**.
+> It's designed around performance and clarity: fast page loads, smooth animations, and a focused presentation of the work I've built across **Machine Learning, Generative AI, LLMs, Computer Vision, and Data Analytics**.
 
 <img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=6,11,20&height=2&width=1000" width="100%"/>
 
@@ -48,7 +48,7 @@
 |:---:|:---:|:---:|
 | 🎨 **Modern Premium UI** | 📱 **Fully Responsive** | 🎬 **Smooth Animations** |
 | 🤖 **AI Project Showcase** | 🧠 **Technical Skills Section** | 📄 **Resume Download** |
-| 🌗 **Dark & Light Mode** | 🔍 **SEO Optimized** | ⚡ **Fast Performance** |
+| 🌑 **Dark Theme** | 🔍 **SEO Optimized** | ⚡ **Fast Performance** |
 
 </div>
 
@@ -76,8 +76,8 @@
 
 | Category | Stack |
 |:--|:--|
-| **Frontend** | Next.js, React, TypeScript, Tailwind CSS, Framer Motion |
-| **AI Skills Showcased** | Python, Machine Learning, FastAPI, LLMs |
+| **Frontend (powers this site)** | Next.js, React, TypeScript, Tailwind CSS, Framer Motion |
+| **AI/ML Skills Showcased (in featured projects)** | Python, Machine Learning, FastAPI, LLMs |
 | **Tools & Deployment** | Git, GitHub, Vercel |
 
 </div>
@@ -147,31 +147,37 @@ Interactive Power BI dashboard analyzing sales trends, KPIs, and customer insigh
 
 <div align="center">
 
-<img src="./screenshots/hero.png" alt="Hero Section" width="90%" />
+<img src="./screenshots/hero-new.png" alt="Hero Section" width="90%" />
 
 *Hero Section*
 
 <br/><br/>
 
-<img src="./screenshots/about.png" alt="About Section" width="90%" />
+<img src="./screenshots/about-new.png" alt="About Section" width="90%" />
 
 *About Section*
 
 <br/><br/>
 
-<img src="./screenshots/skills.png" alt="Skills Section" width="90%" />
+<img src="./screenshots/skills-new.png" alt="Skills Section" width="90%" />
 
 *Skills Section*
 
 <br/><br/>
 
-<img src="./screenshots/projects.png" alt="Projects Section" width="90%" />
+<img src="./screenshots/projects-new.png" alt="Projects Section" width="90%" />
 
 *Projects Section*
 
 <br/><br/>
 
-<img src="./screenshots/contact.png" alt="Contact Section" width="90%" />
+<img src="./screenshots/certificate-new.png" alt="Certifications Section" width="90%" />
+
+*Certifications Section*
+
+<br/><br/>
+
+<img src="./screenshots/contact-new.png" alt="Contact Section" width="90%" />
 
 *Contact Section*
 
@@ -186,7 +192,8 @@ Interactive Power BI dashboard analyzing sales trends, KPIs, and customer insigh
 git clone https://github.com/Dipakk7/Portfolio.git
 cd Portfolio
 
-# Install dependencies
+# Move into the Next.js app and install dependencies
+cd client
 npm install
 
 # Run the development server
@@ -202,10 +209,13 @@ npm run build
 
 ```
 Portfolio/
-├── app/                 # Pages and routes
-├── components/          # Reusable UI components
-├── public/               # Static assets & screenshots
-├── styles/               # Global styles
+├── client/                # Next.js application (the live portfolio site)
+│   ├── app/                # App router pages & routes
+│   ├── components/         # Reusable UI components
+│   └── public/              # Static assets
+├── screenshots/           # README screenshots
+├── certificates/          # Certification files
+├── server/                # Backend service
 ├── LICENSE
 └── README.md
 ```
@@ -214,7 +224,7 @@ Portfolio/
 
 ## 🚢 Deployment
 
-Hosted on **Vercel**, with automatic deployment triggered on every push to the `main` branch.
+Hosted on **Vercel**, deployed from the `client` directory, with automatic deployment triggered on every push to the `main` branch.
 
 <img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=6,11,20&height=2&width=1000" width="100%"/>
 
