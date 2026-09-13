@@ -21,9 +21,7 @@
 <a href="#️-technology-stack"><img src="https://img.shields.io/badge/Tech%20Stack-black?style=flat-square&logo=techcrunch&logoColor=white" /></a>
 <a href="#-featured-projects"><img src="https://img.shields.io/badge/Projects-black?style=flat-square&logo=github&logoColor=white" /></a>
 <a href="#-screenshots"><img src="https://img.shields.io/badge/Screenshots-black?style=flat-square&logo=imgur&logoColor=white" /></a>
-<a href="#-installation"><img src="https://img.shields.io/badge/Installation-black?style=flat-square&logo=gitbook&logoColor=white" /></a>
 <a href="#-project-structure"><img src="https://img.shields.io/badge/Structure-black?style=flat-square&logo=files&logoColor=white" /></a>
-<a href="#-deployment"><img src="https://img.shields.io/badge/Deployment-black?style=flat-square&logo=vercel&logoColor=white" /></a>
 <a href="#-contact"><img src="https://img.shields.io/badge/Contact-black?style=flat-square&logo=maildotru&logoColor=white" /></a>
 
 <br/><br/>
@@ -185,26 +183,6 @@ Interactive Power BI dashboard analyzing sales trends, KPIs, and customer insigh
 
 <img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=6,11,20&height=2&width=1000" width="100%"/>
 
-## ⚙️ Installation
-
-```bash
-# Clone the repository
-git clone https://github.com/Dipakk7/Portfolio.git
-cd Portfolio
-
-# Move into the Next.js app and install dependencies
-cd client
-npm install
-
-# Run the development server
-npm run dev
-
-# Build for production
-npm run build
-```
-
-<img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=6,11,20&height=2&width=1000" width="100%"/>
-
 ## 📂 Project Structure
 
 ```
@@ -221,18 +199,6 @@ Portfolio/
 ```
 
 <img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=6,11,20&height=2&width=1000" width="100%"/>
-
-## 🚢 Deployment
-
-Hosted on **Vercel**, deployed from the `client` directory, with automatic deployment triggered on every push to the `main` branch.
-
-<img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=6,11,20&height=2&width=1000" width="100%"/>
-
-## 📄 License
-
-Distributed under the MIT License. See [LICENSE](LICENSE) for details.
-
-<br/>
 
 <div align="center">
 
